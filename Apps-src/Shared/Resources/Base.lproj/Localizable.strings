@@ -1,0 +1,76 @@
+/**
+© Copyright 2020, Little Green Viper Software Development LLC
+
+LICENSE:
+
+MIT License
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation
+files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy,
+modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the
+Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
+OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF
+CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+Little Green Viper Software Development LLC: https://littlegreenviper.com
+*/
+/*
+ These declarations are shared between all the apps.
+ */
+
+// This is how many answers we have available, and can be used to manage an index.
+"SLUG-NUMBER-MAX"               =   "20";
+
+// These are the answers that are possible from the 8-ball.
+"SLUG-ANSWER-00"                =   "It is certain.";
+"SLUG-ANSWER-01"                =   "It is decidedly so.";
+"SLUG-ANSWER-02"                =   "Without a doubt.";
+"SLUG-ANSWER-03"                =   "Yes – definitely.";
+"SLUG-ANSWER-04"                =   "You may rely on it.";
+"SLUG-ANSWER-05"                =   "As I see it, yes.";
+"SLUG-ANSWER-06"                =   "Most likely.";
+"SLUG-ANSWER-07"                =   "Outlook good.";
+"SLUG-ANSWER-08"                =   "Yes.";
+"SLUG-ANSWER-09"                =   "Signs point to yes.";
+"SLUG-ANSWER-10"                =   "Reply hazy, try again.";
+"SLUG-ANSWER-11"                =   "Ask again later.";
+"SLUG-ANSWER-12"                =   "Better not tell you now.";
+"SLUG-ANSWER-13"                =   "Cannot predict now.";
+"SLUG-ANSWER-14"                =   "Concentrate and ask again.";
+"SLUG-ANSWER-15"                =   "Don’t count on it.";
+"SLUG-ANSWER-16"                =   "My reply is no.";
+"SLUG-ANSWER-17"                =   "My sources say no.";
+"SLUG-ANSWER-18"                =   "Outlook not so good.";
+"SLUG-ANSWER-19"                =   "Very doubtful.";
+
+// These are the questions that are used to send randomly from the Watch.
+"SLUG-QUESTION-00"              =   "";
+"SLUG-QUESTION-01"              =   "";
+"SLUG-QUESTION-02"              =   "";
+"SLUG-QUESTION-03"              =   "";
+"SLUG-QUESTION-04"              =   "";
+"SLUG-QUESTION-05"              =   "";
+"SLUG-QUESTION-06"              =   "";
+"SLUG-QUESTION-07"              =   "";
+"SLUG-QUESTION-08"              =   "";
+"SLUG-QUESTION-09"              =   "";
+"SLUG-QUESTION-10"              =   "";
+"SLUG-QUESTION-11"              =   "";
+"SLUG-QUESTION-12"              =   "";
+"SLUG-QUESTION-13"              =   "";
+"SLUG-QUESTION-14"              =   "";
+"SLUG-QUESTION-15"              =   "";
+"SLUG-QUESTION-16"              =   "";
+"SLUG-QUESTION-17"              =   "";
+"SLUG-QUESTION-18"              =   "";
+"SLUG-QUESTION-19"              =   "";
+
+// These are the error slugs, returned by the SDK.
+"ITCB-SDK-ERROR-UNKNOWN"        =   "Unknown Error";
+"ITCB-SDK-ERROR-BLUETOOTH"      =   "Bluetooth Error";
+"ITCB-SDK-ERROR-SEND-FAILURE"   =   "Failed to Send";

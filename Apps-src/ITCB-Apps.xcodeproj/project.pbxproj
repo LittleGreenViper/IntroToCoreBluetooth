@@ -1,0 +1,1332 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 51;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		D40B434023F381F100CFE862 /* Watch App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = D40B433F23F381F100CFE862 /* Watch App.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		D40B434F23F381F200CFE862 /* Watch Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = D40B434E23F381F200CFE862 /* Watch Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		D40B437523F3836900CFE862 /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D40B437223F3836900CFE862 /* Interface.storyboard */; };
+		D40B437623F3836900CFE862 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D40B437423F3836900CFE862 /* Assets.xcassets */; };
+		D40B437C23F3842600CFE862 /* ITCB_ExtensionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D40B437923F3842500CFE862 /* ITCB_ExtensionDelegate.swift */; };
+		D40B437D23F3842600CFE862 /* ITCB_InterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D40B437A23F3842500CFE862 /* ITCB_InterfaceController.swift */; };
+		D4195FA223F454200031A99E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D4195F9D23F454200031A99E /* LaunchScreen.storyboard */; };
+		D4195FA323F454200031A99E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D4195F9F23F454200031A99E /* Main.storyboard */; };
+		D4195FA423F454200031A99E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D4195FA123F454200031A99E /* Assets.xcassets */; };
+		D4195FA723F454480031A99E /* ITCB_AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4195FA523F454480031A99E /* ITCB_AppDelegate.swift */; };
+		D4195FA823F454480031A99E /* ITCB_ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4195FA623F454480031A99E /* ITCB_ViewController.swift */; };
+		D422E1E723F42729006D483E /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = D4BC05B223F347FB008266BC /* Localizable.strings */; };
+		D452A2E523F0DAEC00016D71 /* Warnings.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = D452A2E423F0DAEC00016D71 /* Warnings.xcconfig */; };
+		D452A2F323F0DB8500016D71 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D452A2EE23F0DB8500016D71 /* InfoPlist.strings */; };
+		D452A2F423F0DB8500016D71 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D452A2F023F0DB8500016D71 /* Main.storyboard */; };
+		D48CEDD823F2CB180083F1A4 /* ITCB_Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = D48CEDD723F2CB180083F1A4 /* ITCB_Utilities.swift */; };
+		D4B7AE7923F38834006C9076 /* ITCB_Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = D48CEDD723F2CB180083F1A4 /* ITCB_Utilities.swift */; };
+		D4BC059823F345ED008266BC /* ITCB_Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = D48CEDD723F2CB180083F1A4 /* ITCB_Utilities.swift */; };
+		D4BC059E23F3469A008266BC /* ITCB_ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4BC059C23F3469A008266BC /* ITCB_ViewController.swift */; };
+		D4BC059F23F3469A008266BC /* ITCB_AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4BC059D23F3469A008266BC /* ITCB_AppDelegate.swift */; };
+		D4BC05A123F346AB008266BC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D4BC05A023F346AB008266BC /* Assets.xcassets */; };
+		D4BC05AA23F346B7008266BC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D4BC05A223F346B7008266BC /* Main.storyboard */; };
+		D4BC05AD23F346B7008266BC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D4BC05A823F346B7008266BC /* LaunchScreen.storyboard */; };
+		D4BC05B423F347FB008266BC /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = D4BC05B223F347FB008266BC /* Localizable.strings */; };
+		D4BC05B523F347FB008266BC /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = D4BC05B223F347FB008266BC /* Localizable.strings */; };
+		D4DBD5C923F41F7B001C9DE5 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D452A2EE23F0DB8500016D71 /* InfoPlist.strings */; };
+		D4DBD5CB23F41F80001C9DE5 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D452A2EE23F0DB8500016D71 /* InfoPlist.strings */; };
+		D4E6777C23EEF4C40066B0C0 /* ITCB_AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E6777423EEF4C40066B0C0 /* ITCB_AppDelegate.swift */; };
+		D4E6777D23EEF4C40066B0C0 /* ITCB_ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E6777523EEF4C40066B0C0 /* ITCB_ViewController.swift */; };
+		D4E6777F23EEF4C40066B0C0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D4E6777823EEF4C40066B0C0 /* Assets.xcassets */; };
+		D4FC12B223F7351100C3ED12 /* ITCB_Mac.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4FC12AD23F734F600C3ED12 /* ITCB_Mac.framework */; };
+		D4FC12B323F7351100C3ED12 /* ITCB_Mac.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D4FC12AD23F734F600C3ED12 /* ITCB_Mac.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		D40B434123F381F100CFE862 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D4D5F5C123EEF33400E4F52B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D40B433E23F381F100CFE862;
+			remoteInfo = "Watch WatchKit App";
+		};
+		D40B435023F381F200CFE862 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D4D5F5C123EEF33400E4F52B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D40B434D23F381F200CFE862;
+			remoteInfo = "Watch WatchKit Extension";
+		};
+		D4FC12BA23F7363A00C3ED12 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D4FC12B523F7363A00C3ED12 /* ITCB.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = D4BFAF8723F42B6F006D2C07;
+			remoteInfo = "ITCB-Mac";
+		};
+		D4FC12BC23F7363A00C3ED12 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D4FC12B523F7363A00C3ED12 /* ITCB.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = D4BFAF9023F42B6F006D2C07;
+			remoteInfo = "ITCB-Mac-Tests";
+		};
+		D4FC12BE23F7364400C3ED12 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D4FC12B523F7363A00C3ED12 /* ITCB.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = D4BFAF8623F42B6F006D2C07;
+			remoteInfo = "ITCB-Mac";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		D40B435F23F381F300CFE862 /* Embed Watch Content */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
+			dstSubfolderSpec = 16;
+			files = (
+				D40B434023F381F100CFE862 /* Watch App.app in Embed Watch Content */,
+			);
+			name = "Embed Watch Content";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D40B436223F381F300CFE862 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				D40B434F23F381F200CFE862 /* Watch Extension.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D4FC12B423F7351100C3ED12 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				D4FC12B323F7351100C3ED12 /* ITCB_Mac.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		D40B433C23F381F100CFE862 /* ITCB-Watch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ITCB-Watch.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D40B433F23F381F100CFE862 /* Watch App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Watch App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D40B434E23F381F200CFE862 /* Watch Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Watch Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D40B437323F3836900CFE862 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = App/Base.lproj/Interface.storyboard; sourceTree = "<group>"; };
+		D40B437423F3836900CFE862 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = App/Assets.xcassets; sourceTree = "<group>"; };
+		D40B437723F3838700CFE862 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = App/Meta/Info.plist; sourceTree = "<group>"; };
+		D40B437923F3842500CFE862 /* ITCB_ExtensionDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ITCB_ExtensionDelegate.swift; path = Extension/Source/ITCB_ExtensionDelegate.swift; sourceTree = "<group>"; };
+		D40B437A23F3842500CFE862 /* ITCB_InterfaceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ITCB_InterfaceController.swift; path = Extension/Source/ITCB_InterfaceController.swift; sourceTree = "<group>"; };
+		D40B438323F3845F00CFE862 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = Extension/Meta/Info.plist; sourceTree = "<group>"; };
+		D4195F8723F4533E0031A99E /* ITCB-TV.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ITCB-TV.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D4195F9A23F453EE0031A99E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = Meta/Info.plist; sourceTree = "<group>"; };
+		D4195F9E23F454200031A99E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Resources/Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		D4195FA023F454200031A99E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Resources/Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		D4195FA123F454200031A99E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = Resources/Assets.xcassets; sourceTree = "<group>"; };
+		D4195FA523F454480031A99E /* ITCB_AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ITCB_AppDelegate.swift; path = Source/ITCB_AppDelegate.swift; sourceTree = "<group>"; };
+		D4195FA623F454480031A99E /* ITCB_ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ITCB_ViewController.swift; path = Source/ITCB_ViewController.swift; sourceTree = "<group>"; };
+		D452A2E423F0DAEC00016D71 /* Warnings.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = Warnings.xcconfig; path = "Project-Meta/Warnings.xcconfig"; sourceTree = "<group>"; };
+		D452A2EF23F0DB8500016D71 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		D452A2F123F0DB8500016D71 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		D480010823F42C4500599729 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
+		D48CEDD723F2CB180083F1A4 /* ITCB_Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ITCB_Utilities.swift; sourceTree = "<group>"; };
+		D4A7887F23F5D1C70087D78F /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		D4BC057C23F34350008266BC /* ITCB-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ITCB-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D4BC059C23F3469A008266BC /* ITCB_ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ITCB_ViewController.swift; path = Source/ITCB_ViewController.swift; sourceTree = "<group>"; };
+		D4BC059D23F3469A008266BC /* ITCB_AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ITCB_AppDelegate.swift; path = Source/ITCB_AppDelegate.swift; sourceTree = "<group>"; };
+		D4BC05A023F346AB008266BC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = Resources/Assets.xcassets; sourceTree = "<group>"; };
+		D4BC05A323F346B7008266BC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Resources/Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		D4BC05A923F346B7008266BC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Resources/Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		D4BC05AE23F346C4008266BC /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = Meta/Info.plist; sourceTree = "<group>"; };
+		D4BC05B323F347FB008266BC /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
+		D4D5F5C923EEF33400E4F52B /* ITCB-Mac.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ITCB-Mac.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D4E6777423EEF4C40066B0C0 /* ITCB_AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ITCB_AppDelegate.swift; sourceTree = "<group>"; };
+		D4E6777523EEF4C40066B0C0 /* ITCB_ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ITCB_ViewController.swift; sourceTree = "<group>"; };
+		D4E6777623EEF4C40066B0C0 /* IntroToCoreBluetooth.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = IntroToCoreBluetooth.entitlements; sourceTree = "<group>"; };
+		D4E6777723EEF4C40066B0C0 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D4E6777823EEF4C40066B0C0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		D4FC12AD23F734F600C3ED12 /* ITCB_Mac.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = ITCB_Mac.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D4FC12B523F7363A00C3ED12 /* ITCB.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ITCB.xcodeproj; path = "../SDK-src/ITCB.xcodeproj"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		D4195F8423F4533E0031A99E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D4FC12B023F734F600C3ED12 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D4FC12B223F7351100C3ED12 /* ITCB_Mac.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		D40B436F23F382BF00CFE862 /* Watch */ = {
+			isa = PBXGroup;
+			children = (
+				D40B437023F3832600CFE862 /* App */,
+				D40B437123F3832E00CFE862 /* Extension */,
+			);
+			path = Watch;
+			sourceTree = "<group>";
+		};
+		D40B437023F3832600CFE862 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				D4DBD5CC23F42073001C9DE5 /* Resources */,
+				D40B437823F3838E00CFE862 /* Meta */,
+			);
+			name = App;
+			sourceTree = "<group>";
+		};
+		D40B437123F3832E00CFE862 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				D40B438723F3848000CFE862 /* Source */,
+				D40B438223F3844F00CFE862 /* Meta */,
+			);
+			name = Extension;
+			sourceTree = "<group>";
+		};
+		D40B437823F3838E00CFE862 /* Meta */ = {
+			isa = PBXGroup;
+			children = (
+				D40B437723F3838700CFE862 /* Info.plist */,
+			);
+			name = Meta;
+			sourceTree = "<group>";
+		};
+		D40B438223F3844F00CFE862 /* Meta */ = {
+			isa = PBXGroup;
+			children = (
+				D40B438323F3845F00CFE862 /* Info.plist */,
+			);
+			name = Meta;
+			sourceTree = "<group>";
+		};
+		D40B438723F3848000CFE862 /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				D40B437923F3842500CFE862 /* ITCB_ExtensionDelegate.swift */,
+				D40B437A23F3842500CFE862 /* ITCB_InterfaceController.swift */,
+			);
+			name = Source;
+			sourceTree = "<group>";
+		};
+		D4195F8823F4533E0031A99E /* TV */ = {
+			isa = PBXGroup;
+			children = (
+				D4195F9C23F454030031A99E /* Source */,
+				D4195F9B23F453F90031A99E /* Resources */,
+				D4195F9923F453DD0031A99E /* Meta */,
+			);
+			path = TV;
+			sourceTree = "<group>";
+		};
+		D4195F9923F453DD0031A99E /* Meta */ = {
+			isa = PBXGroup;
+			children = (
+				D4195F9A23F453EE0031A99E /* Info.plist */,
+			);
+			name = Meta;
+			sourceTree = "<group>";
+		};
+		D4195F9B23F453F90031A99E /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				D4195FA123F454200031A99E /* Assets.xcassets */,
+				D4195F9D23F454200031A99E /* LaunchScreen.storyboard */,
+				D4195F9F23F454200031A99E /* Main.storyboard */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		D4195F9C23F454030031A99E /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				D4195FA523F454480031A99E /* ITCB_AppDelegate.swift */,
+				D4195FA623F454480031A99E /* ITCB_ViewController.swift */,
+			);
+			name = Source;
+			sourceTree = "<group>";
+		};
+		D45D681723EEF5B30081EBF1 /* Meta */ = {
+			isa = PBXGroup;
+			children = (
+				D4FC12B523F7363A00C3ED12 /* ITCB.xcodeproj */,
+				D4A7887F23F5D1C70087D78F /* README.md */,
+				D480010823F42C4500599729 /* .swiftlint.yml */,
+				D452A2E423F0DAEC00016D71 /* Warnings.xcconfig */,
+			);
+			name = Meta;
+			sourceTree = "<group>";
+		};
+		D48B4C3C23F0DC9A001CA0B5 /* Localized */ = {
+			isa = PBXGroup;
+			children = (
+				D452A2F023F0DB8500016D71 /* Main.storyboard */,
+			);
+			name = Localized;
+			sourceTree = "<group>";
+		};
+		D4BC057D23F34350008266BC /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				D4BC059923F3461F008266BC /* Source */,
+				D4BC059A23F34629008266BC /* Resources */,
+				D4BC059B23F34631008266BC /* Meta */,
+			);
+			path = iOS;
+			sourceTree = "<group>";
+		};
+		D4BC059623F345C1008266BC /* Localized */ = {
+			isa = PBXGroup;
+			children = (
+				D4BC05A223F346B7008266BC /* Main.storyboard */,
+				D4BC05A823F346B7008266BC /* LaunchScreen.storyboard */,
+			);
+			name = Localized;
+			sourceTree = "<group>";
+		};
+		D4BC059723F345D9008266BC /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				D4BC05B023F347B6008266BC /* Source */,
+				D4BC05B123F347BE008266BC /* Resources */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
+		D4BC059923F3461F008266BC /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				D4BC059D23F3469A008266BC /* ITCB_AppDelegate.swift */,
+				D4BC059C23F3469A008266BC /* ITCB_ViewController.swift */,
+			);
+			name = Source;
+			sourceTree = "<group>";
+		};
+		D4BC059A23F34629008266BC /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				D4BC05A023F346AB008266BC /* Assets.xcassets */,
+				D4BC059623F345C1008266BC /* Localized */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		D4BC059B23F34631008266BC /* Meta */ = {
+			isa = PBXGroup;
+			children = (
+				D4BC05AE23F346C4008266BC /* Info.plist */,
+			);
+			name = Meta;
+			sourceTree = "<group>";
+		};
+		D4BC05B023F347B6008266BC /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				D48CEDD723F2CB180083F1A4 /* ITCB_Utilities.swift */,
+			);
+			path = Source;
+			sourceTree = "<group>";
+		};
+		D4BC05B123F347BE008266BC /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				D4BC05B223F347FB008266BC /* Localizable.strings */,
+				D452A2EE23F0DB8500016D71 /* InfoPlist.strings */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		D4BC05B623F34947008266BC /* src */ = {
+			isa = PBXGroup;
+			children = (
+				D4BC059723F345D9008266BC /* Shared */,
+				D4E6777323EEF48F0066B0C0 /* Mac */,
+				D4BC057D23F34350008266BC /* iOS */,
+				D40B436F23F382BF00CFE862 /* Watch */,
+				D4195F8823F4533E0031A99E /* TV */,
+			);
+			name = src;
+			sourceTree = "<group>";
+		};
+		D4D5F5C023EEF33400E4F52B = {
+			isa = PBXGroup;
+			children = (
+				D45D681723EEF5B30081EBF1 /* Meta */,
+				D4BC05B623F34947008266BC /* src */,
+				D4D5F5CA23EEF33400E4F52B /* Products */,
+				D4FC12AC23F734F600C3ED12 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		D4D5F5CA23EEF33400E4F52B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				D4D5F5C923EEF33400E4F52B /* ITCB-Mac.app */,
+				D4BC057C23F34350008266BC /* ITCB-iOS.app */,
+				D40B433C23F381F100CFE862 /* ITCB-Watch.app */,
+				D40B433F23F381F100CFE862 /* Watch App.app */,
+				D40B434E23F381F200CFE862 /* Watch Extension.appex */,
+				D4195F8723F4533E0031A99E /* ITCB-TV.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		D4DBD5CC23F42073001C9DE5 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				D40B437423F3836900CFE862 /* Assets.xcassets */,
+				D40B437223F3836900CFE862 /* Interface.storyboard */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		D4E6777323EEF48F0066B0C0 /* Mac */ = {
+			isa = PBXGroup;
+			children = (
+				D4E6778423EEF51E0066B0C0 /* Source */,
+				D4E6778323EEF5120066B0C0 /* Resources */,
+				D4E6778123EEF4E50066B0C0 /* Meta */,
+			);
+			path = Mac;
+			sourceTree = "<group>";
+		};
+		D4E6778123EEF4E50066B0C0 /* Meta */ = {
+			isa = PBXGroup;
+			children = (
+				D4E6777723EEF4C40066B0C0 /* Info.plist */,
+				D4E6777623EEF4C40066B0C0 /* IntroToCoreBluetooth.entitlements */,
+			);
+			path = Meta;
+			sourceTree = "<group>";
+		};
+		D4E6778323EEF5120066B0C0 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				D4E6777823EEF4C40066B0C0 /* Assets.xcassets */,
+				D48B4C3C23F0DC9A001CA0B5 /* Localized */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		D4E6778423EEF51E0066B0C0 /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				D4E6777423EEF4C40066B0C0 /* ITCB_AppDelegate.swift */,
+				D4E6777523EEF4C40066B0C0 /* ITCB_ViewController.swift */,
+			);
+			path = Source;
+			sourceTree = "<group>";
+		};
+		D4FC12AC23F734F600C3ED12 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				D4FC12AD23F734F600C3ED12 /* ITCB_Mac.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D4FC12B623F7363A00C3ED12 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				D4FC12BB23F7363A00C3ED12 /* ITCB_Mac.framework */,
+				D4FC12BD23F7363A00C3ED12 /* ITCB-Mac-Tests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		D40B433B23F381F100CFE862 /* ITCB-Watch */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D40B436723F381F300CFE862 /* Build configuration list for PBXNativeTarget "ITCB-Watch" */;
+			buildPhases = (
+				D40B435F23F381F300CFE862 /* Embed Watch Content */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D40B434223F381F100CFE862 /* PBXTargetDependency */,
+			);
+			name = "ITCB-Watch";
+			productName = Watch;
+			productReference = D40B433C23F381F100CFE862 /* ITCB-Watch.app */;
+			productType = "com.apple.product-type.application.watchapp2-container";
+		};
+		D40B433E23F381F100CFE862 /* Watch App */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D40B436623F381F300CFE862 /* Build configuration list for PBXNativeTarget "Watch App" */;
+			buildPhases = (
+				D40B433D23F381F100CFE862 /* Resources */,
+				D40B436223F381F300CFE862 /* Embed App Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D40B435123F381F200CFE862 /* PBXTargetDependency */,
+			);
+			name = "Watch App";
+			productName = "Watch WatchKit App";
+			productReference = D40B433F23F381F100CFE862 /* Watch App.app */;
+			productType = "com.apple.product-type.application.watchapp2";
+		};
+		D40B434D23F381F200CFE862 /* Watch Extension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D40B436523F381F300CFE862 /* Build configuration list for PBXNativeTarget "Watch Extension" */;
+			buildPhases = (
+				D40B438923F3856000CFE862 /* SwiftLint */,
+				D40B434A23F381F200CFE862 /* Sources */,
+				D40B434C23F381F200CFE862 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Watch Extension";
+			productName = "Watch WatchKit Extension";
+			productReference = D40B434E23F381F200CFE862 /* Watch Extension.appex */;
+			productType = "com.apple.product-type.watchkit2-extension";
+		};
+		D4195F8623F4533E0031A99E /* ITCB-TV */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D4195F9823F4533E0031A99E /* Build configuration list for PBXNativeTarget "ITCB-TV" */;
+			buildPhases = (
+				D4195F8323F4533E0031A99E /* Sources */,
+				D4195F8423F4533E0031A99E /* Frameworks */,
+				D4195F8523F4533E0031A99E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "ITCB-TV";
+			productName = "ITCB-TV";
+			productReference = D4195F8723F4533E0031A99E /* ITCB-TV.app */;
+			productType = "com.apple.product-type.application";
+		};
+		D4BC057B23F34350008266BC /* ITCB-iOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D4BC058F23F34351008266BC /* Build configuration list for PBXNativeTarget "ITCB-iOS" */;
+			buildPhases = (
+				D40B438823F3854900CFE862 /* SwiftLint */,
+				D4BC057823F34350008266BC /* Sources */,
+				D4BC057A23F34350008266BC /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "ITCB-iOS";
+			productName = iOS;
+			productReference = D4BC057C23F34350008266BC /* ITCB-iOS.app */;
+			productType = "com.apple.product-type.application";
+		};
+		D4D5F5C823EEF33400E4F52B /* ITCB-Mac */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D4D5F5D923EEF33500E4F52B /* Build configuration list for PBXNativeTarget "ITCB-Mac" */;
+			buildPhases = (
+				D4E2709C23EF49120072DC05 /* SwiftLint */,
+				D4D5F5C523EEF33400E4F52B /* Sources */,
+				D4D5F5C723EEF33400E4F52B /* Resources */,
+				D4FC12B023F734F600C3ED12 /* Frameworks */,
+				D4FC12B423F7351100C3ED12 /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D4FC12BF23F7364400C3ED12 /* PBXTargetDependency */,
+			);
+			name = "ITCB-Mac";
+			productName = IntroToCoreBluetooth;
+			productReference = D4D5F5C923EEF33400E4F52B /* ITCB-Mac.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		D4D5F5C123EEF33400E4F52B /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = ITCB_;
+				LastSwiftUpdateCheck = 1130;
+				LastUpgradeCheck = 1130;
+				ORGANIZATIONNAME = "Little Green Viper Software Development LLC";
+				TargetAttributes = {
+					D40B433B23F381F100CFE862 = {
+						CreatedOnToolsVersion = 11.3.1;
+					};
+					D40B433E23F381F100CFE862 = {
+						CreatedOnToolsVersion = 11.3.1;
+					};
+					D40B434D23F381F200CFE862 = {
+						CreatedOnToolsVersion = 11.3.1;
+						LastSwiftMigration = 1130;
+					};
+					D4195F8623F4533E0031A99E = {
+						CreatedOnToolsVersion = 11.3.1;
+						LastSwiftMigration = 1130;
+					};
+					D4BC057B23F34350008266BC = {
+						CreatedOnToolsVersion = 11.3.1;
+					};
+					D4D5F5C823EEF33400E4F52B = {
+						CreatedOnToolsVersion = 11.3.1;
+						LastSwiftMigration = 1130;
+					};
+				};
+			};
+			buildConfigurationList = D4D5F5C423EEF33400E4F52B /* Build configuration list for PBXProject "ITCB-Apps" */;
+			compatibilityVersion = "Xcode 10.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = D4D5F5C023EEF33400E4F52B;
+			productRefGroup = D4D5F5CA23EEF33400E4F52B /* Products */;
+			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = D4FC12B623F7363A00C3ED12 /* Products */;
+					ProjectRef = D4FC12B523F7363A00C3ED12 /* ITCB.xcodeproj */;
+				},
+			);
+			projectRoot = "";
+			targets = (
+				D4D5F5C823EEF33400E4F52B /* ITCB-Mac */,
+				D4BC057B23F34350008266BC /* ITCB-iOS */,
+				D4195F8623F4533E0031A99E /* ITCB-TV */,
+				D40B433B23F381F100CFE862 /* ITCB-Watch */,
+				D40B433E23F381F100CFE862 /* Watch App */,
+				D40B434D23F381F200CFE862 /* Watch Extension */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		D4FC12BB23F7363A00C3ED12 /* ITCB_Mac.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = ITCB_Mac.framework;
+			remoteRef = D4FC12BA23F7363A00C3ED12 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		D4FC12BD23F7363A00C3ED12 /* ITCB-Mac-Tests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = "ITCB-Mac-Tests.xctest";
+			remoteRef = D4FC12BC23F7363A00C3ED12 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
+
+/* Begin PBXResourcesBuildPhase section */
+		D40B433D23F381F100CFE862 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D40B437623F3836900CFE862 /* Assets.xcassets in Resources */,
+				D422E1E723F42729006D483E /* Localizable.strings in Resources */,
+				D4DBD5CB23F41F80001C9DE5 /* InfoPlist.strings in Resources */,
+				D40B437523F3836900CFE862 /* Interface.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D40B434C23F381F200CFE862 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D4195F8523F4533E0031A99E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D4195FA223F454200031A99E /* LaunchScreen.storyboard in Resources */,
+				D4195FA423F454200031A99E /* Assets.xcassets in Resources */,
+				D4195FA323F454200031A99E /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D4BC057A23F34350008266BC /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D4BC05B523F347FB008266BC /* Localizable.strings in Resources */,
+				D4DBD5C923F41F7B001C9DE5 /* InfoPlist.strings in Resources */,
+				D4BC05A123F346AB008266BC /* Assets.xcassets in Resources */,
+				D4BC05AD23F346B7008266BC /* LaunchScreen.storyboard in Resources */,
+				D4BC05AA23F346B7008266BC /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D4D5F5C723EEF33400E4F52B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D4BC05B423F347FB008266BC /* Localizable.strings in Resources */,
+				D452A2E523F0DAEC00016D71 /* Warnings.xcconfig in Resources */,
+				D452A2F423F0DB8500016D71 /* Main.storyboard in Resources */,
+				D452A2F323F0DB8500016D71 /* InfoPlist.strings in Resources */,
+				D4E6777F23EEF4C40066B0C0 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		D40B438823F3854900CFE862 /* SwiftLint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = SwiftLint;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if test -f \"${PROJECT_DIR}/Project-Meta/SwiftLint/swiftlint\"; then\n    \"${PROJECT_DIR}/Project-Meta/SwiftLint/swiftlint\"\nfi\n";
+		};
+		D40B438923F3856000CFE862 /* SwiftLint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = SwiftLint;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if test -f \"${PROJECT_DIR}/Project-Meta/SwiftLint/swiftlint\"; then\n    \"${PROJECT_DIR}/Project-Meta/SwiftLint/swiftlint\"\nfi\n";
+		};
+		D4E2709C23EF49120072DC05 /* SwiftLint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = SwiftLint;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if test -f \"${PROJECT_DIR}/Project-Meta/SwiftLint/swiftlint\"; then\n    \"${PROJECT_DIR}/Project-Meta/SwiftLint/swiftlint\"\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		D40B434A23F381F200CFE862 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D4B7AE7923F38834006C9076 /* ITCB_Utilities.swift in Sources */,
+				D40B437C23F3842600CFE862 /* ITCB_ExtensionDelegate.swift in Sources */,
+				D40B437D23F3842600CFE862 /* ITCB_InterfaceController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D4195F8323F4533E0031A99E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D4195FA823F454480031A99E /* ITCB_ViewController.swift in Sources */,
+				D4195FA723F454480031A99E /* ITCB_AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D4BC057823F34350008266BC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D4BC059F23F3469A008266BC /* ITCB_AppDelegate.swift in Sources */,
+				D4BC059E23F3469A008266BC /* ITCB_ViewController.swift in Sources */,
+				D4BC059823F345ED008266BC /* ITCB_Utilities.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D4D5F5C523EEF33400E4F52B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D48CEDD823F2CB180083F1A4 /* ITCB_Utilities.swift in Sources */,
+				D4E6777D23EEF4C40066B0C0 /* ITCB_ViewController.swift in Sources */,
+				D4E6777C23EEF4C40066B0C0 /* ITCB_AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		D40B434223F381F100CFE862 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D40B433E23F381F100CFE862 /* Watch App */;
+			targetProxy = D40B434123F381F100CFE862 /* PBXContainerItemProxy */;
+		};
+		D40B435123F381F200CFE862 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D40B434D23F381F200CFE862 /* Watch Extension */;
+			targetProxy = D40B435023F381F200CFE862 /* PBXContainerItemProxy */;
+		};
+		D4FC12BF23F7364400C3ED12 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "ITCB-Mac";
+			targetProxy = D4FC12BE23F7364400C3ED12 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		D40B437223F3836900CFE862 /* Interface.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D40B437323F3836900CFE862 /* Base */,
+			);
+			name = Interface.storyboard;
+			sourceTree = "<group>";
+		};
+		D4195F9D23F454200031A99E /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D4195F9E23F454200031A99E /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		D4195F9F23F454200031A99E /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D4195FA023F454200031A99E /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		D452A2EE23F0DB8500016D71 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D452A2EF23F0DB8500016D71 /* Base */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		D452A2F023F0DB8500016D71 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D452A2F123F0DB8500016D71 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		D4BC05A223F346B7008266BC /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D4BC05A323F346B7008266BC /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		D4BC05A823F346B7008266BC /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D4BC05A923F346B7008266BC /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		D4BC05B223F347FB008266BC /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D4BC05B323F347FB008266BC /* Base */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		D40B435D23F381F300CFE862 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = P53V4JS928;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.littlegreenviper.Watch;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		D40B435E23F381F300CFE862 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = P53V4JS928;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.littlegreenviper.Watch;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 5.0;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		D40B436023F381F300CFE862 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = P53V4JS928;
+				IBSC_MODULE = Watch_WatchKit_Extension;
+				INFOPLIST_FILE = Watch/App/Meta/Info.plist;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.littlegreenviper.ITCB-Watch.app";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 6.0;
+			};
+			name = Debug;
+		};
+		D40B436123F381F300CFE862 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = P53V4JS928;
+				IBSC_MODULE = Watch_WatchKit_Extension;
+				INFOPLIST_FILE = Watch/App/Meta/Info.plist;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.littlegreenviper.ITCB-Watch.app";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				VALIDATE_PRODUCT = YES;
+				WATCHOS_DEPLOYMENT_TARGET = 6.0;
+			};
+			name = Release;
+		};
+		D40B436323F381F300CFE862 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_COMPLICATION_NAME = "";
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = P53V4JS928;
+				INFOPLIST_FILE = Watch/Extension/Meta/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.littlegreenviper.ITCB-Watch.app.extension";
+				PRODUCT_NAME = "${TARGET_NAME}";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 6.0;
+			};
+			name = Debug;
+		};
+		D40B436423F381F300CFE862 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_COMPLICATION_NAME = "";
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = P53V4JS928;
+				INFOPLIST_FILE = Watch/Extension/Meta/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.littlegreenviper.ITCB-Watch.app.extension";
+				PRODUCT_NAME = "${TARGET_NAME}";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				VALIDATE_PRODUCT = YES;
+				WATCHOS_DEPLOYMENT_TARGET = 6.0;
+			};
+			name = Release;
+		};
+		D4195F9623F4533E0031A99E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = P53V4JS928;
+				INFOPLIST_FILE = TV/Meta/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.littlegreenviper.ITCB-TV";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = appletvos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 13.0;
+			};
+			name = Debug;
+		};
+		D4195F9723F4533E0031A99E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = P53V4JS928;
+				INFOPLIST_FILE = TV/Meta/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.littlegreenviper.ITCB-TV";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = appletvos;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 13.0;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		D4BC058D23F34351008266BC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = P53V4JS928;
+				INFOPLIST_FILE = iOS/Meta/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.littlegreenviper.ITCB-iOS";
+				PRODUCT_MODULE_NAME = ITCB_iOS;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TVOS_DEPLOYMENT_TARGET = 13.0;
+				WATCHOS_DEPLOYMENT_TARGET = 6.0;
+			};
+			name = Debug;
+		};
+		D4BC058E23F34351008266BC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = P53V4JS928;
+				INFOPLIST_FILE = iOS/Meta/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.littlegreenviper.ITCB-iOS";
+				PRODUCT_MODULE_NAME = ITCB_iOS;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TVOS_DEPLOYMENT_TARGET = 13.0;
+				VALIDATE_PRODUCT = YES;
+				WATCHOS_DEPLOYMENT_TARGET = 6.0;
+			};
+			name = Release;
+		};
+		D4D5F5D723EEF33500E4F52B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = D452A2E423F0DAEC00016D71 /* Warnings.xcconfig */;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		D4D5F5D823EEF33500E4F52B /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = D452A2E423F0DAEC00016D71 /* Warnings.xcconfig */;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+			};
+			name = Release;
+		};
+		D4D5F5DA23EEF33500E4F52B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = Mac/Meta/IntroToCoreBluetooth.entitlements;
+				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = P53V4JS928;
+				ENABLE_HARDENED_RUNTIME = YES;
+				INFOPLIST_FILE = Mac/Meta/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.littlegreenviper.ITCB-Mac";
+				PRODUCT_MODULE_NAME = ITCB_Mac;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TVOS_DEPLOYMENT_TARGET = 13.0;
+				WATCHOS_DEPLOYMENT_TARGET = 6.0;
+			};
+			name = Debug;
+		};
+		D4D5F5DB23EEF33500E4F52B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = Mac/Meta/IntroToCoreBluetooth.entitlements;
+				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = P53V4JS928;
+				ENABLE_HARDENED_RUNTIME = YES;
+				INFOPLIST_FILE = Mac/Meta/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.littlegreenviper.ITCB-Mac";
+				PRODUCT_MODULE_NAME = ITCB_Mac;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TVOS_DEPLOYMENT_TARGET = 13.0;
+				WATCHOS_DEPLOYMENT_TARGET = 6.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		D40B436523F381F300CFE862 /* Build configuration list for PBXNativeTarget "Watch Extension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D40B436323F381F300CFE862 /* Debug */,
+				D40B436423F381F300CFE862 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D40B436623F381F300CFE862 /* Build configuration list for PBXNativeTarget "Watch App" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D40B436023F381F300CFE862 /* Debug */,
+				D40B436123F381F300CFE862 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D40B436723F381F300CFE862 /* Build configuration list for PBXNativeTarget "ITCB-Watch" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D40B435D23F381F300CFE862 /* Debug */,
+				D40B435E23F381F300CFE862 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D4195F9823F4533E0031A99E /* Build configuration list for PBXNativeTarget "ITCB-TV" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D4195F9623F4533E0031A99E /* Debug */,
+				D4195F9723F4533E0031A99E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D4BC058F23F34351008266BC /* Build configuration list for PBXNativeTarget "ITCB-iOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D4BC058D23F34351008266BC /* Debug */,
+				D4BC058E23F34351008266BC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D4D5F5C423EEF33400E4F52B /* Build configuration list for PBXProject "ITCB-Apps" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D4D5F5D723EEF33500E4F52B /* Debug */,
+				D4D5F5D823EEF33500E4F52B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D4D5F5D923EEF33500E4F52B /* Build configuration list for PBXNativeTarget "ITCB-Mac" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D4D5F5DA23EEF33500E4F52B /* Debug */,
+				D4D5F5DB23EEF33500E4F52B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = D4D5F5C123EEF33400E4F52B /* Project object */;
+}
