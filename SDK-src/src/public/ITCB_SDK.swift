@@ -87,6 +87,12 @@ public class ITCB_SDK {
      - returns: True, if the observer is currently in the list of SDK observers.
      */
     public func isObserving(_ inObserver: ITCB_Observer_Protocol) -> Bool { _isObserving(inObserver) }
+    
+    /* ################################################################## */
+    /**
+     We force this to be private, so it won't get instantiated alone.
+     */
+    fileprivate init() { }
 }
 
 /* ###################################################################################################################################### */
@@ -111,6 +117,22 @@ public class ITCB_SDK_Central: ITCB_SDK, ITCB_SDK_Central_Protocol {
      This is the list of discovered Peripheral devices.
      */
     public var devices: [ITCB_Device_Peripheral_Protocol] = []
+    
+    /* ################################################################## */
+    /**
+     Default initializer
+     */
+    override init() {
+        super.init()
+        
+        // TODO: Remove this code. It is here just to provide a test structure for the apps.
+        for i in 0..<5 {
+            let device = ITCB_SDK_Device_Peripheral()
+            device.name = "TEST DUMMY DEVICE #\(i)"
+            devices.append(device)
+        }
+        // END TODO
+    }
 }
 
 /* ###################################################################################################################################### */
@@ -129,4 +151,24 @@ public class ITCB_SDK_Peripheral: ITCB_SDK, ITCB_SDK_Peripheral_Protocol {
      - returns: A new instance of a Peripheral SDK.
      */
     public class func createInstance() -> ITCB_SDK_Protocol? { ITCB_SDK_Peripheral() }
+    
+    /* ################################################################## */
+    /**
+     This is a reference to the Central device that the instance is being "managed" by.
+     */
+    public var central: ITCB_Device_Central_Protocol!
+    
+    /* ################################################################## */
+    /**
+     Default initializer
+     */
+    override init() {
+        super.init()
+        
+        // TODO: Remove this code. It is here just to provide a test structure for the apps.
+        let centralTemp = ITCB_SDK_Device_Central()
+        centralTemp.name = "DUMMY CENTRAL DEVICE"
+        central = centralTemp
+        // END TODO
+    }
 }

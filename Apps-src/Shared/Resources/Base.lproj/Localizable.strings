@@ -74,3 +74,9 @@ Little Green Viper Software Development LLC: https://littlegreenviper.com
 "ITCB-SDK-ERROR-UNKNOWN"        =   "Unknown Error";
 "ITCB-SDK-ERROR-BLUETOOTH"      =   "Bluetooth Error";
 "ITCB-SDK-ERROR-SEND-FAILURE"   =   "Failed to Send";
+
+// Various strings for use throughout the apps.
+"SLUG-ABOUT"                    =   "ABOUT THIS APP";
+"SLUG-SELECT-MODE"              =   "SELECT THE MODE";
+"SLUG-CENTRAL"                  =   "CENTRAL";
+"SLUG-PERIPHERAL"               =   "PERIPHERAL";

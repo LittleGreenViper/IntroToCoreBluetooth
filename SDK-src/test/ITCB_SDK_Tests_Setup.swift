@@ -334,6 +334,7 @@ class ITCB_SDK_Tests: XCTestCase {
         testPeripherals = []
         for i in 0..<Self.numberOfPeripherals {
             if let tempPeripheral = ITCB_SDK_Peripheral_Mock.createInstance() as? ITCB_SDK_Peripheral_Mock {
+                tempPeripheral.central = testCentral.mockCentralDeviceInstance
                 tempPeripheral.mockPeripheralDeviceInstance.owner = testCentral
                 tempPeripheral.mockPeripheralDeviceInstance.mockPeripheralSDKInstance = tempPeripheral
                 tempPeripheral.mockPeripheralDeviceInstance.name = String(format: "MOCK DEVICE #%d", i)

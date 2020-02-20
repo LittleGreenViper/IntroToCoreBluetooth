@@ -22,8 +22,11 @@
 		D452A2E523F0DAEC00016D71 /* Warnings.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = D452A2E423F0DAEC00016D71 /* Warnings.xcconfig */; };
 		D452A2F323F0DB8500016D71 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D452A2EE23F0DB8500016D71 /* InfoPlist.strings */; };
 		D452A2F423F0DB8500016D71 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D452A2F023F0DB8500016D71 /* Main.storyboard */; };
+		D464CBF023FDCDD100229FAA /* ITCB_Mac.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4FC12BB23F7363A00C3ED12 /* ITCB_Mac.framework */; };
+		D464CBF123FDCDD100229FAA /* ITCB_Mac.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D4FC12BB23F7363A00C3ED12 /* ITCB_Mac.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		D48CEDD823F2CB180083F1A4 /* ITCB_Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = D48CEDD723F2CB180083F1A4 /* ITCB_Utilities.swift */; };
 		D4B7AE7923F38834006C9076 /* ITCB_Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = D48CEDD723F2CB180083F1A4 /* ITCB_Utilities.swift */; };
+		D4BA633523FDE12F0086EF9F /* ITCB_About_ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4BA633323FDE12F0086EF9F /* ITCB_About_ViewController.swift */; };
 		D4BC059823F345ED008266BC /* ITCB_Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = D48CEDD723F2CB180083F1A4 /* ITCB_Utilities.swift */; };
 		D4BC059E23F3469A008266BC /* ITCB_ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4BC059C23F3469A008266BC /* ITCB_ViewController.swift */; };
 		D4BC059F23F3469A008266BC /* ITCB_AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4BC059D23F3469A008266BC /* ITCB_AppDelegate.swift */; };
@@ -32,13 +35,15 @@
 		D4BC05AD23F346B7008266BC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D4BC05A823F346B7008266BC /* LaunchScreen.storyboard */; };
 		D4BC05B423F347FB008266BC /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = D4BC05B223F347FB008266BC /* Localizable.strings */; };
 		D4BC05B523F347FB008266BC /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = D4BC05B223F347FB008266BC /* Localizable.strings */; };
+		D4CFE80823FEB505003D2BFA /* ITCB_CENTRAL_Initial_ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4CFE80723FEB505003D2BFA /* ITCB_CENTRAL_Initial_ViewController.swift */; };
+		D4CFE80A23FEB75C003D2BFA /* ITCB_PERIPHERAL_Initial_ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4CFE80923FEB75C003D2BFA /* ITCB_PERIPHERAL_Initial_ViewController.swift */; };
+		D4CFE80C23FEBB79003D2BFA /* ITCB_Base_ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4CFE80B23FEBB78003D2BFA /* ITCB_Base_ViewController.swift */; };
+		D4CFE80E23FEBD7C003D2BFA /* ITCB_Base_WindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4CFE80D23FEBD7C003D2BFA /* ITCB_Base_WindowController.swift */; };
 		D4DBD5C923F41F7B001C9DE5 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D452A2EE23F0DB8500016D71 /* InfoPlist.strings */; };
 		D4DBD5CB23F41F80001C9DE5 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D452A2EE23F0DB8500016D71 /* InfoPlist.strings */; };
 		D4E6777C23EEF4C40066B0C0 /* ITCB_AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E6777423EEF4C40066B0C0 /* ITCB_AppDelegate.swift */; };
-		D4E6777D23EEF4C40066B0C0 /* ITCB_ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E6777523EEF4C40066B0C0 /* ITCB_ViewController.swift */; };
+		D4E6777D23EEF4C40066B0C0 /* ITCB_Mode_Selection_ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E6777523EEF4C40066B0C0 /* ITCB_Mode_Selection_ViewController.swift */; };
 		D4E6777F23EEF4C40066B0C0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D4E6777823EEF4C40066B0C0 /* Assets.xcassets */; };
-		D4FC12B223F7351100C3ED12 /* ITCB_Mac.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4FC12AD23F734F600C3ED12 /* ITCB_Mac.framework */; };
-		D4FC12B323F7351100C3ED12 /* ITCB_Mac.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D4FC12AD23F734F600C3ED12 /* ITCB_Mac.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -102,13 +107,13 @@
 			name = "Embed App Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		D4FC12B423F7351100C3ED12 /* Embed Frameworks */ = {
+		D464CBF223FDCDD100229FAA /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				D4FC12B323F7351100C3ED12 /* ITCB_Mac.framework in Embed Frameworks */,
+				D464CBF123FDCDD100229FAA /* ITCB_Mac.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -138,6 +143,7 @@
 		D480010823F42C4500599729 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		D48CEDD723F2CB180083F1A4 /* ITCB_Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ITCB_Utilities.swift; sourceTree = "<group>"; };
 		D4A7887F23F5D1C70087D78F /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		D4BA633323FDE12F0086EF9F /* ITCB_About_ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ITCB_About_ViewController.swift; sourceTree = "<group>"; };
 		D4BC057C23F34350008266BC /* ITCB-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ITCB-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D4BC059C23F3469A008266BC /* ITCB_ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ITCB_ViewController.swift; path = Source/ITCB_ViewController.swift; sourceTree = "<group>"; };
 		D4BC059D23F3469A008266BC /* ITCB_AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ITCB_AppDelegate.swift; path = Source/ITCB_AppDelegate.swift; sourceTree = "<group>"; };
@@ -146,9 +152,13 @@
 		D4BC05A923F346B7008266BC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Resources/Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D4BC05AE23F346C4008266BC /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = Meta/Info.plist; sourceTree = "<group>"; };
 		D4BC05B323F347FB008266BC /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
+		D4CFE80723FEB505003D2BFA /* ITCB_CENTRAL_Initial_ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ITCB_CENTRAL_Initial_ViewController.swift; sourceTree = "<group>"; };
+		D4CFE80923FEB75C003D2BFA /* ITCB_PERIPHERAL_Initial_ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ITCB_PERIPHERAL_Initial_ViewController.swift; sourceTree = "<group>"; };
+		D4CFE80B23FEBB78003D2BFA /* ITCB_Base_ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ITCB_Base_ViewController.swift; sourceTree = "<group>"; };
+		D4CFE80D23FEBD7C003D2BFA /* ITCB_Base_WindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ITCB_Base_WindowController.swift; sourceTree = "<group>"; };
 		D4D5F5C923EEF33400E4F52B /* ITCB-Mac.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ITCB-Mac.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D4E6777423EEF4C40066B0C0 /* ITCB_AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ITCB_AppDelegate.swift; sourceTree = "<group>"; };
-		D4E6777523EEF4C40066B0C0 /* ITCB_ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ITCB_ViewController.swift; sourceTree = "<group>"; };
+		D4E6777523EEF4C40066B0C0 /* ITCB_Mode_Selection_ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ITCB_Mode_Selection_ViewController.swift; sourceTree = "<group>"; };
 		D4E6777623EEF4C40066B0C0 /* IntroToCoreBluetooth.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = IntroToCoreBluetooth.entitlements; sourceTree = "<group>"; };
 		D4E6777723EEF4C40066B0C0 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D4E6777823EEF4C40066B0C0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -168,7 +178,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D4FC12B223F7351100C3ED12 /* ITCB_Mac.framework in Frameworks */,
+				D464CBF023FDCDD100229FAA /* ITCB_Mac.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -275,6 +285,26 @@
 			name = Meta;
 			sourceTree = "<group>";
 		};
+		D464CBED23FDCD2100229FAA /* Application */ = {
+			isa = PBXGroup;
+			children = (
+				D4E6777423EEF4C40066B0C0 /* ITCB_AppDelegate.swift */,
+			);
+			path = Application;
+			sourceTree = "<group>";
+		};
+		D464CBEF23FDCD3500229FAA /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				D4CFE80B23FEBB78003D2BFA /* ITCB_Base_ViewController.swift */,
+				D4BA633323FDE12F0086EF9F /* ITCB_About_ViewController.swift */,
+				D4E6777523EEF4C40066B0C0 /* ITCB_Mode_Selection_ViewController.swift */,
+				D4CFE80723FEB505003D2BFA /* ITCB_CENTRAL_Initial_ViewController.swift */,
+				D4CFE80923FEB75C003D2BFA /* ITCB_PERIPHERAL_Initial_ViewController.swift */,
+			);
+			path = "View Controllers";
+			sourceTree = "<group>";
+		};
 		D48B4C3C23F0DC9A001CA0B5 /* Localized */ = {
 			isa = PBXGroup;
 			children = (
@@ -366,6 +396,14 @@
 			name = src;
 			sourceTree = "<group>";
 		};
+		D4CFE80F23FEBE27003D2BFA /* Window Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				D4CFE80D23FEBD7C003D2BFA /* ITCB_Base_WindowController.swift */,
+			);
+			path = "Window Controllers";
+			sourceTree = "<group>";
+		};
 		D4D5F5C023EEF33400E4F52B = {
 			isa = PBXGroup;
 			children = (
@@ -429,8 +467,9 @@
 		D4E6778423EEF51E0066B0C0 /* Source */ = {
 			isa = PBXGroup;
 			children = (
-				D4E6777423EEF4C40066B0C0 /* ITCB_AppDelegate.swift */,
-				D4E6777523EEF4C40066B0C0 /* ITCB_ViewController.swift */,
+				D464CBED23FDCD2100229FAA /* Application */,
+				D4CFE80F23FEBE27003D2BFA /* Window Controllers */,
+				D464CBEF23FDCD3500229FAA /* View Controllers */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -547,7 +586,7 @@
 				D4D5F5C523EEF33400E4F52B /* Sources */,
 				D4D5F5C723EEF33400E4F52B /* Resources */,
 				D4FC12B023F734F600C3ED12 /* Frameworks */,
-				D4FC12B423F7351100C3ED12 /* Embed Frameworks */,
+				D464CBF223FDCDD100229FAA /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -785,9 +824,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D4BA633523FDE12F0086EF9F /* ITCB_About_ViewController.swift in Sources */,
+				D4CFE80A23FEB75C003D2BFA /* ITCB_PERIPHERAL_Initial_ViewController.swift in Sources */,
 				D48CEDD823F2CB180083F1A4 /* ITCB_Utilities.swift in Sources */,
-				D4E6777D23EEF4C40066B0C0 /* ITCB_ViewController.swift in Sources */,
+				D4CFE80823FEB505003D2BFA /* ITCB_CENTRAL_Initial_ViewController.swift in Sources */,
+				D4CFE80E23FEBD7C003D2BFA /* ITCB_Base_WindowController.swift in Sources */,
+				D4E6777D23EEF4C40066B0C0 /* ITCB_Mode_Selection_ViewController.swift in Sources */,
 				D4E6777C23EEF4C40066B0C0 /* ITCB_AppDelegate.swift in Sources */,
+				D4CFE80C23FEBB79003D2BFA /* ITCB_Base_ViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1211,7 +1255,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Mac/Meta/IntroToCoreBluetooth.entitlements;
-				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = P53V4JS928;
@@ -1239,7 +1283,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Mac/Meta/IntroToCoreBluetooth.entitlements;
-				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = P53V4JS928;

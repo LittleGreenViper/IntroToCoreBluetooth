@@ -23,21 +23,16 @@ Little Green Viper Software Development LLC: https://littlegreenviper.com
 import Cocoa
 
 /* ###################################################################################################################################### */
-// MARK: 
+// MARK: - The About View Controller -
 /* ###################################################################################################################################### */
 /**
  */
-@NSApplicationMain
-class ITCB_AppDelegate: NSObject, NSApplicationDelegate {
+class ITCB_About_ViewController: ITCB_Base_ViewController {
     /* ################################################################## */
     /**
+     Called when the view has completed loading.
      */
-    func applicationDidFinishLaunching(_ aNotification: Notification) {
-    }
-
-    /* ################################################################## */
-    /**
-     */
-    func applicationWillTerminate(_ aNotification: Notification) {
+    override func viewDidLoad() {
+        super.viewDidLoad()
     }
 }

@@ -15,8 +15,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "D4BFAF8623F42B6F006D2C07"
-               BuildableName = "ITCB_Mac.framework"
-               BlueprintName = "ITCB-Mac"
+               BuildableName = "ITCB_SDK_Mac.framework"
+               BlueprintName = "ITCB_SDK_Mac"
                ReferencedContainer = "container:ITCB.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -33,8 +33,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "D4BFAF8F23F42B6F006D2C07"
-               BuildableName = "ITCB-Mac-Tests.xctest"
-               BlueprintName = "ITCB-Mac-Tests"
+               BuildableName = "ITCB_SDK_Mac-Tests.xctest"
+               BlueprintName = "ITCB_SDK_Mac-Tests"
                ReferencedContainer = "container:ITCB.xcodeproj">
             </BuildableReference>
          </TestableReference>
@@ -61,8 +61,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "D4BFAF8623F42B6F006D2C07"
-            BuildableName = "ITCB_Mac.framework"
-            BlueprintName = "ITCB-Mac"
+            BuildableName = "ITCB_SDK_Mac.framework"
+            BlueprintName = "ITCB_SDK_Mac"
             ReferencedContainer = "container:ITCB.xcodeproj">
          </BuildableReference>
       </MacroExpansion>

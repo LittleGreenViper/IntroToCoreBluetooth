@@ -117,7 +117,13 @@ public protocol ITCB_SDK_Central_Protocol: ITCB_SDK_Protocol {
 /**
  This specializes the general SDK for Peripherals.
  */
-public protocol ITCB_SDK_Peripheral_Protocol: ITCB_SDK_Protocol { }
+public protocol ITCB_SDK_Peripheral_Protocol: ITCB_SDK_Protocol {
+    /* ################################################################## */
+    /**
+     This is a reference to the Central device that is "managing" this Peripheral.
+     */
+    var central: ITCB_Device_Central_Protocol! { get }
+}
 
 /* ###################################################################################################################################### */
 // MARK: - This is the "Base" Device Protocol for the Main SDK -

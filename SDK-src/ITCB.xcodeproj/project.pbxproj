@@ -16,7 +16,7 @@
 		D455684A23F42C12007487BE /* Warnings.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = D455684823F42C04007487BE /* Warnings.xcconfig */; };
 		D4828E3523FB4D190056A276 /* ITCB_SDK_Tests_InitialTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4828E3323FB4D190056A276 /* ITCB_SDK_Tests_InitialTests.swift */; };
 		D4828E3823FB4E070056A276 /* ITCB_SDK_Tests_ObserverTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4828E3723FB4E070056A276 /* ITCB_SDK_Tests_ObserverTests.swift */; };
-		D4BFAF9123F42B6F006D2C07 /* ITCB_Mac.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4BFAF8723F42B6F006D2C07 /* ITCB_Mac.framework */; };
+		D4BFAF9123F42B6F006D2C07 /* ITCB_SDK_Mac.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4BFAF8723F42B6F006D2C07 /* ITCB_SDK_Mac.framework */; };
 		D4FC12C323F736D800C3ED12 /* ITCB_SDK_Protocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4FC12C223F736D800C3ED12 /* ITCB_SDK_Protocol.swift */; };
 		D4FC12C423F736D800C3ED12 /* ITCB_SDK_Protocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4FC12C223F736D800C3ED12 /* ITCB_SDK_Protocol.swift */; };
 /* End PBXBuildFile section */
@@ -40,9 +40,9 @@
 		D455684923F42C04007487BE /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		D4828E3323FB4D190056A276 /* ITCB_SDK_Tests_InitialTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ITCB_SDK_Tests_InitialTests.swift; path = test/ITCB_SDK_Tests_InitialTests.swift; sourceTree = "<group>"; };
 		D4828E3723FB4E070056A276 /* ITCB_SDK_Tests_ObserverTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ITCB_SDK_Tests_ObserverTests.swift; path = test/ITCB_SDK_Tests_ObserverTests.swift; sourceTree = "<group>"; };
-		D4BFAF8723F42B6F006D2C07 /* ITCB_Mac.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ITCB_Mac.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D4BFAF8723F42B6F006D2C07 /* ITCB_SDK_Mac.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ITCB_SDK_Mac.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D4BFAF8B23F42B6F006D2C07 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		D4BFAF9023F42B6F006D2C07 /* ITCB-Mac-Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "ITCB-Mac-Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D4BFAF9023F42B6F006D2C07 /* ITCB_SDK_Mac-Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "ITCB_SDK_Mac-Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D4BFAF9723F42B6F006D2C07 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D4EE378123F5D67500037010 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		D4FC12C223F736D800C3ED12 /* ITCB_SDK_Protocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ITCB_SDK_Protocol.swift; path = src/public/ITCB_SDK_Protocol.swift; sourceTree = SOURCE_ROOT; };
@@ -60,7 +60,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D4BFAF9123F42B6F006D2C07 /* ITCB_Mac.framework in Frameworks */,
+				D4BFAF9123F42B6F006D2C07 /* ITCB_SDK_Mac.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -112,8 +112,8 @@
 		D4BFAF8823F42B6F006D2C07 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				D4BFAF8723F42B6F006D2C07 /* ITCB_Mac.framework */,
-				D4BFAF9023F42B6F006D2C07 /* ITCB-Mac-Tests.xctest */,
+				D4BFAF8723F42B6F006D2C07 /* ITCB_SDK_Mac.framework */,
+				D4BFAF9023F42B6F006D2C07 /* ITCB_SDK_Mac-Tests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -164,9 +164,9 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		D4BFAF8623F42B6F006D2C07 /* ITCB-Mac */ = {
+		D4BFAF8623F42B6F006D2C07 /* ITCB_SDK_Mac */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = D4BFAF9B23F42B6F006D2C07 /* Build configuration list for PBXNativeTarget "ITCB-Mac" */;
+			buildConfigurationList = D4BFAF9B23F42B6F006D2C07 /* Build configuration list for PBXNativeTarget "ITCB_SDK_Mac" */;
 			buildPhases = (
 				D4BFAF8223F42B6F006D2C07 /* Headers */,
 				D4BFAF8323F42B6F006D2C07 /* Sources */,
@@ -177,14 +177,14 @@
 			);
 			dependencies = (
 			);
-			name = "ITCB-Mac";
+			name = ITCB_SDK_Mac;
 			productName = ITCB;
-			productReference = D4BFAF8723F42B6F006D2C07 /* ITCB_Mac.framework */;
+			productReference = D4BFAF8723F42B6F006D2C07 /* ITCB_SDK_Mac.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		D4BFAF8F23F42B6F006D2C07 /* ITCB-Mac-Tests */ = {
+		D4BFAF8F23F42B6F006D2C07 /* ITCB_SDK_Mac-Tests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = D4BFAF9E23F42B6F006D2C07 /* Build configuration list for PBXNativeTarget "ITCB-Mac-Tests" */;
+			buildConfigurationList = D4BFAF9E23F42B6F006D2C07 /* Build configuration list for PBXNativeTarget "ITCB_SDK_Mac-Tests" */;
 			buildPhases = (
 				D4BFAF8C23F42B6F006D2C07 /* Sources */,
 				D4BFAF8D23F42B6F006D2C07 /* Frameworks */,
@@ -195,9 +195,9 @@
 			dependencies = (
 				D4BFAF9323F42B6F006D2C07 /* PBXTargetDependency */,
 			);
-			name = "ITCB-Mac-Tests";
+			name = "ITCB_SDK_Mac-Tests";
 			productName = ITCBTests;
-			productReference = D4BFAF9023F42B6F006D2C07 /* ITCB-Mac-Tests.xctest */;
+			productReference = D4BFAF9023F42B6F006D2C07 /* ITCB_SDK_Mac-Tests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -233,8 +233,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				D4BFAF8623F42B6F006D2C07 /* ITCB-Mac */,
-				D4BFAF8F23F42B6F006D2C07 /* ITCB-Mac-Tests */,
+				D4BFAF8623F42B6F006D2C07 /* ITCB_SDK_Mac */,
+				D4BFAF8F23F42B6F006D2C07 /* ITCB_SDK_Mac-Tests */,
 			);
 		};
 /* End PBXProject section */
@@ -287,7 +287,7 @@
 /* Begin PBXTargetDependency section */
 		D4BFAF9323F42B6F006D2C07 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = D4BFAF8623F42B6F006D2C07 /* ITCB-Mac */;
+			target = D4BFAF8623F42B6F006D2C07 /* ITCB_SDK_Mac */;
 			targetProxy = D4BFAF9223F42B6F006D2C07 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -416,6 +416,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEFINES_MODULE = YES;
@@ -430,7 +431,7 @@
 					"@executable_path/../Frameworks",
 					"@loader_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.littlegreenviper.ITCB;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.littlegreenviper.ITCB-Mac";
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -442,6 +443,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEFINES_MODULE = YES;
@@ -456,7 +458,7 @@
 					"@executable_path/../Frameworks",
 					"@loader_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.littlegreenviper.ITCB;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.littlegreenviper.ITCB-Mac";
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
@@ -516,7 +518,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		D4BFAF9B23F42B6F006D2C07 /* Build configuration list for PBXNativeTarget "ITCB-Mac" */ = {
+		D4BFAF9B23F42B6F006D2C07 /* Build configuration list for PBXNativeTarget "ITCB_SDK_Mac" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				D4BFAF9C23F42B6F006D2C07 /* Debug */,
@@ -525,7 +527,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		D4BFAF9E23F42B6F006D2C07 /* Build configuration list for PBXNativeTarget "ITCB-Mac-Tests" */ = {
+		D4BFAF9E23F42B6F006D2C07 /* Build configuration list for PBXNativeTarget "ITCB_SDK_Mac-Tests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				D4BFAF9F23F42B6F006D2C07 /* Debug */,
