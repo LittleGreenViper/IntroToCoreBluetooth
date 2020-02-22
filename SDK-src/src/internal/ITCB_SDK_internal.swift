@@ -184,6 +184,7 @@ internal class ITCB_SDK_Device {
 // MARK: - Central Device Base Class -
 /* ###################################################################################################################################### */
 /**
+ We need to keep in mind that Central objects are actually owned by Peripheral SDK instances.
  */
 internal class ITCB_SDK_Device_Central: ITCB_SDK_Device, ITCB_Device_Central_Protocol {
     /// This is the Peripheral SDK that "owns" this device.
@@ -207,13 +208,18 @@ internal class ITCB_SDK_Device_Central: ITCB_SDK_Device, ITCB_Device_Central_Pro
 // MARK: - Peripheral Device Base Class -
 /* ###################################################################################################################################### */
 /**
+ We need to keep in mind that Peripheral objects are actually owned by Central SDK instances.
  */
 internal class ITCB_SDK_Device_Peripheral: ITCB_SDK_Device, ITCB_Device_Peripheral_Protocol {
     /// This is the Central SDK that "owns" this device.
     var owner: ITCB_SDK_Central!
 
     /// The question property to conform to the protocol.
-    var question: String! = nil
+    var question: String! = nil {
+        didSet {
+            owner._sendSuccessInAskingMessageToAllObservers(device: self)
+        }
+    }
 
     /// The answer property to conform to the protocol.
     /// We use this opportunity to let everyone know that the question has been answered.
@@ -232,6 +238,11 @@ internal class ITCB_SDK_Device_Peripheral: ITCB_SDK_Device, ITCB_Device_Peripher
      - parameter inQuestion: The question to be asked.
      */
     func sendQuestion(_ inQuestion: String) {
-        owner._sendSuccessInAskingMessageToAllObservers(device: self)
+        self.question = inQuestion
+        // TODO: Remove this code, after we get the Bluetooth working. This is just here to create mock behavior.
+        DispatchQueue.global().async {  // We use the global thread to simulate true async operation.
+            self.answer = String(format: "SLUG-ANSWER-%02d", Int.random(in: 0..<20))
+        }
+        // END TODO
     }
 }

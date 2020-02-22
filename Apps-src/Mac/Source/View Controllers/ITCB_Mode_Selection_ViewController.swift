@@ -28,8 +28,18 @@ import Cocoa
 /**
  */
 class ITCB_Mode_Selection_ViewController: ITCB_Base_ViewController {
+    /* ################################################################## */
+    /**
+     The Central Mode selection button.
+     */
     @IBOutlet weak var centralButton: NSButton!
+    
+    /* ################################################################## */
+    /**
+     The Peripheral Mode selection button.
+     */
     @IBOutlet weak var periperalButton: NSButton!
+    
     /* ################################################################## */
     /**
      Called when the view has completed loading.

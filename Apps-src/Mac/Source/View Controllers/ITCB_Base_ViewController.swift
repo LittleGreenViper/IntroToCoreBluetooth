@@ -99,4 +99,15 @@ class ITCB_Base_ViewController: NSViewController {
             }
         }
     }
+    
+    /* ################################################################## */
+    /**
+     This displays a simple alert, with an OK button.
+     
+     - parameter header: The header to display at the top.
+     - parameter message: A String, containing whatever messge is to be displayed below the header.
+     */
+    func displayAlert(header inHeader: String, message inMessage: String = "") {
+        ITCB_AppDelegate.displayAlert(header: inHeader, message: inMessage)
+    }
 }

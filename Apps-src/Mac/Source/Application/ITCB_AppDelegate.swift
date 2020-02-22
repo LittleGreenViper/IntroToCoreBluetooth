@@ -40,19 +40,25 @@ class ITCB_AppDelegate: NSObject, NSApplicationDelegate {
     
     /* ################################################################## */
     /**
-     This will hold our loaded SDK.
+     This displays a simple alert, with an OK button.
+     
+     - parameter header: The header to display at the top.
+     - parameter message: A String, containing whatever messge is to be displayed below the header.
      */
-    var deviceSDKInstance: ITCB_SDK_Protocol!
-    
-    /* ################################################################## */
-    /**
-     */
-    func applicationDidFinishLaunching(_ aNotification: Notification) {
+    class func displayAlert(header inHeader: String, message inMessage: String = "") {
+        // This ensures that we are on the main thread.
+        DispatchQueue.main.async {
+            let alert = NSAlert()
+            alert.messageText = inHeader.localizedVariant
+            alert.informativeText = inMessage.localizedVariant
+            alert.addButton(withTitle: "SLUG-OK-BUTTON-TEXT".localizedVariant)
+            alert.runModal()
+        }
     }
 
     /* ################################################################## */
     /**
+     This will hold our loaded SDK.
      */
-    func applicationWillTerminate(_ aNotification: Notification) {
-    }
+    var deviceSDKInstance: ITCB_SDK_Protocol!
 }

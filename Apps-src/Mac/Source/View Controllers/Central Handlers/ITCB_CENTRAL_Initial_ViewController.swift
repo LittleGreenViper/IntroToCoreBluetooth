@@ -30,8 +30,17 @@ import ITCB_SDK_Mac
  This view controller is loaded over the mode selection, as we have decided to be a Central.
  */
 class ITCB_CENTRAL_Initial_ViewController: ITCB_Base_ViewController {
-    /// The stroryboard ID, for instantiating the class.
+    /* ################################################################## */
+    /**
+     The stroryboard ID, for instantiating the class.
+     */
     static let storyboardID = "central-initial-view-controller"
+    
+    /* ################################################################## */
+    /**
+     The device picker table view.
+     */
+    @IBOutlet var tableView: NSTableView!
     
     /* ################################################################## */
     /**
@@ -82,26 +91,22 @@ extension ITCB_CENTRAL_Initial_ViewController: NSTableViewDelegate, NSTableViewD
     
     /* ################################################################## */
     /**
-     This is called when a row is selected. We match the device to the row, set that in the semaphore, and approve the selection.
+     Called after a table row was selected by the user.
      
-     - parameters:
-        - inTableView: The table instance.
-        - shouldSelectRow: 0-based Int, with the index of the row, within the column.
-     
-     - returns: False (always).
-     */
-    func tableView(_ inTableView: NSTableView, shouldSelectRow inRow: Int) -> Bool {
-        return false
-    }
-    
-    /* ################################################################## */
-    /**
-     Called after the selection was set up and approved.
-     
-     We open a modal window, with the device info.
+     We open a modal sheet, with the device info.
      
      - parameter: Ignored
      */
     func tableViewSelectionDidChange(_: Notification) {
+        // Make sure that we have a selected row, and that the selection is valid.
+        if  let selectedRow = tableView?.selectedRow,
+            (0..<tableView.numberOfRows).contains(selectedRow) {
+            if let newPeripheralDeviceViewController = self.storyboard?.instantiateController(withIdentifier: ITCB_Central_Peripheral_Device_ViewController.storyboardID) as? ITCB_Central_Peripheral_Device_ViewController {
+                // Associate the device instance with the sheet.
+                newPeripheralDeviceViewController.device = getDeviceSDKInstanceAsCentral.devices[selectedRow]
+                presentAsSheet(newPeripheralDeviceViewController)
+            }
+            tableView.deselectRow(selectedRow)  // Make sure that we clean up after ourselves.
+        }
     }
 }

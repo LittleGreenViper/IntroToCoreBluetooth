@@ -30,9 +30,58 @@ import Cocoa
 class ITCB_About_ViewController: ITCB_Base_ViewController {
     /* ################################################################## */
     /**
+     This is the main app name/version label, at the top.
+     */
+    @IBOutlet weak var mainLabel: NSTextField!
+
+    /* ################################################################## */
+    /**
+     This contains the about text.
+     */
+    @IBOutlet var mainDisplayTextView: NSTextView!
+    
+    /* ################################################################## */
+    /**
+     This button allows the user to go to the series in their browser.
+     */
+    @IBOutlet weak var seriesURIButton: NSButton!
+    
+    /* ################################################################## */
+    /**
+     This button allows the user to go to the GitHub repo in their browser.
+     */
+    @IBOutlet weak var githubURIButton: NSButton!
+    
+    /* ################################################################## */
+    /**
+     This is called when a URI button is hit. It parses the URI from the button name, and goes there.
+     */
+    @IBAction func uriButtonHit(_ inButton: NSButton) {
+        if let url = URL(string: inButton.alternateTitle) {
+            NSWorkspace.shared.open(url)
+        }
+    }
+    
+    /* ################################################################## */
+    /**
      Called when the view has completed loading.
      */
     override func viewDidLoad() {
         super.viewDidLoad()
+        let dictionary = Bundle.main.infoDictionary!
+        if let version = dictionary["CFBundleShortVersionString"] as? String,
+            let build = dictionary["CFBundleVersion"] as? String,
+            let name = dictionary["CFBundleName"] as? String {
+            let displayName = dictionary["CFBundleDisplayName"] as? String
+            let vName = ((displayName ?? "").isEmpty) ? name : displayName!
+            
+            mainLabel?.stringValue = "\(vName), Version \(version).\(build)"
+        }
+        
+        mainDisplayTextView?.string = mainDisplayTextView?.string.localizedVariant ?? "ERROR"
+        seriesURIButton?.title = seriesURIButton?.title.localizedVariant ?? "ERROR"
+        seriesURIButton?.alternateTitle = seriesURIButton?.alternateTitle.localizedVariant ?? "ERROR"
+        githubURIButton?.title = githubURIButton?.title.localizedVariant ?? "ERROR"
+        githubURIButton?.alternateTitle = githubURIButton?.alternateTitle.localizedVariant ?? "ERROR"
     }
 }
