@@ -79,13 +79,14 @@ class ITCB_Central_Peripheral_Device_ViewController: ITCB_Base_ViewController {
     
     /* ################################################################## */
     /**
-     Called when the user hits the "SEND QUESTION" button
+     Called when the user hits the "SEND QUESTION" button, or ENTER while editing the text.
      
-     - parameter: The button that was clicked.
+     - parameter: Ignored
      */
-    @IBAction func sendButtonHit(_ inButton: NSButton) {
-        if let question = enterQuestionText?.stringValue {
-            inButton.isEnabled = false  // Disable until we receive an ack.
+    @IBAction func sendQuestion(_ sender: Any) {
+        if  let question = enterQuestionText?.stringValue,
+            !question.isEmpty {
+            sendButton.isEnabled = false  // Disable until we receive an ack.
             device.sendQuestion(question)
         }
     }
@@ -118,6 +119,15 @@ class ITCB_Central_Peripheral_Device_ViewController: ITCB_Base_ViewController {
     override func viewWillDisappear() {
         super.viewWillDisappear()
         getDeviceSDKInstanceAsCentral?.removeObserver(self)
+    }
+}
+
+/* ################################################################################################################################## */
+// MARK: - Text Field Delegate
+/* ################################################################################################################################## */
+extension ITCB_Central_Peripheral_Device_ViewController: NSTextFieldDelegate {
+    func controlTextDidChange(_ obj: Notification) {
+        sendButton.isEnabled = !enterQuestionText.stringValue.isEmpty
     }
 }
 
@@ -156,7 +166,6 @@ extension ITCB_Central_Peripheral_Device_ViewController: ITCB_Observer_Central_P
             // We nuke the question from the edit box, and place it in the interaction space below the send button.
             self.enterQuestionText?.stringValue = ""
             self.answerLabel.stringValue = question
-            self.sendButton.isEnabled = true    // Now, we can re-enable the button. We're good.
         }
     }
 
@@ -169,5 +178,8 @@ extension ITCB_Central_Peripheral_Device_ViewController: ITCB_Observer_Central_P
      */
     func errorOccurred(_ inError: ITCB_Errors, sdk inSDKInstance: ITCB_SDK_Protocol) {
         displayAlert(header: "SLUG-ERROR", message: inError.localizedDescription)
+        DispatchQueue.main.async {
+            self.answerLabel.stringValue += "\n" + "SLUG-ERROR".localizedVariant
+        }
     }
 }

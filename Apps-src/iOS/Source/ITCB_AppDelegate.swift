@@ -21,9 +21,10 @@ Little Green Viper Software Development LLC: https://littlegreenviper.com
 */
 
 import UIKit
+import ITCB_SDK_IOS
 
 /* ###################################################################################################################################### */
-// MARK: 
+// MARK: - The Main Application Delegate Class -
 /* ###################################################################################################################################### */
 /**
  */
@@ -31,6 +32,55 @@ import UIKit
 class ITCB_AppDelegate: UIResponder, UIApplicationDelegate {
     /* ################################################################## */
     /**
+     This is a shortcut to get the app delegate instance as an instance of this class.
+     */
+    class var appDelegate: Self! {
+        return UIApplication.shared.delegate as? Self
+    }
+    
+    /* ################################################################## */
+    /**
+     This displays a simple alert, with an OK button.
+     
+     - parameter header: The header to display at the top.
+     - parameter message: A String, containing whatever messge is to be displayed below the header.
+     - parameter presentedBy: An optional UIViewController object that is acting as the presenter context for the alert. If nil, we use the top controller of the Navigation stack.
+     */
+    class func displayAlert(header inHeader: String, message inMessage: String = "", presentedBy inPresentingViewController: UIViewController! = nil) {
+        // This ensures that we are on the main thread.
+        DispatchQueue.main.async {
+            var presentedBy = inPresentingViewController
+            
+            if nil == presentedBy {
+                presentedBy = (UIApplication.shared.windows.filter { $0.isKeyWindow }.first)?.rootViewController
+            }
+            
+            if nil != presentedBy {
+                let alertController = UIAlertController(title: inHeader, message: inMessage, preferredStyle: .actionSheet)
+                
+                let okAction = UIAlertAction(title: "SLUG-OK-BUTTON-TEXT".localizedVariant, style: UIAlertAction.Style.cancel, handler: nil)
+                
+                alertController.addAction(okAction)
+                
+                presentedBy?.present(alertController, animated: true, completion: nil)
+            }
+        }
+    }
+    
+    /* ################################################################## */
+    /**
+     This will hold our loaded SDK.
+     */
+    var deviceSDKInstance: ITCB_SDK_Protocol!
+
+    /* ################################################################## */
+    /**
+     Called after the application completes its launch setup.
+     
+     - parameter application: Ignored
+     - parameter didFinishLaunchingWithOptions: Ignored
+     
+     -returns: true (always)
      */
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         return true

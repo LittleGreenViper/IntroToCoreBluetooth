@@ -18,6 +18,8 @@
 		D4195FA423F454200031A99E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D4195FA123F454200031A99E /* Assets.xcassets */; };
 		D4195FA723F454480031A99E /* ITCB_AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4195FA523F454480031A99E /* ITCB_AppDelegate.swift */; };
 		D4195FA823F454480031A99E /* ITCB_ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4195FA623F454480031A99E /* ITCB_ViewController.swift */; };
+		D41DD51E2401D94500A99087 /* ITCB_SDK_IOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D41DD51D2401D94500A99087 /* ITCB_SDK_IOS.framework */; };
+		D41DD51F2401D94500A99087 /* ITCB_SDK_IOS.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D41DD51D2401D94500A99087 /* ITCB_SDK_IOS.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		D422E1E723F42729006D483E /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = D4BC05B223F347FB008266BC /* Localizable.strings */; };
 		D452A2E523F0DAEC00016D71 /* Warnings.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = D452A2E423F0DAEC00016D71 /* Warnings.xcconfig */; };
 		D452A2F323F0DB8500016D71 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D452A2EE23F0DB8500016D71 /* InfoPlist.strings */; };
@@ -28,7 +30,7 @@
 		D4B7AE7923F38834006C9076 /* ITCB_Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = D48CEDD723F2CB180083F1A4 /* ITCB_Utilities.swift */; };
 		D4BA633523FDE12F0086EF9F /* ITCB_About_ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4BA633323FDE12F0086EF9F /* ITCB_About_ViewController.swift */; };
 		D4BC059823F345ED008266BC /* ITCB_Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = D48CEDD723F2CB180083F1A4 /* ITCB_Utilities.swift */; };
-		D4BC059E23F3469A008266BC /* ITCB_ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4BC059C23F3469A008266BC /* ITCB_ViewController.swift */; };
+		D4BC059E23F3469A008266BC /* ITCB_Base_ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4BC059C23F3469A008266BC /* ITCB_Base_ViewController.swift */; };
 		D4BC059F23F3469A008266BC /* ITCB_AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4BC059D23F3469A008266BC /* ITCB_AppDelegate.swift */; };
 		D4BC05A123F346AB008266BC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D4BC05A023F346AB008266BC /* Assets.xcassets */; };
 		D4BC05AA23F346B7008266BC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D4BC05A223F346B7008266BC /* Main.storyboard */; };
@@ -62,19 +64,19 @@
 			remoteGlobalIDString = D40B434D23F381F200CFE862;
 			remoteInfo = "Watch WatchKit Extension";
 		};
+		D41DD51C2401D94500A99087 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D4FC12B523F7363A00C3ED12 /* ITCB.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = D41DD5012401D71B00A99087;
+			remoteInfo = ITCB_SDK_IOS;
+		};
 		D4FC12BA23F7363A00C3ED12 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D4FC12B523F7363A00C3ED12 /* ITCB.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = D4BFAF8723F42B6F006D2C07;
 			remoteInfo = "ITCB-Mac";
-		};
-		D4FC12BC23F7363A00C3ED12 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D4FC12B523F7363A00C3ED12 /* ITCB.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = D4BFAF9023F42B6F006D2C07;
-			remoteInfo = "ITCB-Mac-Tests";
 		};
 		D4FC12BE23F7364400C3ED12 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -106,6 +108,17 @@
 				D40B434F23F381F200CFE862 /* Watch Extension.appex in Embed App Extensions */,
 			);
 			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D41DD5212401D94600A99087 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				D41DD51F2401D94500A99087 /* ITCB_SDK_IOS.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		D464CBF223FDCDD100229FAA /* Embed Frameworks */ = {
@@ -146,7 +159,7 @@
 		D4A7887F23F5D1C70087D78F /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		D4BA633323FDE12F0086EF9F /* ITCB_About_ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ITCB_About_ViewController.swift; sourceTree = "<group>"; };
 		D4BC057C23F34350008266BC /* ITCB-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ITCB-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		D4BC059C23F3469A008266BC /* ITCB_ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ITCB_ViewController.swift; path = Source/ITCB_ViewController.swift; sourceTree = "<group>"; };
+		D4BC059C23F3469A008266BC /* ITCB_Base_ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ITCB_Base_ViewController.swift; path = Source/ITCB_Base_ViewController.swift; sourceTree = "<group>"; };
 		D4BC059D23F3469A008266BC /* ITCB_AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ITCB_AppDelegate.swift; path = Source/ITCB_AppDelegate.swift; sourceTree = "<group>"; };
 		D4BC05A023F346AB008266BC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = Resources/Assets.xcassets; sourceTree = "<group>"; };
 		D4BC05A323F346B7008266BC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Resources/Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -173,6 +186,14 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D41DD5202401D94600A99087 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D41DD51E2401D94500A99087 /* ITCB_SDK_IOS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -276,6 +297,29 @@
 			name = Source;
 			sourceTree = "<group>";
 		};
+		D41DD4F92401D14700A99087 /* Application */ = {
+			isa = PBXGroup;
+			children = (
+				D4BC059D23F3469A008266BC /* ITCB_AppDelegate.swift */,
+			);
+			name = Application;
+			sourceTree = "<group>";
+		};
+		D41DD4FB2401D15400A99087 /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				D4BC059C23F3469A008266BC /* ITCB_Base_ViewController.swift */,
+			);
+			name = "View Controllers";
+			sourceTree = "<group>";
+		};
+		D41DD51A2401D94500A99087 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		D45D681723EEF5B30081EBF1 /* Meta */ = {
 			isa = PBXGroup;
 			children = (
@@ -363,8 +407,8 @@
 		D4BC059923F3461F008266BC /* Source */ = {
 			isa = PBXGroup;
 			children = (
-				D4BC059D23F3469A008266BC /* ITCB_AppDelegate.swift */,
-				D4BC059C23F3469A008266BC /* ITCB_ViewController.swift */,
+				D41DD4F92401D14700A99087 /* Application */,
+				D41DD4FB2401D15400A99087 /* View Controllers */,
 			);
 			name = Source;
 			sourceTree = "<group>";
@@ -429,6 +473,7 @@
 				D45D681723EEF5B30081EBF1 /* Meta */,
 				D4BC05B623F34947008266BC /* src */,
 				D4D5F5CA23EEF33400E4F52B /* Products */,
+				D41DD51A2401D94500A99087 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -506,7 +551,7 @@
 			isa = PBXGroup;
 			children = (
 				D4FC12BB23F7363A00C3ED12 /* ITCB_SDK_Mac.framework */,
-				D4FC12BD23F7363A00C3ED12 /* ITCB_SDK_Mac-Tests.xctest */,
+				D41DD51D2401D94500A99087 /* ITCB_SDK_IOS.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -588,6 +633,8 @@
 				D40B438823F3854900CFE862 /* SwiftLint */,
 				D4BC057823F34350008266BC /* Sources */,
 				D4BC057A23F34350008266BC /* Resources */,
+				D41DD5202401D94600A99087 /* Frameworks */,
+				D41DD5212401D94600A99087 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -682,18 +729,18 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
+		D41DD51D2401D94500A99087 /* ITCB_SDK_IOS.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = ITCB_SDK_IOS.framework;
+			remoteRef = D41DD51C2401D94500A99087 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		D4FC12BB23F7363A00C3ED12 /* ITCB_SDK_Mac.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
 			path = ITCB_SDK_Mac.framework;
 			remoteRef = D4FC12BA23F7363A00C3ED12 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		D4FC12BD23F7363A00C3ED12 /* ITCB_SDK_Mac-Tests.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = "ITCB_SDK_Mac-Tests.xctest";
-			remoteRef = D4FC12BC23F7363A00C3ED12 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -835,7 +882,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D4BC059F23F3469A008266BC /* ITCB_AppDelegate.swift in Sources */,
-				D4BC059E23F3469A008266BC /* ITCB_ViewController.swift in Sources */,
+				D4BC059E23F3469A008266BC /* ITCB_Base_ViewController.swift in Sources */,
 				D4BC059823F345ED008266BC /* ITCB_Utilities.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

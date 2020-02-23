@@ -30,7 +30,7 @@ import Foundation   // Needed for the debug test.
  
  It is a Swift class, and this is the "base" class, meant to be specialized for Central and Peripheral variants.
  */
-public class ITCB_SDK {
+public class ITCB_SDK: ITCB_SDK_Protocol {
     /* ################################################################## */
     /**
      Factory function for instantiating Peripherals.
@@ -126,7 +126,7 @@ public class ITCB_SDK_Central: ITCB_SDK, ITCB_SDK_Central_Protocol {
      */
     internal override init() {
         super.init()
-        
+        /* ########### */
         // TODO: Remove this code. It is here just to provide a test structure for the apps.
         for i in 0..<5 {
             let device = ITCB_SDK_Device_Peripheral()
@@ -135,6 +135,7 @@ public class ITCB_SDK_Central: ITCB_SDK, ITCB_SDK_Central_Protocol {
             devices.append(device)
         }
         // END TODO
+        /* ########### */
     }
 }
 
@@ -170,6 +171,7 @@ public class ITCB_SDK_Peripheral: ITCB_SDK, ITCB_SDK_Peripheral_Protocol {
     internal override init() {
         super.init()
         
+        /* ########### */
         // TODO: Remove this code. It is here just to provide a test structure for the apps.
         let centralTemp = ITCB_SDK_Device_Central()
         centralTemp.name = "DUMMY CENTRAL DEVICE"
@@ -181,5 +183,6 @@ public class ITCB_SDK_Peripheral: ITCB_SDK, ITCB_SDK_Peripheral_Protocol {
                 self._sendQuestionAskedToAllObservers(device: self.central, question: String(format: "SLUG-QUESTION-%02d", Int.random(in: 0..<20)))
         }
         // END TODO
+        /* ########### */
     }
 }

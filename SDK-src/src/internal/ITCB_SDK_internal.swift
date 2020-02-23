@@ -30,7 +30,7 @@ import Foundation
  
  Internal-scope methods and properties are indicated by a leading underscore (_) in the name.
  */
-internal extension ITCB_SDK {
+extension ITCB_SDK {    
     /* ################################################################## */
     /**
       Any error condition associated with this instance. It may be nil.
@@ -87,6 +87,18 @@ internal extension ITCB_SDK {
         }
         
         return false
+    }
+    
+    /* ################################################################## */
+    /**
+     This sends an error message to all registered observers.
+     
+     - parameter error: The error that we are sending.
+     */
+    func _sendErrorMessageToAllObservers(error inError: ITCB_Errors) {
+        observers.forEach {
+            $0.errorOccurred(inError, sdk: self)
+        }
     }
 }
 
@@ -239,10 +251,17 @@ internal class ITCB_SDK_Device_Peripheral: ITCB_SDK_Device, ITCB_Device_Peripher
      */
     func sendQuestion(_ inQuestion: String) {
         self.question = inQuestion
+        /* ########### */
         // TODO: Remove this code, after we get the Bluetooth working. This is just here to create mock behavior.
         DispatchQueue.global().async {  // We use the global thread to simulate true async operation.
-            self.answer = String(format: "SLUG-ANSWER-%02d", Int.random(in: 0..<20))
+            if 5 == Int.random(in: 0..<10) {
+                // We randomly (one out of 10 times) send an error message, instead of the question.
+                self.owner._sendErrorMessageToAllObservers(error: .sendFailed(nil))
+            } else {
+                self.answer = String(format: "SLUG-ANSWER-%02d", Int.random(in: 0..<20))
+            }
         }
         // END TODO
+        /* ########### */
     }
 }

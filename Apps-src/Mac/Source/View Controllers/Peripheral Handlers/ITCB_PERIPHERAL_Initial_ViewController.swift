@@ -196,7 +196,7 @@ extension ITCB_PERIPHERAL_Initial_ViewController: ITCB_Observer_Peripheral_Proto
     func answerSentToDevice(_ inDevice: ITCB_Device_Central_Protocol, answer inAnswer: String, toQuestion inToQuestion: String) {
         workingWithQuestion = false
         // TODO: Remove this code, after we get the Bluetooth working.
-        print("\n\(inToQuestion)\n\(inAnswer)")
+        displayAlert(header: inToQuestion, message: inAnswer)
         // END TODO
     }
 

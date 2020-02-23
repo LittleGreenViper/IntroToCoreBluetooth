@@ -1178,11 +1178,17 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="7p1-1R-hNJ"/>
                                 </constraints>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" placeholderString="SLUG-ENTER-QUESTION-PLACEHOLDER" bezelStyle="round" id="H2e-O7-ucY">
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" borderStyle="bezel" placeholderString="SLUG-ENTER-QUESTION-PLACEHOLDER" bezelStyle="round" id="H2e-O7-ucY">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" white="1" alpha="0.5" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                    <connections>
+                                        <action selector="sendQuestion:" target="bYO-nF-DND" id="dsi-kV-u3r"/>
+                                    </connections>
                                 </textFieldCell>
+                                <connections>
+                                    <outlet property="delegate" destination="bYO-nF-DND" id="sxJ-Ja-lRr"/>
+                                </connections>
                             </textField>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="fGA-oE-b3r">
                                 <rect key="frame" x="131" y="66" width="188" height="32"/>
@@ -1190,12 +1196,12 @@
                                     <constraint firstAttribute="height" constant="21" id="HpW-Q2-vFK"/>
                                     <constraint firstAttribute="width" constant="176" placeholder="YES" id="jCc-CC-MYY"/>
                                 </constraints>
-                                <buttonCell key="cell" type="push" title="SLUG-SEND-QUESTION" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="7pp-SP-DFU">
+                                <buttonCell key="cell" type="push" title="SLUG-SEND-QUESTION" bezelStyle="rounded" alignment="center" enabled="NO" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="7pp-SP-DFU">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                                 <connections>
-                                    <action selector="sendButtonHit:" target="bYO-nF-DND" id="2HO-Lr-F62"/>
+                                    <action selector="sendQuestion:" target="bYO-nF-DND" id="2HO-Lr-F62"/>
                                 </connections>
                             </button>
                             <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="QvM-qo-Lwk">
