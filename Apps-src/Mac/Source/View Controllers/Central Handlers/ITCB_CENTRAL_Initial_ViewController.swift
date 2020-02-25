@@ -41,7 +41,12 @@ class ITCB_CENTRAL_Initial_ViewController: ITCB_Base_ViewController {
      The device picker table view.
      */
     @IBOutlet var tableView: NSTableView!
-    
+}
+
+/* ###################################################################################################################################### */
+// MARK: - Base Class Override Methods -
+/* ###################################################################################################################################### */
+extension ITCB_CENTRAL_Initial_ViewController {
     /* ################################################################## */
     /**
      Called when the view has completed loading.

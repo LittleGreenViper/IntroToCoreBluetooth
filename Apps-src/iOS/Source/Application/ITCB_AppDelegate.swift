@@ -27,6 +27,7 @@ import ITCB_SDK_IOS
 // MARK: - The Main Application Delegate Class -
 /* ###################################################################################################################################### */
 /**
+ This handles making sure that the mode selector is always shown on startup or brining to the foreground.
  */
 @UIApplicationMain
 class ITCB_AppDelegate: UIResponder, UIApplicationDelegate {
@@ -56,7 +57,7 @@ class ITCB_AppDelegate: UIResponder, UIApplicationDelegate {
             }
             
             if nil != presentedBy {
-                let alertController = UIAlertController(title: inHeader, message: inMessage, preferredStyle: .actionSheet)
+                let alertController = UIAlertController(title: inHeader.localizedVariant, message: inMessage.localizedVariant, preferredStyle: .actionSheet)
                 
                 let okAction = UIAlertAction(title: "SLUG-OK-BUTTON-TEXT".localizedVariant, style: UIAlertAction.Style.cancel, handler: nil)
                 
@@ -69,10 +70,33 @@ class ITCB_AppDelegate: UIResponder, UIApplicationDelegate {
     
     /* ################################################################## */
     /**
+     This is required for UIApplicationDelegate conformance.
+     */
+    var window: UIWindow?
+    
+    /* ################################################################## */
+    /**
      This will hold our loaded SDK.
      */
     var deviceSDKInstance: ITCB_SDK_Protocol!
+    
+    /* ################################################################## */
+    /**
+     We use this to hang onto our main mode selection screen, so we can go back to it.
+     */
+    var modeSelectionViewController: ITCB_Mode_Selection_ViewController!
+    
+    /* ################################################################## */
+    /**
+     We use this to hang onto our main navigation controller.
+     */
+    var mainNavigationController: UINavigationController!
+}
 
+/* ###################################################################################################################################### */
+// MARK: - Instance Methods -
+/* ###################################################################################################################################### */
+extension ITCB_AppDelegate {
     /* ################################################################## */
     /**
      Called after the application completes its launch setup.
@@ -84,5 +108,16 @@ class ITCB_AppDelegate: UIResponder, UIApplicationDelegate {
      */
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         return true
+    }
+    
+    /* ################################################################## */
+    /**
+     This is called just as the app is about to come up. We use it to make sure that we always start with the mode selector.
+     */
+    func applicationWillEnterForeground(_ application: UIApplication) {
+        if  let navigationController = mainNavigationController,
+            let mainController = modeSelectionViewController {
+            navigationController.setViewControllers([mainController], animated: false)
+        }
     }
 }

@@ -20,21 +20,16 @@ CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFT
 Little Green Viper Software Development LLC: https://littlegreenviper.com
 */
 
-import Cocoa
-import ITCB_SDK_Mac
+import UIKit
+import ITCB_SDK_IOS
 
 /* ###################################################################################################################################### */
-// MARK: - The View Controller for a Central Mode Device Screen -
+// MARK: - The Central Mode Initial Screen -
 /* ###################################################################################################################################### */
 /**
+ This is the base view controller for a single device in the Central Mode.
  */
-class ITCB_Central_Peripheral_Device_ViewController: ITCB_Base_ViewController {
-    /* ################################################################## */
-    /**
-     The stroryboard ID, for instantiating the class.
-     */
-    static let storyboardID = "central-peripheral-initial-view-controller"
-    
+class ITCB_Central_Device_ViewController: ITCB_Base_ViewController {
     /* ################################################################## */
     /**
      This is here to satisfy the SDK Central Observer requirement.
@@ -43,108 +38,120 @@ class ITCB_Central_Peripheral_Device_ViewController: ITCB_Base_ViewController {
     
     /* ################################################################## */
     /**
-     Reference to the device instance for this controller.
+     The navigation bar item. We have our own navbar, and use this to set the title.
+     */
+    @IBOutlet weak var navItem: UINavigationItem!
+
+    /* ################################################################## */
+    /**
+     This is the editable text field, where the user can ask a question.
+     */
+    @IBOutlet weak var askQuestionTextField: UITextField!
+    
+    /* ################################################################## */
+    /**
+     The button that the user touches to send the question.
+     */
+    @IBOutlet weak var sendQuestionButton: UIButton!
+    
+    /* ################################################################## */
+    /**
+     This is the Peripheral device associated with this screen.
      */
     var device: ITCB_Device_Peripheral_Protocol!
     
     /* ################################################################## */
     /**
-     The device title label
+     This is the text view that displays the interactions..
      */
-    @IBOutlet weak var titleLabel: NSTextField!
+    @IBOutlet weak var resultsTextView: UITextView!
     
     /* ################################################################## */
     /**
-     The text field, where the user enters the question.
+     This makes sure that we don't leave a dead link in the SDK observer pool.
      */
-    @IBOutlet weak var enterQuestionText: NSTextField!
-    
-    /* ################################################################## */
-    /**
-     The send question to 8-ball button.
-     */
-    @IBOutlet weak var sendButton: NSButton!
-    
-    /* ################################################################## */
-    /**
-     The close the sheet button.
-     */
-    @IBOutlet weak var closeButton: NSButton!
-    
-    /* ################################################################## */
-    /**
-     The label that will display the returned answer.
-     */
-    @IBOutlet weak var answerLabel: NSTextField!
+    deinit {
+        deviceSDKInstance.removeObserver(self)
+    }
 }
 
 /* ###################################################################################################################################### */
 // MARK: - IBAction Methods -
 /* ###################################################################################################################################### */
-extension ITCB_Central_Peripheral_Device_ViewController {
+extension ITCB_Central_Device_ViewController {
     /* ################################################################## */
     /**
-     Called when the user hits the "SEND QUESTION" button, or ENTER while editing the text.
+     Called when the "DONE" button is hit, and closes the screen.
      
-     - parameter: Ignored
+     - parameter: ignored
      */
-    @IBAction func sendQuestion(_ sender: Any) {
-        if  let question = enterQuestionText?.stringValue,
-            !question.isEmpty {
-            sendButton.isEnabled = false  // Disable until we receive an ack.
-            device.sendQuestion(question)
+    @IBAction func doneButtonHit(_ : Any) {
+        navigationController?.popViewController(animated: true)
+    }
+    
+    /* ################################################################## */
+    /**
+     Called when the "SEND QUESTION TO 8-BALL" button is hit.
+     
+     - parameter: ignored. Can be omitted.
+     */
+    @IBAction func sendQuestion(_ : Any! = nil) {
+        if  let text = askQuestionTextField?.text,
+            !text.isEmpty {
+            sendQuestionButton.isEnabled = false
+            device.sendQuestion(text)
         }
+    }
+    
+    /* ################################################################## */
+    /**
+     Called when text in the text box changes. We use this to enable/disable the send button.
+     
+     - parameter: ignored
+     */
+    @IBAction func questionTextChanged(_ : Any) {
+        sendQuestionButton.isEnabled = !(askQuestionTextField?.text?.isEmpty ?? false)
     }
 }
 
 /* ###################################################################################################################################### */
 // MARK: - Base Class Override Methods -
 /* ###################################################################################################################################### */
-extension ITCB_Central_Peripheral_Device_ViewController {
+extension ITCB_Central_Device_ViewController {
     /* ################################################################## */
     /**
-     Called when the view has completed loading.
+     Called after the view has loaded. We use this to set the title and localized strings.
      */
     override func viewDidLoad() {
         super.viewDidLoad()
-        closeButton?.title = closeButton?.title.localizedVariant ?? "ERROR"
-        sendButton?.title = sendButton?.title.localizedVariant ?? "ERROR"
-        titleLabel?.stringValue = device?.name ?? "ERROR"
-        enterQuestionText?.placeholderString = enterQuestionText?.placeholderString?.localizedVariant ?? "ERROR"
-    }
-    
-    /* ################################################################## */
-    /**
-     Called just before the view appears. We use this to register as an observer.
-     */
-    override func viewWillAppear() {
-        super.viewWillAppear()
-        getDeviceSDKInstanceAsCentral?.addObserver(self)
-    }
-    
-    /* ################################################################## */
-    /**
-     Called just before the view disappears. We use this to un-register as an observer.
-     */
-    override func viewWillDisappear() {
-        super.viewWillDisappear()
-        getDeviceSDKInstanceAsCentral?.removeObserver(self)
+        navItem.title = device.name
+        askQuestionTextField?.placeholder = askQuestionTextField?.placeholder?.localizedVariant
+        sendQuestionButton?.setTitle(sendQuestionButton?.title(for: .normal)?.localizedVariant, for: .normal)
+        uuid = deviceSDKInstance.addObserver(self)
     }
 }
 
 /* ################################################################################################################################## */
-// MARK: - Text Field Delegate Methods -
+// MARK: - UITextFieldDelegate protocol Methods
 /* ################################################################################################################################## */
-extension ITCB_Central_Peripheral_Device_ViewController: NSTextFieldDelegate {
-    func controlTextDidChange(_ obj: Notification) {
-        sendButton.isEnabled = !enterQuestionText.stringValue.isEmpty
+extension ITCB_Central_Device_ViewController: UITextFieldDelegate {
+    /* ################################################################## */
+    /**
+     Called when the done button is hit (GO), or the return key is hit.
+     
+     - parameter inTextField: The text view that has the return event.
+     */
+    func textFieldShouldReturn(_ inTextField: UITextField) -> Bool {
+        inTextField.resignFirstResponder()  // Put away the keyboard.
+        sendQuestion()
+        return true
     }
 }
 
 /* ################################################################################################################################## */
 // MARK: - Observer protocol Methods
 /* ################################################################################################################################## */
-extension ITCB_Central_Peripheral_Device_ViewController: ITCB_Observer_Central_Protocol {
+extension ITCB_Central_Device_ViewController: ITCB_Observer_Central_Protocol {
     /* ################################################################## */
     /**
      This is called when a Peripheral returns an answer to the Central.
@@ -157,7 +164,7 @@ extension ITCB_Central_Peripheral_Device_ViewController: ITCB_Observer_Central_P
         let answer = inDevice.answer.localizedVariant
         // Remember that the answer may come in on a non-main thread, so we need to make sure that all UI-touched code is accessed via the Main Thread.
         DispatchQueue.main.async {
-            self.answerLabel.stringValue += "\n•\n\(answer)"
+            self.resultsTextView.text += "\n•\n\(answer)"
         }
     }
     
@@ -174,8 +181,8 @@ extension ITCB_Central_Peripheral_Device_ViewController: ITCB_Observer_Central_P
         // Remember that the answer may come in on a non-main thread, so we need to make sure that all UI-touched code is accessed via the Main Thread.
         DispatchQueue.main.async {
             // We nuke the question from the edit box, and place it in the interaction space below the send button.
-            self.enterQuestionText?.stringValue = ""
-            self.answerLabel.stringValue = question
+            self.askQuestionTextField?.text = ""
+            self.resultsTextView.text = question
         }
     }
 
@@ -189,7 +196,7 @@ extension ITCB_Central_Peripheral_Device_ViewController: ITCB_Observer_Central_P
     func errorOccurred(_ inError: ITCB_Errors, sdk inSDKInstance: ITCB_SDK_Protocol) {
         displayAlert(header: "SLUG-ERROR", message: inError.localizedDescription)
         DispatchQueue.main.async {
-            self.answerLabel.stringValue += "\n" + "SLUG-ERROR".localizedVariant
+            self.resultsTextView.text += "\n" + "SLUG-ERROR".localizedVariant
         }
     }
 }

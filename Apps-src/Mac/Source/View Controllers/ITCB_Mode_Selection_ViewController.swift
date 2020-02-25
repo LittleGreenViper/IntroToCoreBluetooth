@@ -26,6 +26,9 @@ import Cocoa
 // MARK: - The initial "Pick A Mode" View Controller -
 /* ###################################################################################################################################### */
 /**
+ This is the first screen that is shown upon startup. It allows the user to select an operating mode for the app.
+ 
+ Once the user selects a mode, this screen disappears until the next time the app is started.
  */
 class ITCB_Mode_Selection_ViewController: ITCB_Base_ViewController {
     /* ################################################################## */
@@ -39,7 +42,12 @@ class ITCB_Mode_Selection_ViewController: ITCB_Base_ViewController {
      The Peripheral Mode selection button.
      */
     @IBOutlet weak var periperalButton: NSButton!
-    
+}
+
+/* ###################################################################################################################################### */
+// MARK: - Base Class Override Methods -
+/* ###################################################################################################################################### */
+extension ITCB_Mode_Selection_ViewController {
     /* ################################################################## */
     /**
      Called when the view has completed loading.
@@ -50,7 +58,12 @@ class ITCB_Mode_Selection_ViewController: ITCB_Base_ViewController {
         periperalButton.title = periperalButton.title.localizedVariant
         title = "SLUG-SELECT-MODE"
     }
-    
+}
+
+/* ###################################################################################################################################### */
+// MARK: - IBAction Methods -
+/* ###################################################################################################################################### */
+extension ITCB_Mode_Selection_ViewController {
     /* ################################################################## */
     /**
      Called when the user selects the "CENTRAL" button.

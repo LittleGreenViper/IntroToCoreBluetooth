@@ -27,6 +27,7 @@ import ITCB_SDK_IOS
 // MARK: 
 /* ###################################################################################################################################### */
 /**
+ This is a base class for all displayed View Controllers.
  */
 class ITCB_Base_ViewController: UIViewController {
     /* ################################################################## */
@@ -72,7 +73,12 @@ class ITCB_Base_ViewController: UIViewController {
     var getDeviceSDKInstanceAsPeripheral: ITCB_SDK_Peripheral! {
         return deviceSDKInstance as? ITCB_SDK_Peripheral
     }
+}
 
+/* ###################################################################################################################################### */
+// MARK: - Instance Methods -
+/* ###################################################################################################################################### */
+extension ITCB_Base_ViewController {
     /* ################################################################## */
     /**
      This displays a simple alert, with an OK button.

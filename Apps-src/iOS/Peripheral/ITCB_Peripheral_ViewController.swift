@@ -20,18 +20,21 @@ CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFT
 Little Green Viper Software Development LLC: https://littlegreenviper.com
 */
 
-import Cocoa
-import ITCB_SDK_Mac
+import UIKit
+import ITCB_SDK_IOS
 
 /* ###################################################################################################################################### */
-// MARK: - The View Controller for a Peripheral Mode app -
+// MARK: - The Peripheral Mode Initial Screen -
 /* ###################################################################################################################################### */
 /**
- This view controller is loaded over the mode selection, as we have decided to be a Peripheral.
+ This is the base view controller for the Peripheral Mode.
  */
-class ITCB_PERIPHERAL_Initial_ViewController: ITCB_Base_ViewController {
-    /// The stroryboard ID, for instantiating the class.
-    static let storyboardID = "peripheral-initial-view-controller"
+class ITCB_Peripheral_ViewController: ITCB_Base_ViewController {
+    /* ################################################################## */
+    /**
+     This is the reuse ID for the prototype cell we'll use in our table.
+     */
+    static let cellReuseID = "selected-answer-cell"
     
     /* ################################################################## */
     /**
@@ -47,134 +50,141 @@ class ITCB_PERIPHERAL_Initial_ViewController: ITCB_Base_ViewController {
     
     /* ################################################################## */
     /**
-     This is the Central Device name label
+     This is the label that displays the Central device name.
      */
-    @IBOutlet weak var deviceNameLabel: NSTextField!
+    @IBOutlet weak var deviceNameLabel: UILabel!
     
     /* ################################################################## */
     /**
-     This displays the question from the Central.
+     This label displays the question sent from the Central device.
      */
-    @IBOutlet weak var questionAskedLabel: NSTextField!
+    @IBOutlet weak var questionAskedLabel: UILabel!
     
     /* ################################################################## */
     /**
-     If the user hits this button, a random answer will be selected and sent.
+     This button allows a randomly-selected answer to be returned.
      */
-    @IBOutlet weak var sendRandomButton: NSButton!
+    @IBOutlet weak var sendRandomAnswerButton: UIButton!
     
     /* ################################################################## */
     /**
-     The question picker table view.
+     This makes sure that we don't leave a dead link in the SDK observer pool.
      */
-    @IBOutlet var tableView: NSTableView!
+    deinit {
+        deviceSDKInstance.removeObserver(self)
+    }
+}
+
+/* ###################################################################################################################################### */
+// MARK: - Instance Methods -
+/* ###################################################################################################################################### */
+extension ITCB_Peripheral_ViewController {
+    /* ################################################################## */
+    /**
+     This sends the answer, getting the question from our question label.
+     
+     - parameter inAnswer: The answer to be sent to the Central.
+     */
+    func sendAnswer(_ inAnswer: String) {
+        if  let sdk = getDeviceSDKInstanceAsPeripheral,
+            let question = self.questionAskedLabel?.text,
+            !question.isEmpty {
+            sdk.central.sendAnswer(inAnswer, toQuestion: question)
+        }
+    }
 }
 
 /* ###################################################################################################################################### */
 // MARK: - IBAction Methods -
 /* ###################################################################################################################################### */
-extension ITCB_PERIPHERAL_Initial_ViewController {
+extension ITCB_Peripheral_ViewController {
     /* ################################################################## */
     /**
-     Called when the user clicks the "Send Random" button.
+     Called when the random button is hit. It selects an aswer at random, and sends it.
      
-     - parameter inButton: The button instance.
+     - parameter: ignored.
      */
-    @IBAction func sendRandomButtonHit(_ inButton: NSButton) {
-        let answer = String(format: "SLUG-ANSWER-%02d", Int.random(in: 0..<20)).localizedVariant
-        getDeviceSDKInstanceAsPeripheral?.central.sendAnswer(answer, toQuestion: questionAskedLabel?.stringValue ?? "ERROR")
+    @IBAction func sendRandomAnswerButtonHit(_: Any) {
+        sendAnswer(String(format: "SLUG-ANSWER-%02d", Int.random(in: 0..<(Int("SLUG-NUMBER-MAX".localizedVariant) ?? 0))).localizedVariant)
     }
 }
 
 /* ###################################################################################################################################### */
 // MARK: - Base Class Override Methods -
 /* ###################################################################################################################################### */
-extension ITCB_PERIPHERAL_Initial_ViewController {
+extension ITCB_Peripheral_ViewController {
     /* ################################################################## */
     /**
-     Called when the view has completed loading.
+     Called after the view has loaded.
      */
     override func viewDidLoad() {
         super.viewDidLoad()
         deviceSDKInstance = ITCB_SDK.createInstance(isCentral: false)
-        sendRandomButton?.title = sendRandomButton?.title.localizedVariant ?? "ERROR"
-        deviceNameLabel.stringValue = getDeviceSDKInstanceAsPeripheral?.central.name ?? "ERROR"
-    }
-    
-    /* ################################################################## */
-    /**
-     Called just before the view appears. We use this to register as an observer.
-     */
-    override func viewWillAppear() {
-        super.viewWillAppear()
-        getDeviceSDKInstanceAsPeripheral?.addObserver(self)
-    }
-
-    /* ################################################################## */
-    /**
-     Called just before the view disappears. We use this to un-register as an observer.
-     */
-    override func viewWillDisappear() {
-        super.viewWillDisappear()
-        getDeviceSDKInstanceAsPeripheral?.removeObserver(self)
+        if let sdk = getDeviceSDKInstanceAsPeripheral {
+            deviceNameLabel?.text = sdk.central?.name
+            uuid = sdk.addObserver(self)
+        }
+        
+        sendRandomAnswerButton?.setTitle(sendRandomAnswerButton?.title(for: .normal)?.localizedVariant, for: .normal)
     }
 }
 
-/* ################################################################################################################################## */
-// MARK: - NSTableViewDelegate/DataSource Methods
-/* ################################################################################################################################## */
-extension ITCB_PERIPHERAL_Initial_ViewController: NSTableViewDelegate, NSTableViewDataSource {
+/* ###################################################################################################################################### */
+// MARK: - Table Delegate and Data Source Methods -
+/* ###################################################################################################################################### */
+extension ITCB_Peripheral_ViewController: UITableViewDelegate, UITableViewDataSource {
     /* ################################################################## */
     /**
      Called to supply the number of rows in the table.
      
      - parameters:
         - inTableView: The table instance.
+        - numberOfRowsInSection: The 0-based index of the section we're checking.
      
      - returns: A 1-based Int, with 0 being no rows.
      */
-    func numberOfRows(in inTableView: NSTableView) -> Int {
+    func tableView(_ inTableView: UITableView, numberOfRowsInSection inSection: Int) -> Int {
         return Int("SLUG-NUMBER-MAX".localizedVariant) ?? 0
-    }
-
-    /* ################################################################## */
-    /**
-     This is called to supply the string display for one row that corresponds to a device.
-     
-     - parameters:
-        - inTableView: The table instance.
-        - objectValueFor: Container object for the column that holds the row.
-        - row: 0-based Int, with the index of the row, within the column.
-     
-     - returns: A String, with the device name.
-     */
-    func tableView(_ inTableView: NSTableView, objectValueFor inTableColumn: NSTableColumn?, row inRow: Int) -> Any? {
-        return String(format: "SLUG-ANSWER-%02d", inRow).localizedVariant
     }
     
     /* ################################################################## */
     /**
-     Called after a table row was selected by the user.
+     Called to get the cell to display for a device.
      
-     We open a modal sheet, with the device info.
-     
-     - parameter: Ignored
+     - parameter inTableView: The table view that is calling this.
+     - parameter cellForRowAt: The index path to the cell we are getting.
      */
-    func tableViewSelectionDidChange(_: Notification) {
-        // Make sure that we have a selected row, and that the selection is valid.
-        if  let selectedRow = tableView?.selectedRow,
-            (0..<tableView.numberOfRows).contains(selectedRow) {
-            let answer = String(format: "SLUG-ANSWER-%02d", selectedRow).localizedVariant
-            getDeviceSDKInstanceAsPeripheral?.central.sendAnswer(answer, toQuestion: questionAskedLabel?.stringValue ?? "ERROR")
-            tableView.deselectRow(selectedRow)  // Make sure that we clean up after ourselves.
+    func tableView(_ inTableView: UITableView, cellForRowAt inIndexPath: IndexPath) -> UITableViewCell {
+        if  let tableCell = inTableView.dequeueReusableCell(withIdentifier: Self.cellReuseID) {
+            tableCell.textLabel?.text = String(format: "SLUG-ANSWER-%02d", inIndexPath.row).localizedVariant
+            return tableCell
         }
+        return UITableViewCell()
+    }
+    
+    /* ################################################################## */
+    /**
+     This is called when someone taps on a row.
+     
+     We bring in the inspector for that device, and deselect the row.
+     
+     - parameter inTableView: The table view that called this.
+     - parameter willSelectRowAt: An IndexPath to the selected row.
+     - returns: An IndexPath, if the row is to remain selected and highlighted. It is always false, and we immediately deselect the row, anyway.
+     */
+    func tableView(_ inTableView: UITableView, willSelectRowAt inIndexPath: IndexPath) -> IndexPath? {
+        if  (0..<inTableView.numberOfRows(inSection: 0)).contains(inIndexPath.row) {
+            let answer = String(format: "SLUG-ANSWER-%02d", inIndexPath.row).localizedVariant
+            sendAnswer(answer)
+        }
+        return nil
     }
 }
 
 /* ################################################################################################################################## */
-// MARK: - Observer protocol Methods
+// MARK: - Observer protocol Methods -
 /* ################################################################################################################################## */
-extension ITCB_PERIPHERAL_Initial_ViewController: ITCB_Observer_Peripheral_Protocol {
+extension ITCB_Peripheral_ViewController: ITCB_Observer_Peripheral_Protocol {
     /* ################################################################## */
     /**
      This is called when a Central asks a Peripheral a question.
@@ -188,7 +198,7 @@ extension ITCB_PERIPHERAL_Initial_ViewController: ITCB_Observer_Peripheral_Proto
         if !workingWithQuestion {
             workingWithQuestion = true
             DispatchQueue.main.async {
-                self.questionAskedLabel?.stringValue = inQuestion.localizedVariant
+                self.questionAskedLabel?.text = inQuestion.localizedVariant
             }
         }
     }
