@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D40FF5D02406A66100349E77 /* ITCB_SDK_TVOS.h in Headers */ = {isa = PBXBuildFile; fileRef = D40FF5CE2406A66100349E77 /* ITCB_SDK_TVOS.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D40FF5D42406A67800349E77 /* ITCB_SDK_Protocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4FC12C223F736D800C3ED12 /* ITCB_SDK_Protocol.swift */; };
+		D40FF5D52406A67800349E77 /* ITCB_SDK.swift in Sources */ = {isa = PBXBuildFile; fileRef = D410BB0A23F8E799008DE79C /* ITCB_SDK.swift */; };
+		D40FF5D62406A67800349E77 /* ITCB_SDK_internal.swift in Sources */ = {isa = PBXBuildFile; fileRef = D410BB0D23F8E9C2008DE79C /* ITCB_SDK_internal.swift */; };
 		D410BB0B23F8E799008DE79C /* ITCB_SDK.swift in Sources */ = {isa = PBXBuildFile; fileRef = D410BB0A23F8E799008DE79C /* ITCB_SDK.swift */; };
 		D410BB0E23F8E9C2008DE79C /* ITCB_SDK_internal.swift in Sources */ = {isa = PBXBuildFile; fileRef = D410BB0D23F8E9C2008DE79C /* ITCB_SDK_internal.swift */; };
 		D41DD5092401D79600A99087 /* ITCB_SDK_Protocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4FC12C223F736D800C3ED12 /* ITCB_SDK_Protocol.swift */; };
@@ -17,6 +21,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		D40FF5CC2406A66100349E77 /* ITCB_SDK_TVOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ITCB_SDK_TVOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D40FF5CE2406A66100349E77 /* ITCB_SDK_TVOS.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ITCB_SDK_TVOS.h; sourceTree = "<group>"; };
+		D40FF5CF2406A66100349E77 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D410BB0A23F8E799008DE79C /* ITCB_SDK.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ITCB_SDK.swift; path = src/public/ITCB_SDK.swift; sourceTree = SOURCE_ROOT; };
 		D410BB0D23F8E9C2008DE79C /* ITCB_SDK_internal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ITCB_SDK_internal.swift; path = src/internal/ITCB_SDK_internal.swift; sourceTree = SOURCE_ROOT; };
 		D41DD5012401D71B00A99087 /* ITCB_SDK_IOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ITCB_SDK_IOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -30,6 +37,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		D40FF5C92406A66100349E77 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		D41DD4FE2401D71B00A99087 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -47,6 +61,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D40FF5CD2406A66100349E77 /* ITCB_SDK_TVOS */ = {
+			isa = PBXGroup;
+			children = (
+				D40FF5CE2406A66100349E77 /* ITCB_SDK_TVOS.h */,
+				D40FF5CF2406A66100349E77 /* Info.plist */,
+			);
+			path = ITCB_SDK_TVOS;
+			sourceTree = "<group>";
+		};
 		D4195F7D23F4519F0031A99E /* src */ = {
 			isa = PBXGroup;
 			children = (
@@ -81,6 +104,7 @@
 				D4195F7D23F4519F0031A99E /* src */,
 				D4BFAF8923F42B6F006D2C07 /* Mac */,
 				D41DD5022401D71B00A99087 /* iOS */,
+				D40FF5CD2406A66100349E77 /* ITCB_SDK_TVOS */,
 				D4BFAF8823F42B6F006D2C07 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -90,6 +114,7 @@
 			children = (
 				D4BFAF8723F42B6F006D2C07 /* ITCB_SDK_Mac.framework */,
 				D41DD5012401D71B00A99087 /* ITCB_SDK_IOS.framework */,
+				D40FF5CC2406A66100349E77 /* ITCB_SDK_TVOS.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -122,6 +147,14 @@
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
+		D40FF5C72406A66100349E77 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D40FF5D02406A66100349E77 /* ITCB_SDK_TVOS.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		D41DD4FC2401D71B00A99087 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
@@ -139,6 +172,24 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
+		D40FF5CB2406A66100349E77 /* ITCB_SDK_TVOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D40FF5D32406A66100349E77 /* Build configuration list for PBXNativeTarget "ITCB_SDK_TVOS" */;
+			buildPhases = (
+				D40FF5C72406A66100349E77 /* Headers */,
+				D40FF5C82406A66100349E77 /* Sources */,
+				D40FF5C92406A66100349E77 /* Frameworks */,
+				D40FF5CA2406A66100349E77 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ITCB_SDK_TVOS;
+			productName = ITCB_SDK_TVOS;
+			productReference = D40FF5CC2406A66100349E77 /* ITCB_SDK_TVOS.framework */;
+			productType = "com.apple.product-type.framework";
+		};
 		D41DD5002401D71B00A99087 /* ITCB_SDK_IOS */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = D41DD5082401D71B00A99087 /* Build configuration list for PBXNativeTarget "ITCB_SDK_IOS" */;
@@ -185,6 +236,9 @@
 				LastUpgradeCheck = 1130;
 				ORGANIZATIONNAME = "Little Green Viper Software Development LLC";
 				TargetAttributes = {
+					D40FF5CB2406A66100349E77 = {
+						CreatedOnToolsVersion = 11.3.1;
+					};
 					D41DD5002401D71B00A99087 = {
 						CreatedOnToolsVersion = 11.3.1;
 					};
@@ -209,11 +263,19 @@
 			targets = (
 				D4BFAF8623F42B6F006D2C07 /* ITCB_SDK_Mac */,
 				D41DD5002401D71B00A99087 /* ITCB_SDK_IOS */,
+				D40FF5CB2406A66100349E77 /* ITCB_SDK_TVOS */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		D40FF5CA2406A66100349E77 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		D41DD4FF2401D71B00A99087 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -232,6 +294,16 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		D40FF5C82406A66100349E77 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D40FF5D52406A67800349E77 /* ITCB_SDK.swift in Sources */,
+				D40FF5D62406A67800349E77 /* ITCB_SDK_internal.swift in Sources */,
+				D40FF5D42406A67800349E77 /* ITCB_SDK_Protocol.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		D41DD4FD2401D71B00A99087 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -255,6 +327,59 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
+		D40FF5D12406A66100349E77 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = P53V4JS928;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = ITCB_SDK_TVOS/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.littlegreenviper.ITCB-SDK-TVOS";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = appletvos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 13.0;
+			};
+			name = Debug;
+		};
+		D40FF5D22406A66100349E77 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = P53V4JS928;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = ITCB_SDK_TVOS/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.littlegreenviper.ITCB-SDK-TVOS";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = appletvos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 13.0;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
 		D41DD5062401D71B00A99087 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -485,6 +610,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		D40FF5D32406A66100349E77 /* Build configuration list for PBXNativeTarget "ITCB_SDK_TVOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D40FF5D12406A66100349E77 /* Debug */,
+				D40FF5D22406A66100349E77 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		D41DD5082401D71B00A99087 /* Build configuration list for PBXNativeTarget "ITCB_SDK_IOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

@@ -21,7 +21,7 @@ Little Green Viper Software Development LLC: https://littlegreenviper.com
 */
 
 import UIKit
-import ITCB_SDK_IOS
+import ITCB_SDK_TVOS
 
 /* ###################################################################################################################################### */
 // MARK: - Base View Controller Class -

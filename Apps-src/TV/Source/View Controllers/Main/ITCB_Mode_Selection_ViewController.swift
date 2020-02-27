@@ -21,80 +21,53 @@ Little Green Viper Software Development LLC: https://littlegreenviper.com
 */
 
 import UIKit
-import ITCB_SDK_IOS
 
 /* ###################################################################################################################################### */
-// MARK: - Special "Replace" Segue -
+// MARK: - Mode Selection Screen View Controller -
 /* ###################################################################################################################################### */
 /**
- [This little trick came from here](https://stackoverflow.com/a/21942768/879365)
- */
-class ITCB_Mode_Selection_ReplaceSegue: UIStoryboardSegue {
-    /* ################################################################## */
-    /**
-     All we do, is completely replace the previous controller with the destination.
-     */
-    override func perform() {
-        source.navigationController?.setViewControllers([destination], animated: true)
-    }
-}
-
-/* ###################################################################################################################################### */
-// MARK: - The Main Mode Selection Screen -
-/* ###################################################################################################################################### */
-/**
- This is the first screen that is shown upon startup. It allows the user to select an operating mode for the app.
- 
- Once the user selects a mode, this screen disappears until the next time the app is started.
+ This class manages the view for the main mode selection screen.
  */
 class ITCB_Mode_Selection_ViewController: ITCB_Base_ViewController {
     /* ################################################################## */
     /**
-     The segue ID for showing the Central operating mode.
-     */
-    static let centralSegueID = "show-central-mode"
-    
-    /* ################################################################## */
-    /**
-     The segue ID for showing the Peripheral operating mode.
-     */
-    static let peripheralSegueID = "show-peripheral-mode"
-    
-    /* ################################################################## */
-    /**
-     The text-based "Central" button.
+     The left side "CENTRAL" text button.
      */
     @IBOutlet weak var centralTextButton: UIButton!
-
+    
     /* ################################################################## */
     /**
-     The text-based "Peripheral" button.
+     The right side "PERIPHERAL" text button.
      */
     @IBOutlet weak var peripheralTextButton: UIButton!
+    
+    /* ################################################################## */
+    /**
+     The info (About Screen) button, at the top, right.
+     */
+    @IBOutlet weak var aboutScreenButton: UIButton!
+    
+    /* ################################################################## */
+    /**
+     Focus guide, to allow selection of the Info button.
+     */
+    var topFocusGuide = UIFocusGuide()
 }
 
 /* ###################################################################################################################################### */
-// MARK: - IBAction Methods -
+// MARK: - Instance Methods -
 /* ###################################################################################################################################### */
 extension ITCB_Mode_Selection_ViewController {
     /* ################################################################## */
     /**
-     Called when one of the Central buttons has been hit.
-     
-     - parameter: ignored
+     This sets up our focus.
      */
-    @IBAction func centralButtonHit(_ : Any) {
-        performSegue(withIdentifier: Self.centralSegueID, sender: nil)
-    }
-
-    /* ################################################################## */
-    /**
-     Called when one of the Peripheral buttons has been hit.
-     
-     - parameter: ignored
-     */
-    @IBAction func peripheralButtonHit(_ : Any) {
-        performSegue(withIdentifier: Self.peripheralSegueID, sender: nil)
+    func setupFocus() {
+        view.addLayoutGuide(topFocusGuide)
+        topFocusGuide.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor).isActive = true
+        topFocusGuide.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor).isActive = true
+        topFocusGuide.topAnchor.constraint(equalTo: aboutScreenButton.bottomAnchor).isActive = true
+        topFocusGuide.bottomAnchor.constraint(equalTo: centralTextButton.topAnchor).isActive = true
     }
 }
 
@@ -104,14 +77,45 @@ extension ITCB_Mode_Selection_ViewController {
 extension ITCB_Mode_Selection_ViewController {
     /* ################################################################## */
     /**
-     Called after the view has loaded. We use this to set our localized strings and whatnot.
+     Called when the view has finished loading.
      */
     override func viewDidLoad() {
         super.viewDidLoad()
         deviceSDKInstance = nil // Make sure we nuke any old instances
-        appDelegate.modeSelectionViewController = self
-        appDelegate.mainNavigationController = navigationController
-        centralTextButton.setTitle(centralTextButton.title(for: .normal)?.localizedVariant, for: .normal)
-        peripheralTextButton.setTitle(peripheralTextButton.title(for: .normal)?.localizedVariant, for: .normal)
+        setupFocus()
+        centralTextButton?.setTitle(" " + (centralTextButton?.title(for: .normal)?.localizedVariant ?? "ERROR"), for: .normal)
+        peripheralTextButton?.setTitle(" " + (peripheralTextButton?.title(for: .normal)?.localizedVariant ?? "ERROR"), for: .normal)
+    }
+
+    /* ################################################################## */
+    /**
+     This is called whenever the focus changes. We use this to bring the info button into our focus group.
+     
+     - parameter in: The Focus Update context.
+     - parameter with: The animation coordinator used for the focus change.
+     */
+    override func didUpdateFocus(in inContext: UIFocusUpdateContext, with inCoordinator: UIFocusAnimationCoordinator) {
+      super.didUpdateFocus(in: inContext, with: inCoordinator)
+        
+      guard let nextFocusedView = inContext.nextFocusedView else { return }
+
+      switch nextFocusedView {
+      case centralTextButton:
+        topFocusGuide.preferredFocusEnvironments = [aboutScreenButton]
+        
+      case peripheralTextButton:
+        topFocusGuide.preferredFocusEnvironments = [aboutScreenButton]
+
+      case aboutScreenButton:
+        if let previousFocusedView = inContext.previouslyFocusedView,
+            previousFocusedView == peripheralTextButton {
+            topFocusGuide.preferredFocusEnvironments = [peripheralTextButton]
+        } else {
+            topFocusGuide.preferredFocusEnvironments = [centralTextButton]
+        }
+        
+      default:
+        ()
+      }
     }
 }

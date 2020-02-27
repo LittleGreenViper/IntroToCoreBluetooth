@@ -21,72 +21,67 @@ Little Green Viper Software Development LLC: https://littlegreenviper.com
 */
 
 import UIKit
-import ITCB_SDK_IOS
+import ITCB_SDK_TVOS
 
 /* ###################################################################################################################################### */
-// MARK: - Base View Controller Class -
+// MARK: 
 /* ###################################################################################################################################### */
 /**
- This is a base class for all displayed View Controllers.
  */
-class ITCB_Base_ViewController: UIViewController {
+@UIApplicationMain
+class ITCB_AppDelegate: UIResponder, UIApplicationDelegate {
     /* ################################################################## */
     /**
-     This is a shortcut to get the app delegate instance.
+     This is a shortcut to get the app delegate instance as an instance of this class.
      */
-    var appDelegate: ITCB_AppDelegate! {
-        return ITCB_AppDelegate.appDelegate
+    class var appDelegate: Self! {
+        return UIApplication.shared.delegate as? Self
     }
     
-    /* ################################################################## */
-    /**
-     This will allow access to the singleton SDK instance as a generic SDK. This can return nil, if the SDK is not loaded.
-     
-     This can be used to set the SDK instance.
-     */
-    var deviceSDKInstance: ITCB_SDK_Protocol! {
-        get {
-            return appDelegate?.deviceSDKInstance
-        }
-        
-        set {
-            appDelegate?.deviceSDKInstance = newValue
-        }
-    }
-    
-    /* ################################################################## */
-    /**
-     This will allow access to the singleton SDK instance as a Central SDK. This will return nil, if the SDK is not a Central.
-     
-     This is read-only.
-     */
-    var getDeviceSDKInstanceAsCentral: ITCB_SDK_Central! {
-        return deviceSDKInstance as? ITCB_SDK_Central
-    }
-    
-    /* ################################################################## */
-    /**
-     This will allow access to the singleton SDK instance as a Peripheral SDK. This will return nil, if the SDK is not a Peripheral.
-     
-     This is read-only.
-     */
-    var getDeviceSDKInstanceAsPeripheral: ITCB_SDK_Peripheral! {
-        return deviceSDKInstance as? ITCB_SDK_Peripheral
-    }
-}
-
-/* ###################################################################################################################################### */
-// MARK: - Instance Methods -
-/* ###################################################################################################################################### */
-extension ITCB_Base_ViewController {
     /* ################################################################## */
     /**
      This displays a simple alert, with an OK button.
      
      - parameter header: The header to display at the top.
      - parameter message: A String, containing whatever messge is to be displayed below the header.
+     - parameter presentedBy: An optional UIViewController object that is acting as the presenter context for the alert. If nil, we use the top controller of the Navigation stack.
      */
-    func displayAlert(header inHeader: String, message inMessage: String = "") {
-        ITCB_AppDelegate.displayAlert(header: inHeader, message: inMessage, presentedBy: self)
+    class func displayAlert(header inHeader: String, message inMessage: String = "", presentedBy inPresentingViewController: UIViewController! = nil) {
+        // This ensures that we are on the main thread.
+        DispatchQueue.main.async {
+            var presentedBy = inPresentingViewController
+            
+            if nil == presentedBy {
+                presentedBy = (UIApplication.shared.windows.filter { $0.isKeyWindow }.first)?.rootViewController
+            }
+            
+            if nil != presentedBy {
+                let alertController = UIAlertController(title: inHeader.localizedVariant, message: inMessage.localizedVariant, preferredStyle: .actionSheet)
+                
+                let okAction = UIAlertAction(title: "SLUG-OK-BUTTON-TEXT".localizedVariant, style: UIAlertAction.Style.cancel, handler: nil)
+                
+                alertController.addAction(okAction)
+                
+                presentedBy?.present(alertController, animated: true, completion: nil)
+            }
+        }
+    }
+    
+    /* ################################################################## */
+    /**
+     This will hold our loaded SDK.
+     */
+    var deviceSDKInstance: ITCB_SDK_Protocol!
+    
+    /* ################################################################## */
+    /**
+     */
+    var window: UIWindow?
+
+    /* ################################################################## */
+    /**
+     */
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        return true
     }
 }

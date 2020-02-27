@@ -23,21 +23,39 @@ Little Green Viper Software Development LLC: https://littlegreenviper.com
 import UIKit
 
 /* ###################################################################################################################################### */
-// MARK: 
+// MARK: - About This App View Controller -
 /* ###################################################################################################################################### */
 /**
  */
-@UIApplicationMain
-class ITCB_AppDelegate: UIResponder, UIApplicationDelegate {
+class ITCB_TVOS_About_ViewController: UIViewController {
     /* ################################################################## */
     /**
+     The main label at the top, displaying the app info.
      */
-    var window: UIWindow?
-
+    @IBOutlet weak var mainLabel: UILabel!
+    
     /* ################################################################## */
     /**
+     The about info, in a text view.
      */
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        return true
+    @IBOutlet weak var aboutTextView: UITextView!
+    
+    /* ################################################################## */
+    /**
+     Called after the view has loaded. We use this to set the title and localized strings.
+     */
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        let dictionary = Bundle.main.infoDictionary!
+        if let version = dictionary["CFBundleShortVersionString"] as? String,
+            let build = dictionary["CFBundleVersion"] as? String,
+            let name = dictionary["CFBundleName"] as? String {
+            let displayName = dictionary["CFBundleDisplayName"] as? String
+            let vName = ((displayName ?? "").isEmpty) ? name : displayName!
+            
+            mainLabel?.text = "\(vName), Version \(version).\(build)"
+        }
+        
+        aboutTextView?.text = aboutTextView?.text.localizedVariant
     }
 }

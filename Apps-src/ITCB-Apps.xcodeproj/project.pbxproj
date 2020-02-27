@@ -13,11 +13,15 @@
 		D40B437623F3836900CFE862 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D40B437423F3836900CFE862 /* Assets.xcassets */; };
 		D40B437C23F3842600CFE862 /* ITCB_ExtensionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D40B437923F3842500CFE862 /* ITCB_ExtensionDelegate.swift */; };
 		D40B437D23F3842600CFE862 /* ITCB_InterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D40B437A23F3842500CFE862 /* ITCB_InterfaceController.swift */; };
+		D40FF5BF2406A1C200349E77 /* ITCB_AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D40FF5BE2406A1C200349E77 /* ITCB_AppDelegate.swift */; };
+		D40FF5C22406A4D300349E77 /* ITCB_Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = D48CEDD723F2CB180083F1A4 /* ITCB_Utilities.swift */; };
+		D40FF5C32406A5DB00349E77 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = D4BC05B223F347FB008266BC /* Localizable.strings */; };
+		D40FF5C42406A5DF00349E77 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D452A2EE23F0DB8500016D71 /* InfoPlist.strings */; };
+		D40FF5DA2406A69800349E77 /* ITCB_SDK_TVOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D40FF5D92406A69800349E77 /* ITCB_SDK_TVOS.framework */; };
+		D40FF5DB2406A69800349E77 /* ITCB_SDK_TVOS.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D40FF5D92406A69800349E77 /* ITCB_SDK_TVOS.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		D4195FA223F454200031A99E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D4195F9D23F454200031A99E /* LaunchScreen.storyboard */; };
 		D4195FA323F454200031A99E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D4195F9F23F454200031A99E /* Main.storyboard */; };
 		D4195FA423F454200031A99E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D4195FA123F454200031A99E /* Assets.xcassets */; };
-		D4195FA723F454480031A99E /* ITCB_AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4195FA523F454480031A99E /* ITCB_AppDelegate.swift */; };
-		D4195FA823F454480031A99E /* ITCB_ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4195FA623F454480031A99E /* ITCB_ViewController.swift */; };
 		D41DD51E2401D94500A99087 /* ITCB_SDK_IOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D41DD51D2401D94500A99087 /* ITCB_SDK_IOS.framework */; };
 		D41DD51F2401D94500A99087 /* ITCB_SDK_IOS.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D41DD51D2401D94500A99087 /* ITCB_SDK_IOS.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		D422E1E723F42729006D483E /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = D4BC05B223F347FB008266BC /* Localizable.strings */; };
@@ -52,9 +56,16 @@
 		D4CFE80E23FEBD7C003D2BFA /* ITCB_Base_WindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4CFE80D23FEBD7C003D2BFA /* ITCB_Base_WindowController.swift */; };
 		D4DBD5C923F41F7B001C9DE5 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D452A2EE23F0DB8500016D71 /* InfoPlist.strings */; };
 		D4DBD5CB23F41F80001C9DE5 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D452A2EE23F0DB8500016D71 /* InfoPlist.strings */; };
+		D4E05CEE2407FF4F00AF6BCA /* ITCB_TVOS_Peripheral_ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E05CE62407FF4F00AF6BCA /* ITCB_TVOS_Peripheral_ViewController.swift */; };
+		D4E05CEF2407FF4F00AF6BCA /* ITCB_TVOS_Central_ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E05CE82407FF4F00AF6BCA /* ITCB_TVOS_Central_ViewController.swift */; };
+		D4E05CF02407FF4F00AF6BCA /* ITCB_TVOS_Central_Device_ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E05CE92407FF4F00AF6BCA /* ITCB_TVOS_Central_Device_ViewController.swift */; };
+		D4E05CF12407FF4F00AF6BCA /* ITCB_Mode_Selection_ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E05CEB2407FF4F00AF6BCA /* ITCB_Mode_Selection_ViewController.swift */; };
+		D4E05CF22407FF4F00AF6BCA /* ITCB_TVOS_About_ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E05CEC2407FF4F00AF6BCA /* ITCB_TVOS_About_ViewController.swift */; };
+		D4E05CF32407FF4F00AF6BCA /* ITCB_Base_ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E05CED2407FF4F00AF6BCA /* ITCB_Base_ViewController.swift */; };
 		D4E6777C23EEF4C40066B0C0 /* ITCB_AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E6777423EEF4C40066B0C0 /* ITCB_AppDelegate.swift */; };
 		D4E6777D23EEF4C40066B0C0 /* ITCB_Mode_Selection_ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E6777523EEF4C40066B0C0 /* ITCB_Mode_Selection_ViewController.swift */; };
 		D4E6777F23EEF4C40066B0C0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D4E6777823EEF4C40066B0C0 /* Assets.xcassets */; };
+		D4FFD7582405B106003D418B /* ITCB_iOS_About_ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4FFD7572405B106003D418B /* ITCB_iOS_About_ViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -71,6 +82,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = D40B434D23F381F200CFE862;
 			remoteInfo = "Watch WatchKit Extension";
+		};
+		D40FF5D82406A69800349E77 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D4FC12B523F7363A00C3ED12 /* ITCB.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = D40FF5CC2406A66100349E77;
+			remoteInfo = ITCB_SDK_TVOS;
 		};
 		D41DD51C2401D94500A99087 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -118,6 +136,17 @@
 			name = "Embed App Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		D40FF5DC2406A69800349E77 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				D40FF5DB2406A69800349E77 /* ITCB_SDK_TVOS.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		D41DD5212401D94600A99087 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -152,13 +181,12 @@
 		D40B437923F3842500CFE862 /* ITCB_ExtensionDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ITCB_ExtensionDelegate.swift; path = Extension/Source/ITCB_ExtensionDelegate.swift; sourceTree = "<group>"; };
 		D40B437A23F3842500CFE862 /* ITCB_InterfaceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ITCB_InterfaceController.swift; path = Extension/Source/ITCB_InterfaceController.swift; sourceTree = "<group>"; };
 		D40B438323F3845F00CFE862 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = Extension/Meta/Info.plist; sourceTree = "<group>"; };
+		D40FF5BE2406A1C200349E77 /* ITCB_AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ITCB_AppDelegate.swift; path = Source/Application/ITCB_AppDelegate.swift; sourceTree = "<group>"; };
 		D4195F8723F4533E0031A99E /* ITCB-TV.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ITCB-TV.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D4195F9A23F453EE0031A99E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = Meta/Info.plist; sourceTree = "<group>"; };
 		D4195F9E23F454200031A99E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Resources/Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D4195FA023F454200031A99E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Resources/Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		D4195FA123F454200031A99E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = Resources/Assets.xcassets; sourceTree = "<group>"; };
-		D4195FA523F454480031A99E /* ITCB_AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ITCB_AppDelegate.swift; path = Source/ITCB_AppDelegate.swift; sourceTree = "<group>"; };
-		D4195FA623F454480031A99E /* ITCB_ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ITCB_ViewController.swift; path = Source/ITCB_ViewController.swift; sourceTree = "<group>"; };
 		D452A2E423F0DAEC00016D71 /* Warnings.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = Warnings.xcconfig; path = "Project-Meta/Warnings.xcconfig"; sourceTree = "<group>"; };
 		D452A2EF23F0DB8500016D71 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		D452A2F123F0DB8500016D71 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -185,6 +213,12 @@
 		D4CFE80B23FEBB78003D2BFA /* ITCB_Base_ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ITCB_Base_ViewController.swift; sourceTree = "<group>"; };
 		D4CFE80D23FEBD7C003D2BFA /* ITCB_Base_WindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ITCB_Base_WindowController.swift; sourceTree = "<group>"; };
 		D4D5F5C923EEF33400E4F52B /* ITCB-Mac.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ITCB-Mac.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D4E05CE62407FF4F00AF6BCA /* ITCB_TVOS_Peripheral_ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ITCB_TVOS_Peripheral_ViewController.swift; sourceTree = "<group>"; };
+		D4E05CE82407FF4F00AF6BCA /* ITCB_TVOS_Central_ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ITCB_TVOS_Central_ViewController.swift; sourceTree = "<group>"; };
+		D4E05CE92407FF4F00AF6BCA /* ITCB_TVOS_Central_Device_ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ITCB_TVOS_Central_Device_ViewController.swift; sourceTree = "<group>"; };
+		D4E05CEB2407FF4F00AF6BCA /* ITCB_Mode_Selection_ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ITCB_Mode_Selection_ViewController.swift; sourceTree = "<group>"; };
+		D4E05CEC2407FF4F00AF6BCA /* ITCB_TVOS_About_ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ITCB_TVOS_About_ViewController.swift; sourceTree = "<group>"; };
+		D4E05CED2407FF4F00AF6BCA /* ITCB_Base_ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ITCB_Base_ViewController.swift; sourceTree = "<group>"; };
 		D4E6777423EEF4C40066B0C0 /* ITCB_AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ITCB_AppDelegate.swift; sourceTree = "<group>"; };
 		D4E6777523EEF4C40066B0C0 /* ITCB_Mode_Selection_ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ITCB_Mode_Selection_ViewController.swift; sourceTree = "<group>"; };
 		D4E6777623EEF4C40066B0C0 /* IntroToCoreBluetooth.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = IntroToCoreBluetooth.entitlements; sourceTree = "<group>"; };
@@ -192,6 +226,7 @@
 		D4E6777823EEF4C40066B0C0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D4FC12AD23F734F600C3ED12 /* ITCB_Mac.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = ITCB_Mac.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D4FC12B523F7363A00C3ED12 /* ITCB.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ITCB.xcodeproj; path = "../SDK-src/ITCB.xcodeproj"; sourceTree = "<group>"; };
+		D4FFD7572405B106003D418B /* ITCB_iOS_About_ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ITCB_iOS_About_ViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -199,6 +234,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D40FF5DA2406A69800349E77 /* ITCB_SDK_TVOS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -273,6 +309,14 @@
 			name = Source;
 			sourceTree = "<group>";
 		};
+		D40FF5BC2406A19D00349E77 /* Application */ = {
+			isa = PBXGroup;
+			children = (
+				D40FF5BE2406A1C200349E77 /* ITCB_AppDelegate.swift */,
+			);
+			name = Application;
+			sourceTree = "<group>";
+		};
 		D4195F8823F4533E0031A99E /* TV */ = {
 			isa = PBXGroup;
 			children = (
@@ -304,8 +348,8 @@
 		D4195F9C23F454030031A99E /* Source */ = {
 			isa = PBXGroup;
 			children = (
-				D4195FA523F454480031A99E /* ITCB_AppDelegate.swift */,
-				D4195FA623F454480031A99E /* ITCB_ViewController.swift */,
+				D40FF5BC2406A19D00349E77 /* Application */,
+				D4E05CE42407FF4F00AF6BCA /* View Controllers */,
 			);
 			name = Source;
 			sourceTree = "<group>";
@@ -340,6 +384,7 @@
 			children = (
 				D4950AB82402E35500D9789B /* ITCB_Base_ViewController.swift */,
 				D4950AB92402E35500D9789B /* ITCB_Mode_Selection_ViewController.swift */,
+				D4FFD7572405B106003D418B /* ITCB_iOS_About_ViewController.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -541,6 +586,44 @@
 			name = Resources;
 			sourceTree = "<group>";
 		};
+		D4E05CE42407FF4F00AF6BCA /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				D4E05CEA2407FF4F00AF6BCA /* Main */,
+				D4E05CE72407FF4F00AF6BCA /* Central */,
+				D4E05CE52407FF4F00AF6BCA /* Peripheral */,
+			);
+			name = "View Controllers";
+			path = "Source/View Controllers";
+			sourceTree = "<group>";
+		};
+		D4E05CE52407FF4F00AF6BCA /* Peripheral */ = {
+			isa = PBXGroup;
+			children = (
+				D4E05CE62407FF4F00AF6BCA /* ITCB_TVOS_Peripheral_ViewController.swift */,
+			);
+			path = Peripheral;
+			sourceTree = "<group>";
+		};
+		D4E05CE72407FF4F00AF6BCA /* Central */ = {
+			isa = PBXGroup;
+			children = (
+				D4E05CE82407FF4F00AF6BCA /* ITCB_TVOS_Central_ViewController.swift */,
+				D4E05CE92407FF4F00AF6BCA /* ITCB_TVOS_Central_Device_ViewController.swift */,
+			);
+			path = Central;
+			sourceTree = "<group>";
+		};
+		D4E05CEA2407FF4F00AF6BCA /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				D4E05CEB2407FF4F00AF6BCA /* ITCB_Mode_Selection_ViewController.swift */,
+				D4E05CEC2407FF4F00AF6BCA /* ITCB_TVOS_About_ViewController.swift */,
+				D4E05CED2407FF4F00AF6BCA /* ITCB_Base_ViewController.swift */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
 		D4E6777323EEF48F0066B0C0 /* Mac */ = {
 			isa = PBXGroup;
 			children = (
@@ -594,6 +677,7 @@
 			children = (
 				D4FC12BB23F7363A00C3ED12 /* ITCB_SDK_Mac.framework */,
 				D41DD51D2401D94500A99087 /* ITCB_SDK_IOS.framework */,
+				D40FF5D92406A69800349E77 /* ITCB_SDK_TVOS.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -658,6 +742,7 @@
 				D4195F8323F4533E0031A99E /* Sources */,
 				D4195F8423F4533E0031A99E /* Frameworks */,
 				D4195F8523F4533E0031A99E /* Resources */,
+				D40FF5DC2406A69800349E77 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -771,6 +856,13 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
+		D40FF5D92406A69800349E77 /* ITCB_SDK_TVOS.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = ITCB_SDK_TVOS.framework;
+			remoteRef = D40FF5D82406A69800349E77 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		D41DD51D2401D94500A99087 /* ITCB_SDK_IOS.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
@@ -811,6 +903,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D40FF5C32406A5DB00349E77 /* Localizable.strings in Resources */,
+				D40FF5C42406A5DF00349E77 /* InfoPlist.strings in Resources */,
 				D4195FA223F454200031A99E /* LaunchScreen.storyboard in Resources */,
 				D4195FA423F454200031A99E /* Assets.xcassets in Resources */,
 				D4195FA323F454200031A99E /* Main.storyboard in Resources */,
@@ -918,8 +1012,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D4195FA823F454480031A99E /* ITCB_ViewController.swift in Sources */,
-				D4195FA723F454480031A99E /* ITCB_AppDelegate.swift in Sources */,
+				D4E05CEF2407FF4F00AF6BCA /* ITCB_TVOS_Central_ViewController.swift in Sources */,
+				D40FF5C22406A4D300349E77 /* ITCB_Utilities.swift in Sources */,
+				D4E05CF12407FF4F00AF6BCA /* ITCB_Mode_Selection_ViewController.swift in Sources */,
+				D4E05CF32407FF4F00AF6BCA /* ITCB_Base_ViewController.swift in Sources */,
+				D40FF5BF2406A1C200349E77 /* ITCB_AppDelegate.swift in Sources */,
+				D4E05CF22407FF4F00AF6BCA /* ITCB_TVOS_About_ViewController.swift in Sources */,
+				D4E05CF02407FF4F00AF6BCA /* ITCB_TVOS_Central_Device_ViewController.swift in Sources */,
+				D4E05CEE2407FF4F00AF6BCA /* ITCB_TVOS_Peripheral_ViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -931,6 +1031,7 @@
 				D4AED472240419CC00FE4542 /* ITCB_Central_Device_ViewController.swift in Sources */,
 				D4950ABB2402E35500D9789B /* ITCB_Mode_Selection_ViewController.swift in Sources */,
 				D4950ABA2402E35500D9789B /* ITCB_Base_ViewController.swift in Sources */,
+				D4FFD7582405B106003D418B /* ITCB_iOS_About_ViewController.swift in Sources */,
 				D4950AB72402E34700D9789B /* ITCB_AppDelegate.swift in Sources */,
 				D4BC059823F345ED008266BC /* ITCB_Utilities.swift in Sources */,
 				D4802538240306A700CF6AA0 /* ITCB_Peripheral_ViewController.swift in Sources */,
