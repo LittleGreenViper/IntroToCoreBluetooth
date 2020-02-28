@@ -200,6 +200,8 @@ extension ITCB_TVOS_Peripheral_ViewController: ITCB_Observer_Peripheral_Protocol
             DispatchQueue.main.async {
                 self.questionAskedLabel?.text = inQuestion.localizedVariant
             }
+        } else if workingWithQuestion { // If we are busy with a previous question, we reject the connection.
+            inDevice.rejectConnectionBecause(.deviceBusy)
         }
     }
     

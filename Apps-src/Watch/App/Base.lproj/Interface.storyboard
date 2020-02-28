@@ -6,12 +6,101 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="15501"/>
     </dependencies>
     <scenes>
-        <!--Interface Controller-->
+        <!--Mode Selection Interface Controller-->
         <scene sceneID="aou-V4-d1y">
             <objects>
-                <controller id="AgC-eL-Hgc" customClass="ITCB_InterfaceController" customModule="Watch_Extension"/>
+                <controller fullScreen="YES" id="AgC-eL-Hgc" customClass="ITCB_Mode_Selection_InterfaceController" customModule="Watch_Extension">
+                    <items>
+                        <group width="1" height="1" alignment="center" verticalAlignment="center" backgroundImage="BackgroundGradient" spacing="0.0" id="rG0-a5-sFP">
+                            <items>
+                                <button alignment="center" verticalAlignment="center" id="lhd-b0-fIp">
+                                    <group key="contentGroup" width="0.5" alignment="left" id="2a2-Pl-Cvx">
+                                        <items>
+                                            <imageView alignment="center" verticalAlignment="center" image="Central" id="P0x-6W-MHw"/>
+                                        </items>
+                                    </group>
+                                    <connections>
+                                        <segue destination="GEs-n1-lBf" kind="push" id="3ra-SR-uvF"/>
+                                    </connections>
+                                </button>
+                                <button alignment="center" verticalAlignment="center" id="osw-Uk-Omf">
+                                    <group key="contentGroup" width="0.5" alignment="left" id="fRz-Qr-DjR">
+                                        <items>
+                                            <imageView alignment="center" verticalAlignment="center" image="Peripheral" id="n46-lA-Hgz"/>
+                                        </items>
+                                    </group>
+                                    <connections>
+                                        <segue destination="hu5-ey-WhZ" kind="push" id="sma-bu-QOF"/>
+                                    </connections>
+                                </button>
+                            </items>
+                        </group>
+                    </items>
+                </controller>
             </objects>
             <point key="canvasLocation" x="220" y="345"/>
         </scene>
+        <!--Main Central Interface Controller-->
+        <scene sceneID="2dh-ga-e54">
+            <objects>
+                <controller fullBounds="YES" id="GEs-n1-lBf" customClass="ITCB_Main_Central_InterfaceController" customModule="Watch_Extension">
+                    <items>
+                        <group width="1" height="1" alignment="center" backgroundImage="BackgroundGradient" layout="vertical" spacing="0.0" id="fCI-7O-FUH">
+                            <items>
+                                <label width="1" alignment="left" text="SLUG-CENTRAL" textAlignment="center" id="zQ8-IK-xPJ">
+                                    <fontDescription key="font" style="UICTFontTextStyleTitle3"/>
+                                </label>
+                                <table alignment="left" id="J5O-Ic-6B4">
+                                    <items>
+                                        <tableRow identifier="ITCB_Main_Central_InterfaceController_TableRowController" id="JRg-my-mPM" customClass="ITCB_Main_Central_InterfaceController_TableRowController" customModule="Watch_Extension">
+                                            <group key="rootItem" width="1" alignment="left" id="sXR-dl-eP6">
+                                                <items>
+                                                    <label width="1" alignment="center" textAlignment="center" id="jlm-xb-Zgz">
+                                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </label>
+                                                </items>
+                                            </group>
+                                            <connections>
+                                                <outlet property="displayLabel" destination="jlm-xb-Zgz" id="fRS-xp-C3e"/>
+                                            </connections>
+                                        </tableRow>
+                                    </items>
+                                </table>
+                            </items>
+                        </group>
+                    </items>
+                    <connections>
+                        <outlet property="deviceDisplayTable" destination="J5O-Ic-6B4" id="Sd7-K5-S5h"/>
+                        <outlet property="mainLabel" destination="zQ8-IK-xPJ" id="gtv-Ph-1tV"/>
+                    </connections>
+                </controller>
+            </objects>
+            <point key="canvasLocation" x="491" y="345"/>
+        </scene>
+        <!--Main Peripheral Interface Controller-->
+        <scene sceneID="Ez4-Nr-Dv4">
+            <objects>
+                <controller fullBounds="YES" id="hu5-ey-WhZ" customClass="ITCB_Main_Peripheral_InterfaceController" customModule="Watch_Extension">
+                    <items>
+                        <group width="1" height="1" alignment="center" verticalAlignment="center" backgroundImage="BackgroundGradient" layout="vertical" spacing="0.0" id="thP-zW-6Qc">
+                            <items>
+                                <label width="1" alignment="left" text="SLUG-PERIPHERAL" textAlignment="center" id="i8k-0w-lpC">
+                                    <fontDescription key="font" style="UICTFontTextStyleTitle3"/>
+                                </label>
+                            </items>
+                        </group>
+                    </items>
+                    <connections>
+                        <outlet property="mainLabel" destination="i8k-0w-lpC" id="Kp3-bH-fyY"/>
+                    </connections>
+                </controller>
+            </objects>
+            <point key="canvasLocation" x="220" y="671"/>
+        </scene>
     </scenes>
+    <resources>
+        <image name="BackgroundGradient" width="10" height="3000"/>
+        <image name="Central" width="64" height="64"/>
+        <image name="Peripheral" width="64" height="64"/>
+    </resources>
 </document>

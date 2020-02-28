@@ -190,6 +190,18 @@ internal class ITCB_SDK_Device {
     
     /// The error property to conform to the protocol.
     var error: ITCB_Errors!
+    
+    /* ################################################################## */
+    /**
+     This allows the user of an SDK to reject a connection attempt by another device (either a question or an answer).
+     
+     - parameter inReason: The reason for the rejection. It may be nil. If nil, .unkownError is assumed, with no error associated value.
+     */
+    func rejectConnectionBecause(_ inReason: ITCB_RejectionReason! = .unknown(nil)) {
+        /* ########### */
+        // TODO: Put code in here to handle rejection.
+        /* ########### */
+    }
 }
 
 /* ###################################################################################################################################### */
@@ -212,6 +224,9 @@ internal class ITCB_SDK_Device_Central: ITCB_SDK_Device, ITCB_Device_Central_Pro
      - parameter toQuestion: The question that was be asked.
      */
     func sendAnswer(_ inAnswer: String, toQuestion inToQuestion: String) {
+        /* ########### */
+        // TODO: Put code in here to send the answer via Bluetooth.
+        /* ########### */
         owner._sendSuccessInSendingAnswerToAllObservers(device: self, answer: inAnswer, toQuestion: inToQuestion)
     }
 }

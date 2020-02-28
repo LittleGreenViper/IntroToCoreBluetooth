@@ -156,6 +156,16 @@ public protocol ITCB_Device_Protocol {
      This is any errors that may have occurred. It may be nil.
      */
     var error: ITCB_Errors! { get }
+    
+    /* ################################################################## */
+    /**
+     This allows the user of an SDK to reject a connection attempt by another device (either a question or an answer).
+     
+     The reason that we have this, as opposed to a function return from the observer, is because I think observer should be one-way. Outgoing only.
+     
+     - parameter reason: The reason for the rejection. It may be nil. If nil, .unkownError is assumed, with no error associated value.
+     */
+    func rejectConnectionBecause(_ reason: ITCB_RejectionReason!)
 }
 
 /* ###################################################################################################################################### */
@@ -315,7 +325,7 @@ public enum ITCB_Errors: Error {
     /**
       The send (question or answer) failed. Which one will be obvious by the context.
      
-      - parameter error: The error from the system, associated with this enum instance.
+      - parameter error: The error from the system, associated with this enum instance. NOTE: This may be an instance of ITCB_RejectionReason
      */
     case sendFailed(Error?)
     
@@ -339,7 +349,7 @@ public enum ITCB_Errors: Error {
      The user app should also extract any associated values.
      */
     var localizedDescription: String {
-        var ret = "ITCB-SDK-ERROR-UNKNOWN"
+        var ret: String
         
         switch self {
             case .coreBluetooth:
@@ -348,10 +358,66 @@ public enum ITCB_Errors: Error {
             case .sendFailed:
                 ret = "ITCB-SDK-ERROR-SEND-FAILURE"
 
-            default:
-                ()  // NOP
+            case .unknown:
+                ret = "ITCB-SDK-ERROR-UNKNOWN"
         }
         
+        return ret
+    }
+}
+
+/* ###################################################################################################################################### */
+// MARK: - Error Codes and Reporting Enum -
+/* ###################################################################################################################################### */
+/**
+ This enum encapsulates the reasons that a device communication may have been received, but rejected, on the other end.
+ */
+public enum ITCB_RejectionReason : Error {
+    /* ################################################################## */
+    /**
+      The device is offline, and cannot receive the connection.
+     */
+    case deviceOffline
+
+    /* ################################################################## */
+    /**
+      The device is busy, and cannot receive the connection.
+     */
+    case deviceBusy
+
+    /* ################################################################## */
+    /**
+      Unknown error
+     
+      - parameter error: Possible error code associated with this enum instance.
+     */
+    case unknown(Error?)
+    
+    /* ################################################################## */
+    /**
+     We send back text slugs, to be interpreted by the user app.
+     
+     Possible values are:
+        - `"ITCB-SDK-REJECT-OFFLINE"`   : Device is Offline
+        - `"ITCB-SDK-REJECT-BUSY"`      : Some Bluetooth error
+        - `"ITCB-SDK-REJECT-UNKNOWN"`   : Unknown error
+     
+     The user app should also extract any associated values (Unknown).
+     */
+    var localizedDescription: String {
+        var ret: String
+        
+        switch self {
+            case .deviceOffline:
+                ret = "ITCB-SDK-REJECT-OFFLINE"
+            
+            case .deviceBusy:
+                ret = "ITCB-SDK-REJECT-BUSY"
+            
+            case .unknown:
+                ret = "ITCB-SDK-REJECT-UNKNOWN"
+        }
+            
         return ret
     }
 }

@@ -190,6 +190,8 @@ extension ITCB_PERIPHERAL_Initial_ViewController: ITCB_Observer_Peripheral_Proto
             DispatchQueue.main.async {
                 self.questionAskedLabel?.stringValue = inQuestion.localizedVariant
             }
+        } else if workingWithQuestion { // If we are busy with a previous question, we reject the connection.
+            inDevice.rejectConnectionBecause(.deviceBusy)
         }
     }
     

@@ -7,6 +7,7 @@
 //
 
 import WatchKit
+import ITCB_SDK_Watch
 
 /* ###################################################################################################################################### */
 // MARK: 
@@ -16,10 +17,27 @@ import WatchKit
 class ITCB_ExtensionDelegate: NSObject, WKExtensionDelegate {
     /* ################################################################## */
     /**
+     This is a shortcut to get the extension delegate instance as an instance of this class.
      */
-    func handle(_ backgroundTasks: Set<WKRefreshBackgroundTask>) {
+    class var extensionDelegate: Self! {
+        return WKExtension.shared().delegate as? Self
+    }
+    
+    /* ################################################################## */
+    /**
+     This will hold the current instantiation of the SDK.
+     */
+    var deviceSDKInstance: ITCB_SDK_Protocol!
+
+    /* ################################################################## */
+    /**
+     The dispatcher for the various app extension states.
+     
+     - parameter inBackgroundTasks: The extension's current background tasks. We iterate this.
+     */
+    func handle(_ inBackgroundTasks: Set<WKRefreshBackgroundTask>) {
         // Sent when the system needs to launch the application in the background to process tasks. Tasks arrive in a set, so loop through and process each one.
-        for task in backgroundTasks {
+        for task in inBackgroundTasks {
             // Use a switch statement to check the task type
             switch task {
             case let backgroundTask as WKApplicationRefreshBackgroundTask:
