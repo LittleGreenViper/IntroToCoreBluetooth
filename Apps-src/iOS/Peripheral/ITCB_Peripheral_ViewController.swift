@@ -195,7 +195,9 @@ extension ITCB_Peripheral_ViewController: ITCB_Observer_Peripheral_Protocol {
      - parameter question: The question that was asked by the Central.
      */
     func questionAskedByDevice(_ inDevice: ITCB_Device_Central_Protocol, question inQuestion: String) {
-        if !workingWithQuestion {
+        if  !workingWithQuestion,
+            let sdk = getDeviceSDKInstanceAsPeripheral,
+            sdk.central.amIThisDevice(inDevice) {
             workingWithQuestion = true
             DispatchQueue.main.async {
                 self.questionAskedLabel?.text = inQuestion.localizedVariant
@@ -216,10 +218,13 @@ extension ITCB_Peripheral_ViewController: ITCB_Observer_Peripheral_Protocol {
      - parameter toQuestion: The question that was asked by the Central.
      */
     func answerSentToDevice(_ inDevice: ITCB_Device_Central_Protocol, answer inAnswer: String, toQuestion inToQuestion: String) {
-        workingWithQuestion = false
-        // TODO: Remove this code, after we get the Bluetooth working.
-        displayAlert(header: inToQuestion, message: inAnswer)
-        // END TODO
+        if let sdk = getDeviceSDKInstanceAsPeripheral,
+        sdk.central.amIThisDevice(inDevice) {
+            workingWithQuestion = false
+            // TODO: Remove this code, after we get the Bluetooth working.
+            displayAlert(header: inToQuestion, message: inAnswer)
+            // END TODO
+        }
     }
 
     /* ################################################################## */

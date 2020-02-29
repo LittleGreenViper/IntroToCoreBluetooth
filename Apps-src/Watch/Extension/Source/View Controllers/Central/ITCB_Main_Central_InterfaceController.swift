@@ -81,6 +81,26 @@ extension ITCB_Main_Central_InterfaceController {
 
         setUpUI()
     }
+    
+    /* ################################################################## */
+    /**
+     Table touch handler.
+     
+     - parameters:
+        - withIdentifier: The segue ID for this (we ignore)
+        - in: The table instance
+        - rowIndex: The vertical position (0-based) of the row that was touched.
+     
+        - returns: The context, which is the device associated with the table row. Can be nil.
+     */
+    override func contextForSegue(withIdentifier inSegueIdentifier: String, in inTable: WKInterfaceTable, rowIndex inRowIndex: Int) -> Any? {
+        if  let sdk = deviceSDKInstance as? ITCB_SDK_Central,
+            (0..<sdk.devices.count).contains(inRowIndex) {
+            return sdk.devices[inRowIndex]
+        }
+        
+        return nil
+    }
 }
 
 /* ###################################################################################################################################### */

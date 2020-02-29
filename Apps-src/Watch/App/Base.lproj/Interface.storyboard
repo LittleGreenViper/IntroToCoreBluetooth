@@ -59,6 +59,9 @@
                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </label>
                                                 </items>
+                                                <connections>
+                                                    <segue destination="u26-na-kv9" kind="push" identifier="select-device" id="8sY-ny-S7C"/>
+                                                </connections>
                                             </group>
                                             <connections>
                                                 <outlet property="displayLabel" destination="jlm-xb-Zgz" id="fRS-xp-C3e"/>
@@ -87,15 +90,47 @@
                                 <label width="1" alignment="left" text="SLUG-PERIPHERAL" textAlignment="center" id="i8k-0w-lpC">
                                     <fontDescription key="font" style="UICTFontTextStyleTitle3"/>
                                 </label>
+                                <label width="1" alignment="left" text="Label" numberOfLines="0" minimumScaleFactor="0.5" id="IBg-G8-X0A">
+                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </label>
+                                <button width="1" alignment="left" title="SLUG-SEND-RANDOM-ANSWER-WATCH" id="T4F-nk-0sq">
+                                    <connections>
+                                        <action selector="sendRandomAnswerButtonHit" destination="hu5-ey-WhZ" id="oqk-4w-PJa"/>
+                                    </connections>
+                                </button>
                             </items>
                         </group>
                     </items>
                     <connections>
                         <outlet property="mainLabel" destination="i8k-0w-lpC" id="Kp3-bH-fyY"/>
+                        <outlet property="questionAskedLabel" destination="IBg-G8-X0A" id="f7d-5j-xsx"/>
+                        <outlet property="sendRandomAnswerButton" destination="T4F-nk-0sq" id="rPv-wL-TyX"/>
                     </connections>
                 </controller>
             </objects>
             <point key="canvasLocation" x="220" y="671"/>
+        </scene>
+        <!--Main Central Device Interface Controller-->
+        <scene sceneID="nGH-qk-KL8">
+            <objects>
+                <controller fullBounds="YES" id="u26-na-kv9" customClass="ITCB_Main_Central_Device_InterfaceController" customModule="Watch_Extension">
+                    <items>
+                        <group width="1" height="1" alignment="center" backgroundImage="BackgroundGradient" layout="vertical" spacing="0.0" id="6X7-ST-huX">
+                            <items>
+                                <label width="1" alignment="left" text="ERROR" textAlignment="center" id="9gB-7X-O2A">
+                                    <fontDescription key="font" style="UICTFontTextStyleTitle3"/>
+                                </label>
+                                <label width="1" alignment="left" text="ERROR" numberOfLines="0" id="H93-Vo-h32"/>
+                            </items>
+                        </group>
+                    </items>
+                    <connections>
+                        <outlet property="mainLabel" destination="9gB-7X-O2A" id="XW2-OL-lFo"/>
+                        <outlet property="resultsLabel" destination="H93-Vo-h32" id="la5-J7-A9i"/>
+                    </connections>
+                </controller>
+            </objects>
+            <point key="canvasLocation" x="742" y="345"/>
         </scene>
     </scenes>
     <resources>

@@ -183,13 +183,30 @@ internal extension ITCB_SDK_Peripheral {
 // MARK: - General Device Base Class -
 /* ###################################################################################################################################### */
 /**
+ This is the genaral base class for Central and Peripheral devices.
  */
 internal class ITCB_SDK_Device {
     /// The name property to conform to the protocol.
-    var name: String = ""
+    public var name: String = ""
     
     /// The error property to conform to the protocol.
-    var error: ITCB_Errors!
+    public var error: ITCB_Errors!
+    
+    /* ################################################################## */
+    /**
+     This is a "faux Equatable" method. It allows us to compare something that is expressed only as a protocol instance with ourselves, without the need to be Equatable.
+     
+     - parameter inDevice: The device that we are comparing.
+     
+     - returns: True, if we are the device.
+     */
+    public func amIThisDevice(_ inDevice: ITCB_Device_Protocol) -> Bool {
+        if let device = inDevice as? ITCB_SDK_Device {
+            return device === self
+        }
+        
+        return false
+    }
     
     /* ################################################################## */
     /**
@@ -197,7 +214,7 @@ internal class ITCB_SDK_Device {
      
      - parameter inReason: The reason for the rejection. It may be nil. If nil, .unkownError is assumed, with no error associated value.
      */
-    func rejectConnectionBecause(_ inReason: ITCB_RejectionReason! = .unknown(nil)) {
+    public func rejectConnectionBecause(_ inReason: ITCB_RejectionReason! = .unknown(nil)) {
         /* ########### */
         // TODO: Put code in here to handle rejection.
         /* ########### */
@@ -223,7 +240,7 @@ internal class ITCB_SDK_Device_Central: ITCB_SDK_Device, ITCB_Device_Central_Pro
      - parameter inAnswer: The answer.
      - parameter toQuestion: The question that was be asked.
      */
-    func sendAnswer(_ inAnswer: String, toQuestion inToQuestion: String) {
+    public func sendAnswer(_ inAnswer: String, toQuestion inToQuestion: String) {
         /* ########### */
         // TODO: Put code in here to send the answer via Bluetooth.
         /* ########### */
@@ -242,7 +259,7 @@ internal class ITCB_SDK_Device_Peripheral: ITCB_SDK_Device, ITCB_Device_Peripher
     var owner: ITCB_SDK_Central!
 
     /// The question property to conform to the protocol.
-    var question: String! = nil {
+    public var question: String! = nil {
         didSet {
             owner._sendSuccessInAskingMessageToAllObservers(device: self)
         }
@@ -250,7 +267,7 @@ internal class ITCB_SDK_Device_Peripheral: ITCB_SDK_Device, ITCB_Device_Peripher
 
     /// The answer property to conform to the protocol.
     /// We use this opportunity to let everyone know that the question has been answered.
-    var answer: String! = nil {
+    public var answer: String! = nil {
         didSet {
             owner._sendQuestionAnsweredMessageToAllObservers(device: self)
         }
@@ -264,7 +281,7 @@ internal class ITCB_SDK_Device_Peripheral: ITCB_SDK_Device, ITCB_Device_Peripher
 
      - parameter inQuestion: The question to be asked.
      */
-    func sendQuestion(_ inQuestion: String) {
+    public func sendQuestion(_ inQuestion: String) {
         self.question = inQuestion
         /* ########### */
         // TODO: Remove this code, after we get the Bluetooth working. This is just here to create mock behavior.

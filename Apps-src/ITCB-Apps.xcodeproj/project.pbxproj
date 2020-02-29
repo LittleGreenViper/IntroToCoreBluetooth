@@ -22,7 +22,8 @@
 		D4195FA423F454200031A99E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D4195FA123F454200031A99E /* Assets.xcassets */; };
 		D41DD51E2401D94500A99087 /* ITCB_SDK_IOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D41DD51D2401D94500A99087 /* ITCB_SDK_IOS.framework */; };
 		D41DD51F2401D94500A99087 /* ITCB_SDK_IOS.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D41DD51D2401D94500A99087 /* ITCB_SDK_IOS.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		D422E1E723F42729006D483E /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = D4BC05B223F347FB008266BC /* Localizable.strings */; };
+		D420990C2409B1F600C4CCE5 /* ITCB_Main_Central_Device_InterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42099082409B1F600C4CCE5 /* ITCB_Main_Central_Device_InterfaceController.swift */; };
+		D420990D2409BEE900C4CCE5 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = D4BC05B223F347FB008266BC /* Localizable.strings */; };
 		D452A2E523F0DAEC00016D71 /* Warnings.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = D452A2E423F0DAEC00016D71 /* Warnings.xcconfig */; };
 		D452A2F323F0DB8500016D71 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D452A2EE23F0DB8500016D71 /* InfoPlist.strings */; };
 		D452A2F423F0DB8500016D71 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D452A2F023F0DB8500016D71 /* Main.storyboard */; };
@@ -208,6 +209,7 @@
 		D4195F9E23F454200031A99E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Resources/Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D4195FA023F454200031A99E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Resources/Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		D4195FA123F454200031A99E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = Resources/Assets.xcassets; sourceTree = "<group>"; };
+		D42099082409B1F600C4CCE5 /* ITCB_Main_Central_Device_InterfaceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ITCB_Main_Central_Device_InterfaceController.swift; sourceTree = "<group>"; };
 		D452A2E423F0DAEC00016D71 /* Warnings.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = Warnings.xcconfig; path = "Project-Meta/Warnings.xcconfig"; sourceTree = "<group>"; };
 		D452A2EF23F0DB8500016D71 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		D452A2F123F0DB8500016D71 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -528,6 +530,7 @@
 			isa = PBXGroup;
 			children = (
 				D49AE2F324083D070002D53C /* ITCB_Main_Central_InterfaceController.swift */,
+				D42099082409B1F600C4CCE5 /* ITCB_Main_Central_Device_InterfaceController.swift */,
 			);
 			path = Central;
 			sourceTree = "<group>";
@@ -975,7 +978,6 @@
 			files = (
 				D4950AB52402E08B00D9789B /* SharedAssets.xcassets in Resources */,
 				D40B437623F3836900CFE862 /* Assets.xcassets in Resources */,
-				D422E1E723F42729006D483E /* Localizable.strings in Resources */,
 				D4DBD5CB23F41F80001C9DE5 /* InfoPlist.strings in Resources */,
 				D40B437523F3836900CFE862 /* Interface.storyboard in Resources */,
 			);
@@ -985,6 +987,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D420990D2409BEE900C4CCE5 /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1093,6 +1096,7 @@
 			files = (
 				D49AE311240848680002D53C /* ITCB_Base_InterfaceController.swift in Sources */,
 				D49AE2F424083D070002D53C /* ITCB_Main_Central_InterfaceController.swift in Sources */,
+				D420990C2409B1F600C4CCE5 /* ITCB_Main_Central_Device_InterfaceController.swift in Sources */,
 				D49AE2F124083CD50002D53C /* ITCB_ExtensionDelegate.swift in Sources */,
 				D49AE2F624083D420002D53C /* ITCB_Main_Peripheral_InterfaceController.swift in Sources */,
 				D49AE2F224083CD50002D53C /* ITCB_Mode_Selection_InterfaceController.swift in Sources */,

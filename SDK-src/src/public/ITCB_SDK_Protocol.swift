@@ -159,6 +159,18 @@ public protocol ITCB_Device_Protocol {
     
     /* ################################################################## */
     /**
+     This is a "faux Equatable" method. It allows us to compare something that is expressed only as a protocol instance with ourselves, without the need to be Equatable.
+     
+     The reason for doing this, is that I don't want to have to conform to the whole Equatable protocol. We just need a quick identity test, and this will give it to use without requiring anything too fancy.
+     
+     - parameter inDevice: The device that we are comparing.
+     
+     - returns: True, if we are the device.
+     */
+    func amIThisDevice(_ inDevice: ITCB_Device_Protocol) -> Bool
+    
+    /* ################################################################## */
+    /**
      This allows the user of an SDK to reject a connection attempt by another device (either a question or an answer).
      
      The reason that we have this, as opposed to a function return from the observer, is because I think observer should be one-way. Outgoing only.

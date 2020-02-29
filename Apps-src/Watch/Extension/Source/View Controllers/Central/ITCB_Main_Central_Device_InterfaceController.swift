@@ -11,55 +11,41 @@ import Foundation
 import ITCB_SDK_Watch
 
 /* ###################################################################################################################################### */
-// MARK: 
+// MARK: - The main Central controller -
 /* ###################################################################################################################################### */
 /**
- This handles the peripheral screen, where the user gets a question, and can send back a random answer.
+ This handles the Central screen, where the user can select from a list of devices.
  */
-class ITCB_Main_Peripheral_InterfaceController: ITCB_Watch_Base_InterfaceController {
+class ITCB_Main_Central_Device_InterfaceController: ITCB_Watch_Base_InterfaceController {
     /* ################################################################## */
     /**
-     This is here to satisfy the SDK Peripheral Observer requirement.
+     This is here to satisfy the SDK Central Observer requirement.
      */
     var uuid: UUID = UUID()
 
     /* ################################################################## */
     /**
-     Assuming that a question was asked, this will contain it.
-     */
-    var questionThatWasAsked: String!
-    
-    /* ################################################################## */
-    /**
-     The main label, at the top.
+     This is a device name label.
      */
     @IBOutlet weak var mainLabel: WKInterfaceLabel!
-
-    /* ################################################################## */
-    /**
-     The label displaying the received question.
-     */
-    @IBOutlet weak var questionAskedLabel: WKInterfaceLabel!
     
     /* ################################################################## */
     /**
-     This button sends a randomly-selected answer out.
+     This label displays the question, and the response.
      */
-    @IBOutlet weak var sendRandomAnswerButton: WKInterfaceButton!
+    @IBOutlet weak var resultsLabel: WKInterfaceLabel!
     
     /* ################################################################## */
     /**
-     Called when the random answer button is hit.
+     This is the device instance that is assigned to this screen.
      */
-    @IBAction func sendRandomAnswerButtonHit() {
-        sendAnswer(String(format: "SLUG-ANSWER-%02d", Int.random(in: 0..<(Int("SLUG-NUMBER-MAX".localizedVariant) ?? 0))).localizedVariant)
-    }
+    var device: ITCB_Device_Peripheral_Protocol! = nil
 }
 
 /* ###################################################################################################################################### */
 // MARK: - Base Class Overrides -
 /* ###################################################################################################################################### */
-extension ITCB_Main_Peripheral_InterfaceController {
+extension ITCB_Main_Central_Device_InterfaceController {
     /* ################################################################## */
     /**
      Called when the screen has loaded, and will start running.
@@ -68,7 +54,9 @@ extension ITCB_Main_Peripheral_InterfaceController {
      */
     override func awake(withContext inContext: Any?) {
         super.awake(withContext: inContext)
-        setUpUI()
+        if let device = inContext as? ITCB_Device_Peripheral_Protocol {
+            self.device = device
+        }
     }
     
     /* ################################################################## */
@@ -76,18 +64,13 @@ extension ITCB_Main_Peripheral_InterfaceController {
      Called just before we are displayed.
      
      We use this to update the UI, and reset things, if we need to do so (after settings).
-     If the device has not been created yet, we do so.
      */
     override func willActivate() {
         super.willActivate()
-        
-        if nil == ITCB_ExtensionDelegate.extensionDelegate?.deviceSDKInstance {
-            ITCB_ExtensionDelegate.extensionDelegate?.deviceSDKInstance = ITCB_SDK.createInstance(isCentral: false)
-        }
-        
+        self.uuid = deviceSDKInstance.addObserver(self)
         setUpUI()
-        questionThatWasAsked = nil
-        uuid = deviceSDKInstance.addObserver(self)
+        // Immediately upon activating, we send a random question to the device.
+        device.sendQuestion(String(format: "SLUG-QUESTION-%02d", Int.random(in: 0..<20)).localizedVariant)
     }
     
     /* ################################################################## */
@@ -103,29 +86,14 @@ extension ITCB_Main_Peripheral_InterfaceController {
 /* ###################################################################################################################################### */
 // MARK: - Instance Methods -
 /* ###################################################################################################################################### */
-extension ITCB_Main_Peripheral_InterfaceController {
-    /* ################################################################## */
-    /**
-     This sends the answer, getting the question from our question label.
-     
-     - parameter inAnswer: The answer to be sent to the Central.
-     */
-    func sendAnswer(_ inAnswer: String) {
-        if  let sdk = deviceSDKInstance as? ITCB_SDK_Peripheral,
-            let question = questionThatWasAsked,
-            !question.isEmpty {
-            sdk.central.sendAnswer(inAnswer, toQuestion: question)
-        }
-    }
-
+extension ITCB_Main_Central_Device_InterfaceController {
     /* ################################################################## */
     /**
      Set Up any UI elements as necessary.
      */
     func setUpUI() {
         DispatchQueue.main.async {
-            self.mainLabel.setText("SLUG-PERIPHERAL".localizedVariant)
-            self.sendRandomAnswerButton.setTitle("SLUG-SEND-RANDOM-ANSWER-WATCH".localizedVariant)
+            self.mainLabel?.setText(self.device?.name ?? "ERROR")
         }
     }
 }
@@ -133,44 +101,39 @@ extension ITCB_Main_Peripheral_InterfaceController {
 /* ################################################################################################################################## */
 // MARK: - Observer protocol Methods
 /* ################################################################################################################################## */
-extension ITCB_Main_Peripheral_InterfaceController: ITCB_Observer_Peripheral_Protocol {
+extension ITCB_Main_Central_Device_InterfaceController: ITCB_Observer_Central_Protocol {
     /* ################################################################## */
     /**
-     This is called when a Central asks a Peripheral a question.
+     This is called when a Peripheral returns an answer to the Central.
      
      This may not be called in the main thread.
 
-     - parameter inDevice: The Central device that provided the question.
-     - parameter question: The question that was asked by the Central.
+     - parameter inDevice: The Peripheral device that provided the answer (this will have both the question and answer in its properties).
      */
-    func questionAskedByDevice(_ inDevice: ITCB_Device_Central_Protocol, question inQuestion: String) {
-        if  nil == questionThatWasAsked,
-            let sdk = deviceSDKInstance as? ITCB_SDK_Peripheral,
-            sdk.central.amIThisDevice(inDevice) {
-            questionThatWasAsked = inQuestion
-            DispatchQueue.main.async {
-                self.questionAskedLabel?.setText(inQuestion.localizedVariant)
+    func questionAnsweredByDevice(_ inDevice: ITCB_Device_Peripheral_Protocol) {
+        // Remember that the answer may come in on a non-main thread, so we need to make sure that all UI-touched code is accessed via the Main Thread.
+        DispatchQueue.main.async {
+            if self.device.amIThisDevice(inDevice) {
+                self.resultsLabel.setText("\(inDevice.question.localizedVariant)\n•\n\(inDevice.answer.localizedVariant)")
             }
-        } else if nil != questionThatWasAsked { // If we are busy with a previous question, we reject the connection.
-            inDevice.rejectConnectionBecause(.deviceBusy)
         }
     }
     
     /* ################################################################## */
     /**
-     This is called when a Peripheral successfully answers a Central's question.
+     This is called when a Central successfully asks a question of a peripheral.
      
      This may not be called in the main thread.
-     
-     - parameter inDevice: The Central device that provided the question.
-     - parameter answer: The answer that was sent to the Central.
-     - parameter toQuestion: The question that was asked by the Central.
+
+     - parameter inDevice: The Peripheral device that was asked the question (The question will be in the device properties).
      */
-    func answerSentToDevice(_ inDevice: ITCB_Device_Central_Protocol, answer inAnswer: String, toQuestion inToQuestion: String) {
-        questionThatWasAsked = nil
-        // TODO: Remove this code, after we get the Bluetooth working.
-        displayAlert(header: inToQuestion, message: inAnswer)
-        // END TODO
+    func questionAskedOfDevice(_ inDevice: ITCB_Device_Peripheral_Protocol) {
+        // Remember that the answer may come in on a non-main thread, so we need to make sure that all UI-touched code is accessed via the Main Thread.
+        DispatchQueue.main.async {
+            if self.device.amIThisDevice(inDevice) {
+                self.resultsLabel.setText(inDevice.question.localizedVariant)
+            }
+        }
     }
 
     /* ################################################################## */
@@ -182,5 +145,8 @@ extension ITCB_Main_Peripheral_InterfaceController: ITCB_Observer_Peripheral_Pro
      */
     func errorOccurred(_ inError: ITCB_Errors, sdk inSDKInstance: ITCB_SDK_Protocol) {
         displayAlert(header: "SLUG-ERROR", message: inError.localizedDescription)
+        DispatchQueue.main.async {
+            self.resultsLabel?.setText("ERROR".localizedVariant)
+        }
     }
 }

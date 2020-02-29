@@ -87,6 +87,7 @@ Little Green Viper Software Development LLC: https://littlegreenviper.com
 "SLUG-OK-BUTTON-TEXT"               =   "OK";
 "SLUG-SEND-RANDOM-ANSWER"           =   "SEND A RANDOM ANSWER";
 "SLUG-ASK-RANDOM-QUESTION"          =   "RANDOM QUESTION";
+"SLUG-SEND-RANDOM-ANSWER-WATCH"     =   "RANDOM ANSWER";
 
 // The about text
 "SLUG-ABOUT-TEXT-MAC"               =   "This app is the Mac version of the sample apps used in the \"Writing an SDK With Core Bluetooth\" series.\nThe app is completely open-source (MIT License), and is available on GitHub.";
