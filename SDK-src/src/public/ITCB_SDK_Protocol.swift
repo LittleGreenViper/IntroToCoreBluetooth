@@ -343,7 +343,7 @@ public enum ITCB_Errors: Error {
     
     /* ################################################################## */
     /**
-      Unknown error
+      Unknown error or connection rejection.
      
       - parameter error: Possible error code associated with this enum instance.
      */
@@ -379,7 +379,7 @@ public enum ITCB_Errors: Error {
 }
 
 /* ###################################################################################################################################### */
-// MARK: - Error Codes and Reporting Enum -
+// MARK: - Rejection Reasons Enum -
 /* ###################################################################################################################################### */
 /**
  This enum encapsulates the reasons that a device communication may have been received, but rejected, on the other end.
@@ -411,8 +411,8 @@ public enum ITCB_RejectionReason : Error {
      
      Possible values are:
         - `"ITCB-SDK-REJECT-OFFLINE"`   : Device is Offline
-        - `"ITCB-SDK-REJECT-BUSY"`      : Some Bluetooth error
-        - `"ITCB-SDK-REJECT-UNKNOWN"`   : Unknown error
+        - `"ITCB-SDK-REJECT-BUSY"`      : Device is busy
+        - `"ITCB-SDK-REJECT-UNKNOWN"`   : Unspecified reason
      
      The user app should also extract any associated values (Unknown).
      */

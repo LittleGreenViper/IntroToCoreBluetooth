@@ -242,9 +242,15 @@ internal class ITCB_SDK_Device_Central: ITCB_SDK_Device, ITCB_Device_Central_Pro
      */
     public func sendAnswer(_ inAnswer: String, toQuestion inToQuestion: String) {
         /* ########### */
-        // TODO: Put code in here to send the answer via Bluetooth.
+        // TODO: Put code in here to send the answer via Bluetooth, and remove the random error.
+        if 5 == Int.random(in: 0..<10) {
+            // We randomly (one out of 10 times) send an error message, instead of the question. We choose an unknown error rejection
+            owner._sendErrorMessageToAllObservers(error: .sendFailed(ITCB_RejectionReason.unknown(nil)))
+        } else {
+            owner._sendSuccessInSendingAnswerToAllObservers(device: self, answer: inAnswer, toQuestion: inToQuestion)
+        }
+        // END TODO
         /* ########### */
-        owner._sendSuccessInSendingAnswerToAllObservers(device: self, answer: inAnswer, toQuestion: inToQuestion)
     }
 }
 
@@ -287,8 +293,8 @@ internal class ITCB_SDK_Device_Peripheral: ITCB_SDK_Device, ITCB_Device_Peripher
         // TODO: Remove this code, after we get the Bluetooth working. This is just here to create mock behavior.
         DispatchQueue.global().async {  // We use the global thread to simulate true async operation.
             if 5 == Int.random(in: 0..<10) {
-                // We randomly (one out of 10 times) send an error message, instead of the question.
-                self.owner._sendErrorMessageToAllObservers(error: .sendFailed(nil))
+                // We randomly (one out of 10 times) send an error message, instead of the question. We choose an unknown error rejection
+                self.owner._sendErrorMessageToAllObservers(error: .sendFailed(ITCB_RejectionReason.unknown(nil)))
             } else {
                 self.answer = String(format: "SLUG-ANSWER-%02d", Int.random(in: 0..<20))
             }
