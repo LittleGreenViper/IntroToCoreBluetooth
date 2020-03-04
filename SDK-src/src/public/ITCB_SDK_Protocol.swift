@@ -65,10 +65,16 @@ public protocol ITCB_SDK_Protocol {
     
     /* ################################################################## */
     /**
+     This is a String that can be applied by the user. It will be advertised, or set to local CoreBluetooth Peripherals and Centrals.
+     */
+    var localName: String { get set }
+    
+    /* ################################################################## */
+    /**
      This is an Array of observer objects associated with this SDK instance.
      */
     var observers: [ITCB_Observer_Protocol] { get set }
-    
+
     /* ################################################################## */
     /**
       This adds the given observer to the list of observers for this SDK object. If the observer is already registered, nothing happens.
@@ -376,6 +382,27 @@ public enum ITCB_Errors: Error {
         
         return ret
     }
+    
+    /* ################################################################## */
+    /**
+     This will return any associated value. It may be nil.
+    */
+    var associatedValue: Error? {
+        var ret: Error!
+        
+        switch self {
+        case .coreBluetooth(let val):
+            ret = val
+            
+        case .sendFailed(let val):
+            ret = val
+            
+        case .unknown(let val):
+            ret = val
+        }
+        
+        return ret
+    }
 }
 
 /* ###################################################################################################################################### */
@@ -384,7 +411,7 @@ public enum ITCB_Errors: Error {
 /**
  This enum encapsulates the reasons that a device communication may have been received, but rejected, on the other end.
  */
-public enum ITCB_RejectionReason : Error {
+public enum ITCB_RejectionReason: Error {
     /* ################################################################## */
     /**
       The device is offline, and cannot receive the connection.
@@ -430,6 +457,24 @@ public enum ITCB_RejectionReason : Error {
                 ret = "ITCB-SDK-REJECT-UNKNOWN"
         }
             
+        return ret
+    }
+    
+    /* ################################################################## */
+    /**
+     This will return any associated value (unkown error only has one). It may be nil.
+    */
+    var associatedValue: Error? {
+        var ret: Error!
+        
+        switch self {
+        case .unknown(let val): // This is the only value that has an associated value.
+            ret = val
+            
+        default:    // All others will return nil.
+            break
+        }
+        
         return ret
     }
 }

@@ -30,7 +30,7 @@ import Foundation   // Needed for the debug test.
  
  It is a Swift class, and this is the "base" class, meant to be specialized for Central and Peripheral variants.
  */
-public class ITCB_SDK: ITCB_SDK_Protocol {
+public class ITCB_SDK: NSObject, ITCB_SDK_Protocol {
     /* ################################################################## */
     /**
      Factory function for instantiating Peripherals.
@@ -40,7 +40,7 @@ public class ITCB_SDK: ITCB_SDK_Protocol {
      - returns: An instance of the SDK for use by the user.
      */
     public class func createInstance(isCentral inIsCentral: Bool) -> ITCB_SDK_Protocol? {
-        return inIsCentral ? ITCB_SDK_Central.createInstance() : ITCB_SDK_Peripheral.createInstance()
+        inIsCentral ? ITCB_SDK_Central.createInstance() : ITCB_SDK_Peripheral.createInstance()
     }
 
     /* ################################################################## */
@@ -63,9 +63,16 @@ public class ITCB_SDK: ITCB_SDK_Protocol {
     
     /* ################################################################## */
     /**
+     This is a String that can be applied by the user. It will be advertised, or set to local CoreBluetooth Peripherals and Centrals.
+     */
+    public var localName: String = "ERROR"
+
+    /* ################################################################## */
+    /**
       This adds the given observer to the list of observers for this SDK object. If the observer is already registered, nothing happens.
      
      - parameter inObserver: The Observer Instance to add.
+     - returns: The new UUID that was assigned to the instance (discardable).
      */
     @discardableResult
     public func addObserver(_ inObserver: ITCB_Observer_Protocol) -> UUID! { _addObserver(inObserver)}
@@ -89,10 +96,23 @@ public class ITCB_SDK: ITCB_SDK_Protocol {
     public func isObserving(_ inObserver: ITCB_Observer_Protocol) -> Bool { _isObserving(inObserver) }
     
     /* ################################################################## */
+    // MARK: - Internal Use Only -
+    /* ################################################################## */
     /**
-     We force this to be private, so it won't get instantiated alone.
+     This is a typeless container for the manager object that wil be attached to this instance.
+     It is internal, and typeless, in order to avoid having to import Core Bluetooth.
+     The concrete instances will have specific casts. This is a stored property, so must be declared here.
+     It has to be declared `@objc dynamic`, because we need to be able to override it dynamically in subclass extensions.
      */
-    fileprivate init() { }
+    @objc dynamic internal var _managerInstance: Any!
+
+    /* ################################################################## */
+    /**
+     Required for NSObject.
+     */
+    internal override init() {
+        super.init()
+    }
 }
 
 /* ###################################################################################################################################### */
@@ -126,6 +146,7 @@ public class ITCB_SDK_Central: ITCB_SDK, ITCB_SDK_Central_Protocol {
      */
     internal override init() {
         super.init()
+        _ = _managerInstance    // This forces us to instantiate our manager.
         /* ########### */
         // TODO: Remove this code. It is here just to provide a test structure for the apps.
         for i in 0..<5 {
@@ -170,7 +191,7 @@ public class ITCB_SDK_Peripheral: ITCB_SDK, ITCB_SDK_Peripheral_Protocol {
      */
     internal override init() {
         super.init()
-        
+        _ = _managerInstance    // This forces us to instantiate our manager.
         /* ########### */
         // TODO: Remove this code. It is here just to provide a test structure for the apps.
         let centralTemp = ITCB_SDK_Device_Central()

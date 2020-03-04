@@ -21,6 +21,46 @@ Little Green Viper Software Development LLC: https://littlegreenviper.com
 */
 
 import Foundation
+import CoreBluetooth
+
+/// This is the UUID we use for our "Magic 8-Ball" Service
+internal let _static_ITCB_SDK_8BallServiceUUID = CBUUID(string: "8e38140a-27be-4090-8955-4fc4b5698d1e")
+/// This is the UUID for the "Question" String Characteristic
+internal let _static_ITCB_SDK_8BallService_Question_UUID = CBUUID(string: "bdd37d7a-f66a-47b9-a49c-fe29fd235a77")
+/// This is the UUID for the "Answer" String Characteristic
+internal let _static_ITCB_SDK_8BallService_Answer_UUID = CBUUID(string: "349a0d7b-6215-4e2c-a095-af078d737445")
+/// This is the UUID for the "Condition" Int Characteristic
+internal let _static_ITCB_SDK_8BallService_Condition_UUID = CBUUID(string: "945be4fc-b649-4512-a7bf-fbd066e1fed9")
+
+/* ###################################################################################################################################### */
+// MARK: - Enums For the Condition Characteristic -
+/* ###################################################################################################################################### */
+/**
+ These are enums that describe various values of the Condition Characteristic
+ */
+internal enum ITCB_SDK_ConditionCodes: Int {
+    // MARK: Errors
+    
+    /// No error
+    case noError = 0
+    /// Error in the Central device
+    case centralError
+    /// Error in the Peripheral device
+    case peripheralError
+    /// General system error
+    case generalError
+    
+    // MARK: Conditions
+    
+    /// Central device busy (try again)
+    case centralBusy = 10
+    /// Central device unavailable for some reason
+    case centralNotAvailable
+    /// Peripheral device busy (try again)
+    case peripheralBusy
+    /// Peripheral device unavailable for some reason
+    case peripheralNotAvailable
+}
 
 /* ###################################################################################################################################### */
 // MARK: - Main SDK Interface Base Class -
@@ -36,12 +76,23 @@ extension ITCB_SDK {
       Any error condition associated with this instance. It may be nil.
      */
     var _error: ITCB_Errors? { nil }
+    
+    /* ################################################################## */
+    /**
+     This is a base class cast of the manager object that wil be attached to this instance.
+     */
+    var managerInstance: CBManager! {
+        _managerInstance as? CBManager
+    }
 
     /* ################################################################## */
     /**
      This is true, if Core Bluetooth reports that the device Bluetooth interface is powered on and available for use.
      */
-    var _isCoreBluetoothPoweredOn: Bool { false }
+    var _isCoreBluetoothPoweredOn: Bool {
+        guard let manager = managerInstance else { return false }
+        return .poweredOn == manager.state
+    }
     
     /* ################################################################## */
     /**
@@ -103,83 +154,6 @@ extension ITCB_SDK {
 }
 
 /* ###################################################################################################################################### */
-// MARK: - Main SDK Central Variant Interface Class -
-/* ###################################################################################################################################### */
-/**
- These are the observer notification message senders.
- */
-internal extension ITCB_SDK_Central {
-    /* ################################################################## */
-    /**
-     This sends the "A question was asked" message to all registered observers.
-     
-     - parameter device: The Peripheral device that contains the question.
-     */
-    func _sendSuccessInAskingMessageToAllObservers(device inDevice: ITCB_Device_Peripheral_Protocol) {
-        observers.forEach {
-            if let observer = $0 as? ITCB_Observer_Central_Protocol {
-                observer.questionAskedOfDevice(inDevice)
-            }
-        }
-    }
-    
-    /* ################################################################## */
-    /**
-     This sends the "A question was asked and answered" message to all registered observers.
-     
-     - parameter device: The Peripheral device that contains the question and the answer.
-     */
-    func _sendQuestionAnsweredMessageToAllObservers(device inDevice: ITCB_Device_Peripheral_Protocol) {
-        observers.forEach {
-            if let observer = $0 as? ITCB_Observer_Central_Protocol {
-                observer.questionAnsweredByDevice(inDevice)
-            }
-        }
-    }
-}
-
-/* ###################################################################################################################################### */
-// MARK: - Main SDK Peripheral Variant Interface Class -
-/* ###################################################################################################################################### */
-/**
- These are the observer notification message senders.
- */
-internal extension ITCB_SDK_Peripheral {
-    /* ################################################################## */
-    /**
-     This sends the "An answer was successfully sent" message to all registered observers.
-
-     - parameters:
-        - device: The Central device
-        - answer: The answer that was sent
-        - toQuestion: The question that was asked
-     */
-    func _sendSuccessInSendingAnswerToAllObservers(device inDevice: ITCB_Device_Central_Protocol, answer inAnswer: String, toQuestion inToQuestion: String) {
-        observers.forEach {
-            if let observer = $0 as? ITCB_Observer_Peripheral_Protocol {
-                observer.answerSentToDevice(inDevice, answer: inAnswer, toQuestion: inToQuestion)
-            }
-        }
-    }
-    
-    /* ################################################################## */
-    /**
-     This sends the "A question was asked" message to all registered observers.
-     
-     - parameters:
-        - device: The Central device
-        - question: The question that was asked
-     */
-    func _sendQuestionAskedToAllObservers(device inDevice: ITCB_Device_Central_Protocol, question inQuestion: String) {
-        observers.forEach {
-            if let observer = $0 as? ITCB_Observer_Peripheral_Protocol {
-                observer.questionAskedByDevice(inDevice, question: inQuestion)
-            }
-        }
-    }
-}
-
-/* ###################################################################################################################################### */
 // MARK: - General Device Base Class -
 /* ###################################################################################################################################### */
 /**
@@ -191,6 +165,9 @@ internal class ITCB_SDK_Device {
     
     /// The error property to conform to the protocol.
     public var error: ITCB_Errors!
+    
+    /// This is an internal stored property that is used to reference a Core Bluetooth peer instance (either a Central or Peripheral), associated with this device.
+    internal var _peerInstance: CBPeer!
     
     /* ################################################################## */
     /**
@@ -217,89 +194,6 @@ internal class ITCB_SDK_Device {
     public func rejectConnectionBecause(_ inReason: ITCB_RejectionReason! = .unknown(nil)) {
         /* ########### */
         // TODO: Put code in here to handle rejection.
-        /* ########### */
-    }
-}
-
-/* ###################################################################################################################################### */
-// MARK: - Central Device Base Class -
-/* ###################################################################################################################################### */
-/**
- We need to keep in mind that Central objects are actually owned by Peripheral SDK instances.
- */
-internal class ITCB_SDK_Device_Central: ITCB_SDK_Device, ITCB_Device_Central_Protocol {
-    /// This is the Peripheral SDK that "owns" this device.
-    var owner: ITCB_SDK_Peripheral!
-    
-    /* ################################################################## */
-    /**
-     In the base class, all we do is send the "success" message to any observers.
-     
-     This should be called AFTER successfully sending the message.
-
-     - parameter inAnswer: The answer.
-     - parameter toQuestion: The question that was be asked.
-     */
-    public func sendAnswer(_ inAnswer: String, toQuestion inToQuestion: String) {
-        /* ########### */
-        // TODO: Put code in here to send the answer via Bluetooth, and remove the random error.
-        if 5 == Int.random(in: 0..<10) {
-            // We randomly (one out of 10 times) send an error message, instead of the question. We choose an unknown error rejection
-            owner._sendErrorMessageToAllObservers(error: .sendFailed(ITCB_RejectionReason.unknown(nil)))
-        } else {
-            owner._sendSuccessInSendingAnswerToAllObservers(device: self, answer: inAnswer, toQuestion: inToQuestion)
-        }
-        // END TODO
-        /* ########### */
-    }
-}
-
-/* ###################################################################################################################################### */
-// MARK: - Peripheral Device Base Class -
-/* ###################################################################################################################################### */
-/**
- We need to keep in mind that Peripheral objects are actually owned by Central SDK instances.
- */
-internal class ITCB_SDK_Device_Peripheral: ITCB_SDK_Device, ITCB_Device_Peripheral_Protocol {
-    /// This is the Central SDK that "owns" this device.
-    var owner: ITCB_SDK_Central!
-
-    /// The question property to conform to the protocol.
-    public var question: String! = nil {
-        didSet {
-            owner._sendSuccessInAskingMessageToAllObservers(device: self)
-        }
-    }
-
-    /// The answer property to conform to the protocol.
-    /// We use this opportunity to let everyone know that the question has been answered.
-    public var answer: String! = nil {
-        didSet {
-            owner._sendQuestionAnsweredMessageToAllObservers(device: self)
-        }
-    }
-    
-    /* ################################################################## */
-    /**
-     In the base class, all we do is send the "success" message to any observers.
-     
-     This should be called AFTER successfully sending the message.
-
-     - parameter inQuestion: The question to be asked.
-     */
-    public func sendQuestion(_ inQuestion: String) {
-        self.question = inQuestion
-        /* ########### */
-        // TODO: Remove this code, after we get the Bluetooth working. This is just here to create mock behavior.
-        DispatchQueue.global().async {  // We use the global thread to simulate true async operation.
-            if 5 == Int.random(in: 0..<10) {
-                // We randomly (one out of 10 times) send an error message, instead of the question. We choose an unknown error rejection
-                self.owner._sendErrorMessageToAllObservers(error: .sendFailed(ITCB_RejectionReason.unknown(nil)))
-            } else {
-                self.answer = String(format: "SLUG-ANSWER-%02d", Int.random(in: 0..<20))
-            }
-        }
-        // END TODO
         /* ########### */
     }
 }

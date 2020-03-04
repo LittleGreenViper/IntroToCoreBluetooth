@@ -70,9 +70,16 @@ class ITCB_AppDelegate: UIResponder, UIApplicationDelegate {
     /* ################################################################## */
     /**
      This will hold our loaded SDK.
+     We have a didSet observer, so we will assign a name upon it being set.
      */
-    var deviceSDKInstance: ITCB_SDK_Protocol!
-    
+    var deviceSDKInstance: ITCB_SDK_Protocol! {
+        didSet {
+            if  nil != deviceSDKInstance {
+                self.deviceSDKInstance.localName = UIDevice.current.name
+            }
+        }
+    }
+
     /* ################################################################## */
     /**
      */

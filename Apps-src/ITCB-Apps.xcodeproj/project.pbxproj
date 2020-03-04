@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		D40B434023F381F100CFE862 /* Watch App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = D40B433F23F381F100CFE862 /* Watch App.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		D40B434023F381F100CFE862 /* ITCB-Watch.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = D40B433F23F381F100CFE862 /* ITCB-Watch.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		D40B434F23F381F200CFE862 /* Watch Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = D40B434E23F381F200CFE862 /* Watch Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		D40B437523F3836900CFE862 /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D40B437223F3836900CFE862 /* Interface.storyboard */; };
 		D40B437623F3836900CFE862 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D40B437423F3836900CFE862 /* Assets.xcassets */; };
@@ -133,7 +133,7 @@
 			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
 			dstSubfolderSpec = 16;
 			files = (
-				D40B434023F381F100CFE862 /* Watch App.app in Embed Watch Content */,
+				D40B434023F381F100CFE862 /* ITCB-Watch.app in Embed Watch Content */,
 			);
 			name = "Embed Watch Content";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -197,7 +197,7 @@
 
 /* Begin PBXFileReference section */
 		D40B433C23F381F100CFE862 /* ITCB-Watch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ITCB-Watch.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		D40B433F23F381F100CFE862 /* Watch App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Watch App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D40B433F23F381F100CFE862 /* ITCB-Watch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ITCB-Watch.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D40B434E23F381F200CFE862 /* Watch Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Watch Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D40B437323F3836900CFE862 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = App/Base.lproj/Interface.storyboard; sourceTree = "<group>"; };
 		D40B437423F3836900CFE862 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = App/Assets.xcassets; sourceTree = "<group>"; };
@@ -652,7 +652,7 @@
 				D4D5F5C923EEF33400E4F52B /* ITCB-Mac.app */,
 				D4BC057C23F34350008266BC /* ITCB-iOS.app */,
 				D40B433C23F381F100CFE862 /* ITCB-Watch.app */,
-				D40B433F23F381F100CFE862 /* Watch App.app */,
+				D40B433F23F381F100CFE862 /* ITCB-Watch.app */,
 				D40B434E23F381F200CFE862 /* Watch Extension.appex */,
 				D4195F8723F4533E0031A99E /* ITCB-TV.app */,
 			);
@@ -798,7 +798,7 @@
 			);
 			name = "Watch App";
 			productName = "Watch WatchKit App";
-			productReference = D40B433F23F381F100CFE862 /* Watch App.app */;
+			productReference = D40B433F23F381F100CFE862 /* ITCB-Watch.app */;
 			productType = "com.apple.product-type.application.watchapp2";
 		};
 		D40B434D23F381F200CFE862 /* Watch Extension */ = {
@@ -1245,7 +1245,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = P53V4JS928;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.littlegreenviper.Watch;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.littlegreenviper.Watch.ITCB-Watch";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SWIFT_VERSION = 5.0;
@@ -1259,7 +1259,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = P53V4JS928;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.littlegreenviper.Watch;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.littlegreenviper.Watch.ITCB-Watch";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SWIFT_VERSION = 5.0;
@@ -1276,8 +1276,8 @@
 				DEVELOPMENT_TEAM = P53V4JS928;
 				IBSC_MODULE = Watch_WatchKit_Extension;
 				INFOPLIST_FILE = Watch/App/Meta/Info.plist;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.littlegreenviper.ITCB-Watch.app";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.littlegreenviper.Watch.ITCB-Watch.app";
+				PRODUCT_NAME = "ITCB-Watch";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
@@ -1295,8 +1295,8 @@
 				DEVELOPMENT_TEAM = P53V4JS928;
 				IBSC_MODULE = Watch_WatchKit_Extension;
 				INFOPLIST_FILE = Watch/App/Meta/Info.plist;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.littlegreenviper.ITCB-Watch.app";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.littlegreenviper.Watch.ITCB-Watch.app";
+				PRODUCT_NAME = "ITCB-Watch";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
@@ -1319,7 +1319,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.littlegreenviper.ITCB-Watch.app.extension";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.littlegreenviper.Watch.ITCB-Watch.app.extension";
 				PRODUCT_NAME = "${TARGET_NAME}";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
@@ -1343,7 +1343,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.littlegreenviper.ITCB-Watch.app.extension";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.littlegreenviper.Watch.ITCB-Watch.app.extension";
 				PRODUCT_NAME = "${TARGET_NAME}";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;

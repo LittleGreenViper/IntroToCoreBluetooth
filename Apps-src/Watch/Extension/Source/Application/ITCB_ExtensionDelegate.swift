@@ -25,9 +25,16 @@ class ITCB_ExtensionDelegate: NSObject, WKExtensionDelegate {
     
     /* ################################################################## */
     /**
-     This will hold the current instantiation of the SDK.
+     This will hold our loaded SDK.
+     We have a didSet observer, so we will assign a name upon it being set.
      */
-    var deviceSDKInstance: ITCB_SDK_Protocol!
+    var deviceSDKInstance: ITCB_SDK_Protocol! {
+        didSet {
+            if  nil != deviceSDKInstance {
+                self.deviceSDKInstance.localName = WKInterfaceDevice.current().name
+            }
+        }
+    }
 
     /* ################################################################## */
     /**

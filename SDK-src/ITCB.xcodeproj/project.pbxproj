@@ -19,6 +19,14 @@
 		D49AE304240841F30002D53C /* ITCB_SDK_Protocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4FC12C223F736D800C3ED12 /* ITCB_SDK_Protocol.swift */; };
 		D49AE305240841F30002D53C /* ITCB_SDK.swift in Sources */ = {isa = PBXBuildFile; fileRef = D410BB0A23F8E799008DE79C /* ITCB_SDK.swift */; };
 		D49AE306240841F30002D53C /* ITCB_SDK_internal.swift in Sources */ = {isa = PBXBuildFile; fileRef = D410BB0D23F8E9C2008DE79C /* ITCB_SDK_internal.swift */; };
+		D4D01F9B240E9E94005CC8DA /* ITCB_SDK_Peripheral_internal.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4D01F99240E9E94005CC8DA /* ITCB_SDK_Peripheral_internal.swift */; };
+		D4D01F9C240E9E94005CC8DA /* ITCB_SDK_Peripheral_internal.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4D01F99240E9E94005CC8DA /* ITCB_SDK_Peripheral_internal.swift */; };
+		D4D01F9D240E9E94005CC8DA /* ITCB_SDK_Peripheral_internal.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4D01F99240E9E94005CC8DA /* ITCB_SDK_Peripheral_internal.swift */; };
+		D4D01F9E240E9E94005CC8DA /* ITCB_SDK_Peripheral_internal.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4D01F99240E9E94005CC8DA /* ITCB_SDK_Peripheral_internal.swift */; };
+		D4D01F9F240E9E94005CC8DA /* ITCB_SDK_Central_internal.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4D01F9A240E9E94005CC8DA /* ITCB_SDK_Central_internal.swift */; };
+		D4D01FA0240E9E94005CC8DA /* ITCB_SDK_Central_internal.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4D01F9A240E9E94005CC8DA /* ITCB_SDK_Central_internal.swift */; };
+		D4D01FA1240E9E94005CC8DA /* ITCB_SDK_Central_internal.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4D01F9A240E9E94005CC8DA /* ITCB_SDK_Central_internal.swift */; };
+		D4D01FA2240E9E94005CC8DA /* ITCB_SDK_Central_internal.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4D01F9A240E9E94005CC8DA /* ITCB_SDK_Central_internal.swift */; };
 		D4FC12C323F736D800C3ED12 /* ITCB_SDK_Protocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4FC12C223F736D800C3ED12 /* ITCB_SDK_Protocol.swift */; };
 /* End PBXBuildFile section */
 
@@ -35,6 +43,8 @@
 		D49AE2FF240841A00002D53C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D4BFAF8723F42B6F006D2C07 /* ITCB_SDK_Mac.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ITCB_SDK_Mac.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D4BFAF8B23F42B6F006D2C07 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D4D01F99240E9E94005CC8DA /* ITCB_SDK_Peripheral_internal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ITCB_SDK_Peripheral_internal.swift; path = src/internal/ITCB_SDK_Peripheral_internal.swift; sourceTree = SOURCE_ROOT; };
+		D4D01F9A240E9E94005CC8DA /* ITCB_SDK_Central_internal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ITCB_SDK_Central_internal.swift; path = src/internal/ITCB_SDK_Central_internal.swift; sourceTree = SOURCE_ROOT; };
 		D4EE378123F5D67500037010 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		D4FC12C223F736D800C3ED12 /* ITCB_SDK_Protocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ITCB_SDK_Protocol.swift; path = src/public/ITCB_SDK_Protocol.swift; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
@@ -159,6 +169,8 @@
 			isa = PBXGroup;
 			children = (
 				D410BB0D23F8E9C2008DE79C /* ITCB_SDK_internal.swift */,
+				D4D01F9A240E9E94005CC8DA /* ITCB_SDK_Central_internal.swift */,
+				D4D01F99240E9E94005CC8DA /* ITCB_SDK_Peripheral_internal.swift */,
 			);
 			path = internal;
 			sourceTree = "<group>";
@@ -352,9 +364,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D4D01FA1240E9E94005CC8DA /* ITCB_SDK_Central_internal.swift in Sources */,
 				D40FF5D52406A67800349E77 /* ITCB_SDK.swift in Sources */,
 				D40FF5D62406A67800349E77 /* ITCB_SDK_internal.swift in Sources */,
 				D40FF5D42406A67800349E77 /* ITCB_SDK_Protocol.swift in Sources */,
+				D4D01F9D240E9E94005CC8DA /* ITCB_SDK_Peripheral_internal.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -362,9 +376,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D4D01FA0240E9E94005CC8DA /* ITCB_SDK_Central_internal.swift in Sources */,
 				D41DD50A2401D79600A99087 /* ITCB_SDK.swift in Sources */,
 				D41DD50B2401D79600A99087 /* ITCB_SDK_internal.swift in Sources */,
 				D41DD5092401D79600A99087 /* ITCB_SDK_Protocol.swift in Sources */,
+				D4D01F9C240E9E94005CC8DA /* ITCB_SDK_Peripheral_internal.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -372,9 +388,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D4D01FA2240E9E94005CC8DA /* ITCB_SDK_Central_internal.swift in Sources */,
 				D49AE305240841F30002D53C /* ITCB_SDK.swift in Sources */,
 				D49AE306240841F30002D53C /* ITCB_SDK_internal.swift in Sources */,
 				D49AE304240841F30002D53C /* ITCB_SDK_Protocol.swift in Sources */,
+				D4D01F9E240E9E94005CC8DA /* ITCB_SDK_Peripheral_internal.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -382,9 +400,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D4D01F9F240E9E94005CC8DA /* ITCB_SDK_Central_internal.swift in Sources */,
 				D410BB0B23F8E799008DE79C /* ITCB_SDK.swift in Sources */,
 				D410BB0E23F8E9C2008DE79C /* ITCB_SDK_internal.swift in Sources */,
 				D4FC12C323F736D800C3ED12 /* ITCB_SDK_Protocol.swift in Sources */,
+				D4D01F9B240E9E94005CC8DA /* ITCB_SDK_Peripheral_internal.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
