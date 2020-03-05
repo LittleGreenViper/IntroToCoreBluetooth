@@ -114,7 +114,10 @@ extension ITCB_SDK_Central: CBCentralManagerDelegate {
         - rssi: This is the signal strength of the discovered Peripheral.
      */
     public func centralManager(_ inCentral: CBCentralManager, didDiscover inPeripheral: CBPeripheral, advertisementData inAdvertisementData: [String : Any], rssi inRSSI: NSNumber) {
-        print("Device: \(String(describing: inPeripheral)) was discovered, at a signal strength of \(inRSSI), and with this advertisement Data: \(String(describing: inAdvertisementData)).")
+        assert(inCentral === managerInstance)   // Make sure that we are who we say we are...
+        if let peripheralName = inPeripheral.name { // We want to make sure that we have a name.
+            print("A Peripheral Magic 8-Ball, named \"\(peripheralName),\" was discovered, at a signal strength of \(inRSSI), and with this advertisement Data: \(String(describing: inAdvertisementData)).")
+        }
     }
 }
 
