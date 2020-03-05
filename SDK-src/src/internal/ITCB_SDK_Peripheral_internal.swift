@@ -56,7 +56,7 @@ internal extension ITCB_SDK_Peripheral {
             super._managerInstance = newValue
         }
     }
-
+    
     /* ################################################################## */
     /**
      This sends the "An answer was successfully sent" message to all registered observers.
@@ -89,6 +89,20 @@ internal extension ITCB_SDK_Peripheral {
             }
         }
     }
+    
+    /* ################################################################## */
+    /**
+     This method will load or update a given Service with new or updated Characteristics.
+     */
+    func _setCharacteristicsForThisService(_ inMutableServiceInstance: CBMutableService) {
+        let properties: CBCharacteristicProperties = [.read, .write]
+        let permissions: CBAttributePermissions = [.readable, .writeable]
+        
+        let questionCharacteristic = CBMutableCharacteristic(type: _static_ITCB_SDK_8BallService_Question_UUID, properties: properties, value: nil, permissions: permissions)
+        let answerCharacteristic = CBMutableCharacteristic(type: _static_ITCB_SDK_8BallService_Answer_UUID, properties: properties, value: nil, permissions: permissions)
+        let conditionCharacteristic = CBMutableCharacteristic(type: _static_ITCB_SDK_8BallService_Condition_UUID, properties: properties, value: nil, permissions: permissions)
+        inMutableServiceInstance.characteristics = [questionCharacteristic, answerCharacteristic, conditionCharacteristic]
+    }
 }
 
 /* ###################################################################################################################################### */
@@ -99,9 +113,19 @@ extension ITCB_SDK_Peripheral: CBPeripheralManagerDelegate {
         assert(inPeripheral === managerInstance)   // Make sure that we are who we say we are...
         // Once we are powered on, we can start advertising.
         if .poweredOn == inPeripheral.state {
-            inPeripheral.startAdvertising([CBAdvertisementDataServiceUUIDsKey: [_static_ITCB_SDK_8BallServiceUUID],
-                                           CBAdvertisementDataLocalNameKey: localName
-            ])
+            // Make sure that we have a true Peripheral Manager (should never fail, but it pays to be sure).
+            if let manager = managerInstance as? CBPeripheralManager {
+                // We create an instance of a mutable Service. This is our primary Service.
+                let mutableServiceInstance = CBMutableService(type: _static_ITCB_SDK_8BallServiceUUID, primary: true)
+                // We set up empty Characteristics.
+                _setCharacteristicsForThisService(mutableServiceInstance)
+                // Add it to our manager instance.
+                manager.add(mutableServiceInstance)
+                // We have our primary Service in place. We can now advertise it.
+                inPeripheral.startAdvertising([CBAdvertisementDataServiceUUIDsKey: [mutableServiceInstance.uuid],
+                                               CBAdvertisementDataLocalNameKey: localName
+                ])
+            }
         }
     }
 }
