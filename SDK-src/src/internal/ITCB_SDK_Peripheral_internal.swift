@@ -123,12 +123,13 @@ extension ITCB_SDK_Peripheral: CBPeripheralManagerDelegate {
         if .poweredOn == inPeripheralManager.state {
             // Make sure that we have a true Peripheral Manager (should never fail, but it pays to be sure).
             if let manager = peripheralManagerInstance {
+                assert(manager === inPeripheralManager)
                 // We create an instance of a mutable Service. This is our primary Service.
                 let mutableServiceInstance = CBMutableService(type: _static_ITCB_SDK_8BallServiceUUID, primary: true)
                 // We set up empty Characteristics.
                 _setCharacteristicsForThisService(mutableServiceInstance)
                 // Add it to our manager instance.
-                manager.add(mutableServiceInstance)
+                inPeripheralManager.add(mutableServiceInstance)
                 // We have our primary Service in place. We can now advertise it.
                 inPeripheralManager.startAdvertising([CBAdvertisementDataServiceUUIDsKey: [mutableServiceInstance.uuid],
                                                CBAdvertisementDataLocalNameKey: localName
