@@ -176,7 +176,7 @@ extension ITCB_SDK {
     func _convertDataToCondition(_ inData: Data?) -> ITCB_SDK_ConditionCodes? {
         if let data = inData {
             return ITCB_SDK_ConditionCodes(rawValue: data.withUnsafeBytes {
-                $0.bindMemory(to: Int.self)[0]
+                $0.load(as: Int.self)
             })
         }
         return nil
