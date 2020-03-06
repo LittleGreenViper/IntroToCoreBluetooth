@@ -99,11 +99,10 @@ internal extension ITCB_SDK_Peripheral {
     func _setCharacteristicsForThisService(_ inMutableServiceInstance: CBMutableService) {
         let properties: CBCharacteristicProperties = [.read, .write]
         let permissions: CBAttributePermissions = [.readable, .writeable]
-        let conditionData = _convertConditionToData(.noError)
         
         let questionCharacteristic = CBMutableCharacteristic(type: _static_ITCB_SDK_8BallService_Question_UUID, properties: properties, value: nil, permissions: permissions)
         let answerCharacteristic = CBMutableCharacteristic(type: _static_ITCB_SDK_8BallService_Answer_UUID, properties: properties, value: nil, permissions: permissions)
-        let conditionCharacteristic = CBMutableCharacteristic(type: _static_ITCB_SDK_8BallService_Condition_UUID, properties: properties, value: conditionData, permissions: permissions)
+        let conditionCharacteristic = CBMutableCharacteristic(type: _static_ITCB_SDK_8BallService_Condition_UUID, properties: properties, value: nil, permissions: permissions)
         inMutableServiceInstance.characteristics = [questionCharacteristic, answerCharacteristic, conditionCharacteristic]
     }
 }
@@ -112,10 +111,16 @@ internal extension ITCB_SDK_Peripheral {
 // MARK: - CBPeripheralManagerDelegate Methods -
 /* ###################################################################################################################################### */
 extension ITCB_SDK_Peripheral: CBPeripheralManagerDelegate {
-    public func peripheralManagerDidUpdateState(_ inPeripheral: CBPeripheralManager) {
-        assert(inPeripheral === managerInstance)   // Make sure that we are who we say we are...
+    /* ################################################################## */
+    /**
+     This method is required by the Core Bluetooth system. It informs the delegate of a state change, in the CB manager instance.
+     
+     - parameter inPeripheralManager: The Peripheral Manager that experienced the change.
+     */
+    public func peripheralManagerDidUpdateState(_ inPeripheralManager: CBPeripheralManager) {
+        assert(inPeripheralManager === managerInstance)   // Make sure that we are who we say we are...
         // Once we are powered on, we can start advertising.
-        if .poweredOn == inPeripheral.state {
+        if .poweredOn == inPeripheralManager.state {
             // Make sure that we have a true Peripheral Manager (should never fail, but it pays to be sure).
             if let manager = peripheralManagerInstance {
                 // We create an instance of a mutable Service. This is our primary Service.
@@ -125,7 +130,7 @@ extension ITCB_SDK_Peripheral: CBPeripheralManagerDelegate {
                 // Add it to our manager instance.
                 manager.add(mutableServiceInstance)
                 // We have our primary Service in place. We can now advertise it.
-                inPeripheral.startAdvertising([CBAdvertisementDataServiceUUIDsKey: [mutableServiceInstance.uuid],
+                inPeripheralManager.startAdvertising([CBAdvertisementDataServiceUUIDsKey: [mutableServiceInstance.uuid],
                                                CBAdvertisementDataLocalNameKey: localName
                 ])
             }

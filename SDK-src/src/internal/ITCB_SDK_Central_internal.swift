@@ -93,13 +93,13 @@ extension ITCB_SDK_Central: CBCentralManagerDelegate {
     /**
      This is called as the state changes for the Central manager object.
      
-     - parameter inCentral: The Central instance that changed state.
+     - parameter inCentralManager: The Central Manager instance that changed state.
      */
-    public func centralManagerDidUpdateState(_ inCentral: CBCentralManager) {
-        assert(inCentral === managerInstance)   // Make sure that we are who we say we are...
+    public func centralManagerDidUpdateState(_ inCentralManager: CBCentralManager) {
+        assert(inCentralManager === managerInstance)   // Make sure that we are who we say we are...
         // Once we are powered on, we can start scanning.
-        if .poweredOn == inCentral.state {
-            inCentral.scanForPeripherals(withServices: [_static_ITCB_SDK_8BallServiceUUID], options: [:])
+        if .poweredOn == inCentralManager.state {
+            inCentralManager.scanForPeripherals(withServices: [_static_ITCB_SDK_8BallServiceUUID], options: [:])
         }
     }
     
@@ -108,13 +108,13 @@ extension ITCB_SDK_Central: CBCentralManagerDelegate {
      This is called as the state changes for the Central manager object.
      
      - parameters:
-        - inCentral: The Central instance that changed state.
+        - inCentralManager: The Central Manager instance that changed state.
         - didDiscover: This is the Core Bluetooth Peripheral instance that was discovered.
         - advertisementData: This is the adverstiement data that was sent by the discovered Peripheral.
         - rssi: This is the signal strength of the discovered Peripheral.
      */
-    public func centralManager(_ inCentral: CBCentralManager, didDiscover inPeripheral: CBPeripheral, advertisementData inAdvertisementData: [String : Any], rssi inRSSI: NSNumber) {
-        assert(inCentral === managerInstance)   // Make sure that we are who we say we are...
+    public func centralManager(_ inCentralManager: CBCentralManager, didDiscover inPeripheral: CBPeripheral, advertisementData inAdvertisementData: [String : Any], rssi inRSSI: NSNumber) {
+        assert(inCentralManager === managerInstance)   // Make sure that we are who we say we are...
         if let peripheralName = inPeripheral.name { // We want to make sure that we have a name.
             print("A Peripheral Magic 8-Ball, named \"\(peripheralName),\" was discovered, at a signal strength of \(inRSSI), and with this advertisement Data: \(String(describing: inAdvertisementData)).")
         }
