@@ -24,13 +24,13 @@ import Foundation
 import CoreBluetooth
 
 /// This is the UUID we use for our "Magic 8-Ball" Service
-internal let _static_ITCB_SDK_8BallServiceUUID = CBUUID(string: "8e38140a-27be-4090-8955-4fc4b5698d1e")
+internal let _static_ITCB_SDK_8BallServiceUUID = CBUUID(string: "8E38140A-27BE-4090-8955-4FC4B5698D1E")
 /// This is the UUID for the "Question" String Characteristic
-internal let _static_ITCB_SDK_8BallService_Question_UUID = CBUUID(string: "bdd37d7a-f66a-47b9-a49c-fe29fd235a77")
+internal let _static_ITCB_SDK_8BallService_Question_UUID = CBUUID(string: "BDD37D7A-F66A-47B9-A49C-FE29FD235A77")
 /// This is the UUID for the "Answer" String Characteristic
-internal let _static_ITCB_SDK_8BallService_Answer_UUID = CBUUID(string: "349a0d7b-6215-4e2c-a095-af078d737445")
+internal let _static_ITCB_SDK_8BallService_Answer_UUID = CBUUID(string: "349A0D7B-6215-4E2C-A095-AF078D737445")
 /// This is the UUID for the "Condition" Int Characteristic
-internal let _static_ITCB_SDK_8BallService_Condition_UUID = CBUUID(string: "945be4fc-b649-4512-a7bf-fbd066e1fed9")
+internal let _static_ITCB_SDK_8BallService_Condition_UUID = CBUUID(string: "945BE4FC-B649-4512-A7BF-FBD066E1FED9")
 
 /* ###################################################################################################################################### */
 // MARK: - Enums For the Condition Characteristic -
@@ -150,6 +150,36 @@ extension ITCB_SDK {
         observers.forEach {
             $0.errorOccurred(inError, sdk: self)
         }
+    }
+    
+    /* ################################################################## */
+    /**
+     This takes a condition code, and converts it to Data.
+     
+     - parameter inCondition: The condition code we want converted
+     
+     - returns: The condition, as Data, or nil, if the conversion failed.
+     */
+    func _convertConditionToData(_ inCondition: ITCB_SDK_ConditionCodes) -> Data? {
+        var initialValue: Int = inCondition.rawValue
+        return NSData(bytes: &initialValue, length: MemoryLayout.size(ofValue: initialValue)) as Data
+    }
+    
+    /* ################################################################## */
+    /**
+     This takes Data, and converts it to a condition code.
+     
+     - parameter inData: The Data we want converted
+     
+     - returns: The condition, or nil (if failed to convert)
+     */
+    func _convertDataToCondition(_ inData: Data?) -> ITCB_SDK_ConditionCodes? {
+        if let data = inData {
+            return ITCB_SDK_ConditionCodes(rawValue: data.withUnsafeBytes {
+                $0.bindMemory(to: Int.self)[0]
+            })
+        }
+        return nil
     }
 }
 

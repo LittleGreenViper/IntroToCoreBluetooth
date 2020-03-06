@@ -89,18 +89,21 @@ internal extension ITCB_SDK_Peripheral {
             }
         }
     }
-    
+
     /* ################################################################## */
     /**
      This method will load or update a given Service with new or updated Characteristics.
+     
+     - parameter inMutableServiceInstance: The Service that we are adding the Characteristics to.
      */
     func _setCharacteristicsForThisService(_ inMutableServiceInstance: CBMutableService) {
         let properties: CBCharacteristicProperties = [.read, .write]
         let permissions: CBAttributePermissions = [.readable, .writeable]
+        let conditionData = _convertConditionToData(.noError)
         
         let questionCharacteristic = CBMutableCharacteristic(type: _static_ITCB_SDK_8BallService_Question_UUID, properties: properties, value: nil, permissions: permissions)
         let answerCharacteristic = CBMutableCharacteristic(type: _static_ITCB_SDK_8BallService_Answer_UUID, properties: properties, value: nil, permissions: permissions)
-        let conditionCharacteristic = CBMutableCharacteristic(type: _static_ITCB_SDK_8BallService_Condition_UUID, properties: properties, value: nil, permissions: permissions)
+        let conditionCharacteristic = CBMutableCharacteristic(type: _static_ITCB_SDK_8BallService_Condition_UUID, properties: properties, value: conditionData, permissions: permissions)
         inMutableServiceInstance.characteristics = [questionCharacteristic, answerCharacteristic, conditionCharacteristic]
     }
 }
@@ -114,7 +117,7 @@ extension ITCB_SDK_Peripheral: CBPeripheralManagerDelegate {
         // Once we are powered on, we can start advertising.
         if .poweredOn == inPeripheral.state {
             // Make sure that we have a true Peripheral Manager (should never fail, but it pays to be sure).
-            if let manager = managerInstance as? CBPeripheralManager {
+            if let manager = peripheralManagerInstance {
                 // We create an instance of a mutable Service. This is our primary Service.
                 let mutableServiceInstance = CBMutableService(type: _static_ITCB_SDK_8BallServiceUUID, primary: true)
                 // We set up empty Characteristics.
