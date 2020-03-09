@@ -149,4 +149,15 @@ extension ITCB_Main_Central_Device_InterfaceController: ITCB_Observer_Central_Pr
             self.resultsLabel?.setText("ERROR".localizedVariant)
         }
     }
+    
+    /* ################################################################## */
+    /**
+     This is called when a Central discovers and registers a peripheral.
+     
+     This may not be called in the main thread.
+
+     - parameter inDevice: The Peripheral device that was discovered.
+     */
+    func deviceDiscovered(_ inDevice: ITCB_Device_Peripheral_Protocol) {
+    }
 }

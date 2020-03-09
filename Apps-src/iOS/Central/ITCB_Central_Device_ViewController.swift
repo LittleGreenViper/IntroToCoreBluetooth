@@ -65,7 +65,7 @@ class ITCB_Central_Device_ViewController: ITCB_Base_ViewController {
      This is the text view that displays the interactions..
      */
     @IBOutlet weak var resultsTextView: UITextView!
-    
+
     /* ################################################################## */
     /**
      This makes sure that we don't leave a dead link in the SDK observer pool.
@@ -198,5 +198,16 @@ extension ITCB_Central_Device_ViewController: ITCB_Observer_Central_Protocol {
         DispatchQueue.main.async {
             self.resultsTextView.text += "\n" + "SLUG-ERROR".localizedVariant
         }
+    }
+    
+    /* ################################################################## */
+    /**
+     This is called when a Central discovers and registers a peripheral.
+     
+     This may not be called in the main thread.
+
+     - parameter inDevice: The Peripheral device that was discovered.
+     */
+    func deviceDiscovered(_ inDevice: ITCB_Device_Peripheral_Protocol) {
     }
 }

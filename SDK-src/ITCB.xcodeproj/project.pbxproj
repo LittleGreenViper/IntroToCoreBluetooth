@@ -21,8 +21,6 @@
 		D49AE306240841F30002D53C /* ITCB_SDK_internal.swift in Sources */ = {isa = PBXBuildFile; fileRef = D410BB0D23F8E9C2008DE79C /* ITCB_SDK_internal.swift */; };
 		D4D01F9B240E9E94005CC8DA /* ITCB_SDK_Peripheral_internal.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4D01F99240E9E94005CC8DA /* ITCB_SDK_Peripheral_internal.swift */; };
 		D4D01F9C240E9E94005CC8DA /* ITCB_SDK_Peripheral_internal.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4D01F99240E9E94005CC8DA /* ITCB_SDK_Peripheral_internal.swift */; };
-		D4D01F9D240E9E94005CC8DA /* ITCB_SDK_Peripheral_internal.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4D01F99240E9E94005CC8DA /* ITCB_SDK_Peripheral_internal.swift */; };
-		D4D01F9E240E9E94005CC8DA /* ITCB_SDK_Peripheral_internal.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4D01F99240E9E94005CC8DA /* ITCB_SDK_Peripheral_internal.swift */; };
 		D4D01F9F240E9E94005CC8DA /* ITCB_SDK_Central_internal.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4D01F9A240E9E94005CC8DA /* ITCB_SDK_Central_internal.swift */; };
 		D4D01FA0240E9E94005CC8DA /* ITCB_SDK_Central_internal.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4D01F9A240E9E94005CC8DA /* ITCB_SDK_Central_internal.swift */; };
 		D4D01FA1240E9E94005CC8DA /* ITCB_SDK_Central_internal.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4D01F9A240E9E94005CC8DA /* ITCB_SDK_Central_internal.swift */; };
@@ -368,7 +366,6 @@
 				D40FF5D52406A67800349E77 /* ITCB_SDK.swift in Sources */,
 				D40FF5D62406A67800349E77 /* ITCB_SDK_internal.swift in Sources */,
 				D40FF5D42406A67800349E77 /* ITCB_SDK_Protocol.swift in Sources */,
-				D4D01F9D240E9E94005CC8DA /* ITCB_SDK_Peripheral_internal.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -392,7 +389,6 @@
 				D49AE305240841F30002D53C /* ITCB_SDK.swift in Sources */,
 				D49AE306240841F30002D53C /* ITCB_SDK_internal.swift in Sources */,
 				D49AE304240841F30002D53C /* ITCB_SDK_Protocol.swift in Sources */,
-				D4D01F9E240E9E94005CC8DA /* ITCB_SDK_Peripheral_internal.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

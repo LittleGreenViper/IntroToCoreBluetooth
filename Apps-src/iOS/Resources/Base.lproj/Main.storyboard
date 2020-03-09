@@ -185,6 +185,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="MiH-vZ-XT1"/>
                     <connections>
+                        <outlet property="tableView" destination="FPj-Uj-DUy" id="hnH-3Q-APa"/>
                         <segue destination="ULO-Mg-xvl" kind="show" identifier="show-device-detail" id="naG-ne-goe"/>
                     </connections>
                 </viewController>

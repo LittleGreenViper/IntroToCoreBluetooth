@@ -175,4 +175,15 @@ extension ITCB_TVOS_Central_Device_ViewController: ITCB_Observer_Central_Protoco
             self.questionTextChanged()  // Possibly re-enables the send button.
         }
     }
+    
+    /* ################################################################## */
+    /**
+     This is called when a Central discovers and registers a peripheral.
+     
+     This may not be called in the main thread.
+
+     - parameter inDevice: The Peripheral device that was discovered.
+     */
+    func deviceDiscovered(_ inDevice: ITCB_Device_Peripheral_Protocol) {
+    }
 }

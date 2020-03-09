@@ -1,45 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="15705" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="AgC-eL-Hgc">
+<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="15705" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="GEs-n1-lBf">
     <device id="watch38"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="15501"/>
     </dependencies>
     <scenes>
-        <!--Mode Selection Interface Controller-->
-        <scene sceneID="aou-V4-d1y">
-            <objects>
-                <controller fullScreen="YES" id="AgC-eL-Hgc" customClass="ITCB_Mode_Selection_InterfaceController" customModule="Watch_Extension">
-                    <items>
-                        <group width="1" height="1" alignment="center" verticalAlignment="center" backgroundImage="BackgroundGradient" spacing="0.0" id="rG0-a5-sFP">
-                            <items>
-                                <button alignment="center" verticalAlignment="center" id="lhd-b0-fIp">
-                                    <group key="contentGroup" width="0.5" alignment="left" id="2a2-Pl-Cvx">
-                                        <items>
-                                            <imageView alignment="center" verticalAlignment="center" image="Central" id="P0x-6W-MHw"/>
-                                        </items>
-                                    </group>
-                                    <connections>
-                                        <segue destination="GEs-n1-lBf" kind="push" id="3ra-SR-uvF"/>
-                                    </connections>
-                                </button>
-                                <button alignment="center" verticalAlignment="center" id="osw-Uk-Omf">
-                                    <group key="contentGroup" width="0.5" alignment="left" id="fRz-Qr-DjR">
-                                        <items>
-                                            <imageView alignment="center" verticalAlignment="center" image="Peripheral" id="n46-lA-Hgz"/>
-                                        </items>
-                                    </group>
-                                    <connections>
-                                        <segue destination="hu5-ey-WhZ" kind="push" id="sma-bu-QOF"/>
-                                    </connections>
-                                </button>
-                            </items>
-                        </group>
-                    </items>
-                </controller>
-            </objects>
-            <point key="canvasLocation" x="220" y="345"/>
-        </scene>
         <!--Main Central Interface Controller-->
         <scene sceneID="2dh-ga-e54">
             <objects>
@@ -80,36 +46,6 @@
             </objects>
             <point key="canvasLocation" x="491" y="345"/>
         </scene>
-        <!--Main Peripheral Interface Controller-->
-        <scene sceneID="Ez4-Nr-Dv4">
-            <objects>
-                <controller fullBounds="YES" id="hu5-ey-WhZ" customClass="ITCB_Main_Peripheral_InterfaceController" customModule="Watch_Extension">
-                    <items>
-                        <group width="1" height="1" alignment="center" verticalAlignment="center" backgroundImage="BackgroundGradient" layout="vertical" spacing="0.0" id="thP-zW-6Qc">
-                            <items>
-                                <label width="1" alignment="left" text="SLUG-PERIPHERAL" textAlignment="center" id="i8k-0w-lpC">
-                                    <fontDescription key="font" style="UICTFontTextStyleTitle3"/>
-                                </label>
-                                <label width="1" alignment="left" text="Label" numberOfLines="0" minimumScaleFactor="0.5" id="IBg-G8-X0A">
-                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </label>
-                                <button width="1" alignment="left" title="SLUG-SEND-RANDOM-ANSWER-WATCH" id="T4F-nk-0sq">
-                                    <connections>
-                                        <action selector="sendRandomAnswerButtonHit" destination="hu5-ey-WhZ" id="oqk-4w-PJa"/>
-                                    </connections>
-                                </button>
-                            </items>
-                        </group>
-                    </items>
-                    <connections>
-                        <outlet property="mainLabel" destination="i8k-0w-lpC" id="Kp3-bH-fyY"/>
-                        <outlet property="questionAskedLabel" destination="IBg-G8-X0A" id="f7d-5j-xsx"/>
-                        <outlet property="sendRandomAnswerButton" destination="T4F-nk-0sq" id="rPv-wL-TyX"/>
-                    </connections>
-                </controller>
-            </objects>
-            <point key="canvasLocation" x="220" y="671"/>
-        </scene>
         <!--Main Central Device Interface Controller-->
         <scene sceneID="nGH-qk-KL8">
             <objects>
@@ -135,7 +71,5 @@
     </scenes>
     <resources>
         <image name="BackgroundGradient" width="10" height="3000"/>
-        <image name="Central" width="64" height="64"/>
-        <image name="Peripheral" width="64" height="64"/>
     </resources>
 </document>

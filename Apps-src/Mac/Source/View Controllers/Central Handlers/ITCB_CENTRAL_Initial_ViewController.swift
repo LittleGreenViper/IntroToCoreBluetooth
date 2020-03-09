@@ -41,6 +41,12 @@ class ITCB_CENTRAL_Initial_ViewController: ITCB_Base_ViewController {
      The device picker table view.
      */
     @IBOutlet var tableView: NSTableView!
+    
+    /* ################################################################## */
+    /**
+     This is here to satisfy the SDK Central Observer requirement.
+     */
+    var uuid: UUID = UUID()
 }
 
 /* ###################################################################################################################################### */
@@ -55,6 +61,76 @@ extension ITCB_CENTRAL_Initial_ViewController {
         super.viewDidLoad()
         // We create our SDK instance as a Central.
         deviceSDKInstance = ITCB_SDK.createInstance(isCentral: true)
+    }
+    
+    /* ################################################################## */
+    /**
+     Called just before the view appears. We use this to register as an observer.
+     */
+    override func viewWillAppear() {
+        super.viewWillAppear()
+        getDeviceSDKInstanceAsCentral?.addObserver(self)
+    }
+    
+    /* ################################################################## */
+    /**
+     Called just before the view disappears. We use this to un-register as an observer.
+     */
+    override func viewWillDisappear() {
+        super.viewWillDisappear()
+        getDeviceSDKInstanceAsCentral?.removeObserver(self)
+    }
+}
+
+/* ################################################################################################################################## */
+// MARK: - Observer protocol Methods
+/* ################################################################################################################################## */
+extension ITCB_CENTRAL_Initial_ViewController: ITCB_Observer_Central_Protocol {
+    /* ################################################################## */
+    /**
+     This is called when a Peripheral returns an answer to the Central.
+     
+     This may not be called in the main thread.
+
+     - parameter inDevice: The Peripheral device that provided the answer (this will have both the question and answer in its properties).
+     */
+    func questionAnsweredByDevice(_ inDevice: ITCB_Device_Peripheral_Protocol) {
+    }
+    
+    /* ################################################################## */
+    /**
+     This is called when a Central successfully asks a question of a peripheral.
+     
+     This may not be called in the main thread.
+
+     - parameter inDevice: The Peripheral device that was asked the question (The question will be in the device properties).
+     */
+    func questionAskedOfDevice(_ inDevice: ITCB_Device_Peripheral_Protocol) {
+    }
+
+    /* ################################################################## */
+    /**
+     Called when an error condition is encountered by the SDK.
+     
+     - parameter inError: The error code that occurred.
+     - parameter sdk: The SDK instance that experienced the error.
+     */
+    func errorOccurred(_ inError: ITCB_Errors, sdk inSDKInstance: ITCB_SDK_Protocol) {
+        displayAlert(header: "SLUG-ERROR", message: inError.localizedDescription)
+    }
+    
+    /* ################################################################## */
+    /**
+     This is called when a Central discovers and registers a peripheral.
+     
+     This may not be called in the main thread.
+
+     - parameter inDevice: The Peripheral device that was discovered.
+     */
+    func deviceDiscovered(_ inDevice: ITCB_Device_Peripheral_Protocol) {
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
     }
 }
 

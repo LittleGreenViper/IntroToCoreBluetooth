@@ -98,7 +98,7 @@ extension ITCB_PERIPHERAL_Initial_ViewController {
         super.viewDidLoad()
         deviceSDKInstance = ITCB_SDK.createInstance(isCentral: false)
         sendRandomButton?.title = sendRandomButton?.title.localizedVariant ?? "ERROR"
-        deviceNameLabel.stringValue = getDeviceSDKInstanceAsPeripheral?.central.name ?? "ERROR"
+        deviceNameLabel?.stringValue = getDeviceSDKInstanceAsPeripheral?.central?.name ?? "ERROR"
     }
     
     /* ################################################################## */

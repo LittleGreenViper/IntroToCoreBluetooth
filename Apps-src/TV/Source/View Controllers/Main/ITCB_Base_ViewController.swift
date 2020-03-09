@@ -63,16 +63,6 @@ class ITCB_Base_ViewController: UIViewController {
     var getDeviceSDKInstanceAsCentral: ITCB_SDK_Central! {
         return deviceSDKInstance as? ITCB_SDK_Central
     }
-    
-    /* ################################################################## */
-    /**
-     This will allow access to the singleton SDK instance as a Peripheral SDK. This will return nil, if the SDK is not a Peripheral.
-     
-     This is read-only.
-     */
-    var getDeviceSDKInstanceAsPeripheral: ITCB_SDK_Peripheral! {
-        return deviceSDKInstance as? ITCB_SDK_Peripheral
-    }
 }
 
 /* ###################################################################################################################################### */

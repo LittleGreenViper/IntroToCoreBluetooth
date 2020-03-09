@@ -40,7 +40,12 @@ public class ITCB_SDK: NSObject, ITCB_SDK_Protocol {
      - returns: An instance of the SDK for use by the user.
      */
     public class func createInstance(isCentral inIsCentral: Bool) -> ITCB_SDK_Protocol? {
-        inIsCentral ? ITCB_SDK_Central.createInstance() : ITCB_SDK_Peripheral.createInstance()
+            /// This is only available for iOS or MacOS
+            #if os(OSX) || os(iOS)
+                return inIsCentral ? ITCB_SDK_Central.createInstance() : ITCB_SDK_Peripheral.createInstance()
+            #else
+                return inIsCentral ? ITCB_SDK_Central.createInstance() : nil
+            #endif
     }
 
     /* ################################################################## */
@@ -147,16 +152,6 @@ public class ITCB_SDK_Central: ITCB_SDK, ITCB_SDK_Central_Protocol {
     internal override init() {
         super.init()
         _ = _managerInstance    // This forces us to instantiate our manager.
-        /* ########### */
-        // TODO: Remove this code. It is here just to provide a test structure for the apps.
-        for i in 0..<5 {
-            let device = ITCB_SDK_Device_Peripheral()
-            device.name = "TEST DUMMY DEVICE #\(i)"
-            device.owner = self
-            devices.append(device)
-        }
-        // END TODO
-        /* ########### */
     }
 }
 
@@ -165,45 +160,36 @@ public class ITCB_SDK_Central: ITCB_SDK, ITCB_SDK_Central_Protocol {
 /* ###################################################################################################################################### */
 /**
  This is the Peripheral specialization of the main SDK interface.
+ 
+ **IMPORTANT NOTE:** Peripheral Mode is not supported for WatchOS or TVOS. This class is only included in the iOS and MacOS framework targets.
  */
-public class ITCB_SDK_Peripheral: ITCB_SDK, ITCB_SDK_Peripheral_Protocol {
-    /* ################################################################## */
-    /**
-     Factory function for instantiating Peripherals.
-     
-     This is internal, but needs to be declared here. Awkward, I know.
+#if os(OSX) || os(iOS)
+    public class ITCB_SDK_Peripheral: ITCB_SDK, ITCB_SDK_Peripheral_Protocol {
+        /* ################################################################## */
+        /**
+         Factory function for instantiating Peripherals.
+         
+         This is internal, but needs to be declared here. Awkward, I know.
 
-     - returns: A new instance of a Peripheral SDK.
-     */
-    public class func createInstance() -> ITCB_SDK_Protocol? { ITCB_SDK_Peripheral() }
-    
-    /* ################################################################## */
-    /**
-     This is a reference to the Central device that the instance is being "managed" by.
-     */
-    public var central: ITCB_Device_Central_Protocol!
-    
-    /* ################################################################## */
-    /**
-     Default initializer
-     
-     Declared internal (as opposed to private), in order to afford mocking.
-     */
-    internal override init() {
-        super.init()
-        _ = _managerInstance    // This forces us to instantiate our manager.
-        /* ########### */
-        // TODO: Remove this code. It is here just to provide a test structure for the apps.
-        let centralTemp = ITCB_SDK_Device_Central()
-        centralTemp.name = "DUMMY CENTRAL DEVICE"
-        centralTemp.owner = self
-        central = centralTemp
-        self._sendQuestionAskedToAllObservers(device: self.central, question: String(format: "SLUG-QUESTION-%02d", Int.random(in: 0..<20)))
-            // This is a timer that "asks a question," every quarter second.
-        Timer.scheduledTimer(withTimeInterval: 0.25, repeats: true) { [unowned self] (inTimer) in
-                self._sendQuestionAskedToAllObservers(device: self.central, question: String(format: "SLUG-QUESTION-%02d", Int.random(in: 0..<20)))
+         - returns: A new instance of a Peripheral SDK.
+         */
+        public class func createInstance() -> ITCB_SDK_Protocol? { ITCB_SDK_Peripheral() }
+        
+        /* ################################################################## */
+        /**
+         This is a reference to the Central device that the instance is being "managed" by.
+         */
+        public var central: ITCB_Device_Central_Protocol!
+        
+        /* ################################################################## */
+        /**
+         Default initializer
+         
+         Declared internal (as opposed to private), in order to afford mocking.
+         */
+        internal override init() {
+            super.init()
+            _ = _managerInstance    // This forces us to instantiate our manager.
         }
-        // END TODO
-        /* ########### */
     }
-}
+#endif

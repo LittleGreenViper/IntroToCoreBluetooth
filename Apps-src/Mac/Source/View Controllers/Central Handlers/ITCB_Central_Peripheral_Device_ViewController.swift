@@ -192,4 +192,16 @@ extension ITCB_Central_Peripheral_Device_ViewController: ITCB_Observer_Central_P
             self.answerLabel.stringValue += "\n" + "SLUG-ERROR".localizedVariant
         }
     }
+    
+    /* ################################################################## */
+    /**
+     This is called when a Central discovers and registers a peripheral.
+     
+     This may not be called in the main thread.
+
+     - parameter inDevice: The Peripheral device that was discovered.
+     */
+    func deviceDiscovered(_ inDevice: ITCB_Device_Peripheral_Protocol) {
+        print("A Peripheral Magic 8-Ball, named \"\(String(describing: inDevice.name)) has been discovered and added to the list.")
+    }
 }

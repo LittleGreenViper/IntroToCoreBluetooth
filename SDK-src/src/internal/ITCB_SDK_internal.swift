@@ -75,13 +75,13 @@ extension ITCB_SDK {
     /**
       Any error condition associated with this instance. It may be nil.
      */
-    var _error: ITCB_Errors? { nil }
+    internal var _error: ITCB_Errors? { nil }
     
     /* ################################################################## */
     /**
      This is a base class cast of the manager object that wil be attached to this instance.
      */
-    var managerInstance: CBManager! {
+    internal var managerInstance: CBManager! {
         _managerInstance as? CBManager
     }
 
@@ -89,7 +89,7 @@ extension ITCB_SDK {
     /**
      This is true, if Core Bluetooth reports that the device Bluetooth interface is powered on and available for use.
      */
-    var _isCoreBluetoothPoweredOn: Bool {
+    internal var _isCoreBluetoothPoweredOn: Bool {
         guard let manager = managerInstance else { return false }
         return .poweredOn == manager.state
     }
@@ -101,7 +101,7 @@ extension ITCB_SDK {
      - parameter inObserver: The Observer Instance to add.
      - returns: The newly-assigned UUID. Nil, if the observer was not added.
      */
-    func _addObserver(_ inObserver: ITCB_Observer_Protocol) -> UUID! {
+    internal func _addObserver(_ inObserver: ITCB_Observer_Protocol) -> UUID! {
         if !isObserving(inObserver) {
             observers.append(inObserver)
             observers[observers.count - 1].uuid = UUID()    // This assigns a concrete UUID for use in comparing for removal and testing.
@@ -116,7 +116,7 @@ extension ITCB_SDK {
      
      - parameter inObserver: The Observer Instance to remove.
      */
-    func _removeObserver(_ inObserver: ITCB_Observer_Protocol) {
+    internal func _removeObserver(_ inObserver: ITCB_Observer_Protocol) {
         // There's a number of ways to do this. This way works fine.
         for index in 0..<observers.count where inObserver.uuid == observers[index].uuid {
             observers.remove(at: index)
@@ -132,7 +132,7 @@ extension ITCB_SDK {
     
      - returns: True, if the observer is currently in the list of SDK observers.
      */
-    func _isObserving(_ inObserver: ITCB_Observer_Protocol) -> Bool {
+    internal func _isObserving(_ inObserver: ITCB_Observer_Protocol) -> Bool {
         for observer in observers where inObserver.uuid == observer.uuid {
             return true
         }
@@ -146,7 +146,7 @@ extension ITCB_SDK {
      
      - parameter error: The error that we are sending.
      */
-    func _sendErrorMessageToAllObservers(error inError: ITCB_Errors) {
+    internal func _sendErrorMessageToAllObservers(error inError: ITCB_Errors) {
         observers.forEach {
             $0.errorOccurred(inError, sdk: self)
         }
@@ -160,7 +160,7 @@ extension ITCB_SDK {
      
      - returns: The condition, as Data, or nil, if the conversion failed.
      */
-    func _convertConditionToData(_ inCondition: ITCB_SDK_ConditionCodes) -> Data? {
+    internal func _convertConditionToData(_ inCondition: ITCB_SDK_ConditionCodes) -> Data? {
         var initialValue: Int = inCondition.rawValue
         return NSData(bytes: &initialValue, length: MemoryLayout.size(ofValue: initialValue)) as Data
     }
@@ -173,7 +173,7 @@ extension ITCB_SDK {
      
      - returns: The condition, or nil (if failed to convert)
      */
-    func _convertDataToCondition(_ inData: Data?) -> ITCB_SDK_ConditionCodes? {
+    internal func _convertDataToCondition(_ inData: Data?) -> ITCB_SDK_ConditionCodes? {
         if let data = inData {
             return ITCB_SDK_ConditionCodes(rawValue: data.withUnsafeBytes {
                 $0.load(as: Int.self)
@@ -184,20 +184,48 @@ extension ITCB_SDK {
 }
 
 /* ###################################################################################################################################### */
+// MARK: - Special Comparator for the devices Array -
+/* ###################################################################################################################################### */
+/**
+ This extension implements a method like contains(_:), to compare the UUIDs of Peripherals.
+ */
+extension Array where Element == ITCB_Device_Peripheral_Protocol {
+    /* ################################################################## */
+    /**
+     This is a "faux Contains" method. It searches the Array for instances of a given device, comparing UUIDs
+     
+     - parameter inCBPeripheral: The device that we are comparing, but as a CBPeripheral.
+     
+     - returns: True, if the Array contains the device.
+     */
+    func containsThisDevice(_ inCBPeripheral: CBPeripheral) -> Bool {
+        let peripheralStringID = inCBPeripheral.identifier.uuidString
+        guard let myself = self as? [ITCB_SDK_Device_Peripheral], !peripheralStringID.isEmpty else { return false }
+        var ret = false
+        
+        myself.forEach {
+            ret = ret || $0.uuid == peripheralStringID
+        }
+        
+        return ret
+    }
+}
+
+/* ###################################################################################################################################### */
 // MARK: - General Device Base Class -
 /* ###################################################################################################################################### */
 /**
  This is the genaral base class for Central and Peripheral devices.
  */
-internal class ITCB_SDK_Device {
+internal class ITCB_SDK_Device: NSObject {
     /// The name property to conform to the protocol.
     public var name: String = ""
     
     /// The error property to conform to the protocol.
     public var error: ITCB_Errors!
     
-    /// This is an internal stored property that is used to reference a Core Bluetooth peer instance (either a Central or Peripheral), associated with this device.
-    internal var _peerInstance: CBPeer!
+    /// This is a String, representing a unique UUID for this device.
+    public var uuid: String!
     
     /* ################################################################## */
     /**
@@ -209,7 +237,7 @@ internal class ITCB_SDK_Device {
      */
     public func amIThisDevice(_ inDevice: ITCB_Device_Protocol) -> Bool {
         if let device = inDevice as? ITCB_SDK_Device {
-            return device === self
+            return device.uuid == uuid
         }
         
         return false
@@ -226,4 +254,7 @@ internal class ITCB_SDK_Device {
         // TODO: Put code in here to handle rejection.
         /* ########### */
     }
+    
+    /// This is an internal stored property that is used to reference a Core Bluetooth peer instance (either a Central or Peripheral), associated with this device.
+    internal var _peerInstance: CBPeer!
 }

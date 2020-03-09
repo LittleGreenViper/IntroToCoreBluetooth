@@ -83,6 +83,29 @@ internal extension ITCB_SDK_Central {
             }
         }
     }
+    
+    /* ################################################################## */
+    /**
+     This sends a device discovery message to all registered observers.
+     
+     - parameter device: The Peripheral device that was discovered.
+     */
+    func _sendDeviceDiscoveredMessageToAllObservers(device inDevice: ITCB_Device_Peripheral_Protocol) {
+        observers.forEach {
+            if let observer = $0 as? ITCB_Observer_Central_Protocol {
+                observer.deviceDiscovered(inDevice)
+            }
+        }
+    }
+}
+
+/* ###################################################################################################################################### */
+// MARK: - ITCB_SDK_Device_PeripheralDelegate Methods -
+/* ###################################################################################################################################### */
+extension ITCB_SDK_Central: ITCB_SDK_Device_PeripheralDelegate {
+    func peripheralServicesUpdated(_ inPeripheral: ITCB_SDK_Device_Peripheral) {
+        _sendDeviceDiscoveredMessageToAllObservers(device: inPeripheral)
+    }
 }
 
 /* ###################################################################################################################################### */
@@ -114,47 +137,172 @@ extension ITCB_SDK_Central: CBCentralManagerDelegate {
         - rssi: This is the signal strength of the discovered Peripheral.
      */
     public func centralManager(_ inCentralManager: CBCentralManager, didDiscover inPeripheral: CBPeripheral, advertisementData inAdvertisementData: [String : Any], rssi inRSSI: NSNumber) {
-        assert(inCentralManager === managerInstance)   // Make sure that we are who we say we are...
-        if let peripheralName = inPeripheral.name { // We want to make sure that we have a name.
-            print("A Peripheral Magic 8-Ball, named \"\(peripheralName),\" was discovered, at a signal strength of \(inRSSI), and with this advertisement Data: \(String(describing: inAdvertisementData)).")
+        assert(inCentralManager === managerInstance)    // Make sure that we are who we say we are...
+        if  !devices.containsThisDevice(inPeripheral),  // Make sure that we don't already have this peripheral.
+            let peripheralName = inPeripheral.name,     // And that it is a legit Peripheral (has a name).
+            !peripheralName.isEmpty {
+            devices.append(ITCB_SDK_Device_Peripheral(inPeripheral, owner: self))
+            inCentralManager.connect(inPeripheral, options: nil)    // We initiate a connection, which starts the voyage of discovery.
         }
-    }
-}
-
-/* ###################################################################################################################################### */
-// MARK: - Central Device Base Class -
-/* ###################################################################################################################################### */
-/**
- We need to keep in mind that Central objects are actually owned by Peripheral SDK instances.
- */
-internal class ITCB_SDK_Device_Central: ITCB_SDK_Device, ITCB_Device_Central_Protocol {
-    /// This is the Peripheral SDK that "owns" this device.
-    internal var owner: ITCB_SDK_Peripheral!
-    
-    /// This is the Central Core Bluetooth device associated with this instance.
-    internal var peripheralDeviceInstance: CBCentral! {
-        _peerInstance as? CBCentral
     }
     
     /* ################################################################## */
     /**
-     In the base class, all we do is send the "success" message to any observers.
+     This is called when a peripheral was connected.
      
+     Once the device is connected, we can start discovering services.
+     
+     - parameters:
+        - inCentralManager: The Central Manager instance that changed state.
+        - didConnect: This is the Core Bluetooth Peripheral instance that was discovered.
+     */
+    public func centralManager(_ inCentralManager: CBCentralManager, didConnect inPeripheral: CBPeripheral) {
+        inPeripheral.discoverServices([_static_ITCB_SDK_8BallServiceUUID])
+    }
+}
+
+
+/* ###################################################################################################################################### */
+// MARK: - ITCB_SDK_Device_PeripheralDelegate Protocol (How we talk to the Central) -
+/* ###################################################################################################################################### */
+/**
+ This protocol outlines the rules for talking back to the Central Manager that "owns" a Peripheral.
+ */
+internal protocol ITCB_SDK_Device_PeripheralDelegate {
+    func peripheralServicesUpdated(_ inPeripheral: ITCB_SDK_Device_Peripheral)
+}
+
+/* ###################################################################################################################################### */
+// MARK: - Peripheral Device Base Class -
+/* ###################################################################################################################################### */
+/**
+ We need to keep in mind that Peripheral objects are actually owned by Central SDK instances.
+ */
+internal class ITCB_SDK_Device_Peripheral: ITCB_SDK_Device, ITCB_Device_Peripheral_Protocol {
+    /// This is the Central SDK that "owns" this device.
+    internal var owner: ITCB_SDK_Central!
+    
+    /// We use this to maintain strong references to discovered Characteristics.
+    internal var _characteristicInstances: [CBCharacteristic] = []
+
+    /// The question property to conform to the protocol.
+    public var question: String! = nil {
+        didSet {
+            owner._sendSuccessInAskingMessageToAllObservers(device: self)
+        }
+    }
+
+    /// The answer property to conform to the protocol.
+    /// We use this opportunity to let everyone know that the question has been answered.
+    public var answer: String! = nil {
+        didSet {
+            owner._sendQuestionAnsweredMessageToAllObservers(device: self)
+        }
+    }
+    
+    /// This is the Peripheral Core Bluetooth device associated with this instance.
+    internal var peripheralDeviceInstance: CBPeripheral! {
+        _peerInstance as? CBPeripheral
+    }
+    
+    /// We override the uuid property in order to get the UUID from the peripheral.
+    internal override var uuid: String? {
+        get {
+            if nil == super.uuid || (super.uuid?.isEmpty ?? false) {
+                super.uuid = peripheralDeviceInstance?.identifier.uuidString
+            }
+            
+            return super.uuid
+        }
+        
+        set {
+            super.uuid = newValue
+        }
+    }
+    
+    /// We override the name property in order to get the local name from the peripheral.
+    internal override var name: String {
+        get {
+            if super.name.isEmpty {
+                super.name = peripheralDeviceInstance?.name ?? ""
+            }
+            
+            return super.name
+        }
+        
+        set {
+            super.name = newValue
+        }
+    }
+
+    /* ################################################################## */
+    /**
      This should be called AFTER successfully sending the message.
 
-     - parameter inAnswer: The answer.
-     - parameter toQuestion: The question that was be asked.
+     - parameter inQuestion: The question to be asked.
      */
-    public func sendAnswer(_ inAnswer: String, toQuestion inToQuestion: String) {
-        /* ########### */
-        // TODO: Put code in here to send the answer via Bluetooth, and remove the random error.
-        if 5 == Int.random(in: 0..<10) {
-            // We randomly (one out of 10 times) send an error message, instead of the question. We choose an unknown error rejection
-            owner._sendErrorMessageToAllObservers(error: .sendFailed(ITCB_RejectionReason.unknown(nil)))
-        } else {
-            owner._sendSuccessInSendingAnswerToAllObservers(device: self, answer: inAnswer, toQuestion: inToQuestion)
+    public func sendQuestion(_ inQuestion: String) {
+        self.question = inQuestion
+    }
+    
+    /* ################################################################## */
+    /**
+     Standard init.
+     
+     - parameter inCBPeripheral: The Core Bluetooth discovered Peripheral instance that will be associated with this instance.
+     - parameter owner: The Central instance that "owns" this Peripheral.
+     */
+    init(_ inCBPeripheral: CBPeripheral, owner inOwner: ITCB_SDK_Central) {
+        super.init()
+        inCBPeripheral.delegate = self
+        owner = inOwner
+        _peerInstance = inCBPeripheral
+    }
+}
+
+/* ###################################################################################################################################### */
+// MARK: - CBPeripheralDelegate Conformance -
+/* ###################################################################################################################################### */
+extension ITCB_SDK_Device_Peripheral: CBPeripheralDelegate {
+    /* ################################################################## */
+    /**
+     Called after the Peripheral has discovered Services.
+     
+     - parameter inPeripheral: The Peripheral object that discovered (and now contains) the Services.
+     - parameter didDiscoverServices: Any errors that may have occurred. It may be nil.
+     */
+    public func peripheral(_ inPeripheral: CBPeripheral, didDiscoverServices inError: Error?) {
+        // After discovering the Service, we ask it (even though we are using an Array visitor) to discover its three Characteristics.
+        inPeripheral.services?.forEach {
+            // Having all 3 Characteristic UUIDs in this call, means that we should get one callback, with all 3 Characteristics set at once.
+            inPeripheral.discoverCharacteristics([_static_ITCB_SDK_8BallService_Question_UUID,
+                                                  _static_ITCB_SDK_8BallService_Answer_UUID,
+                                                  _static_ITCB_SDK_8BallService_Condition_UUID], for: $0)
         }
-        // END TODO
-        /* ########### */
+    }
+    
+    /* ################################################################## */
+    /**
+     Called after the Peripheral has discovered Services.
+     
+     - parameter inPeripheral: The Peripheral object that discovered (and now contains) the Services.
+     - parameter didDiscoverCharacteristicsFor: The Service that had the Characteristics discovered.
+     - parameter error: Any errors that may have occurred. It may be nil.
+     */
+    public func peripheral(_ inPeripheral: CBPeripheral, didDiscoverCharacteristicsFor inService: CBService, error inError: Error?) {
+        if _characteristicInstances.isEmpty {   // Make sure that we didn't already pick up the Characteristics (This can be called multiple times).
+            _characteristicInstances = inService.characteristics ?? []
+            owner.peripheralServicesUpdated(self)
+        }
+    }
+    
+    /* ################################################################## */
+    /**
+     This is a required/not required conformance. Even though it isn't "required," per se...it's required.
+     
+     - parameter inPeripheral: The Peripheral object that has the invalidated Services.
+     - parameter didModifyServices: The Services that were invalidated.
+     */
+    public func peripheral(_ inPeripheral: CBPeripheral, didModifyServices inInvalidatedServices: [CBService]) {
     }
 }

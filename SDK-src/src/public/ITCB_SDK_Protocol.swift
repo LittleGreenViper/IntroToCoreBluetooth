@@ -289,6 +289,16 @@ public protocol ITCB_Observer_Central_Protocol: ITCB_Observer_Protocol {
      - parameter device: The Peripheral device that was asked the question (The question will be in the device properties).
      */
     func questionAskedOfDevice(_ device: ITCB_Device_Peripheral_Protocol)
+    
+    /* ################################################################## */
+    /**
+     This is called when a Central discovers and registers a peripheral.
+     
+     This may not be called in the main thread.
+
+     - parameter device: The Peripheral device that was discovered.
+     */
+    func deviceDiscovered(_ device: ITCB_Device_Peripheral_Protocol)
 }
 
 /* ###################################################################################################################################### */
