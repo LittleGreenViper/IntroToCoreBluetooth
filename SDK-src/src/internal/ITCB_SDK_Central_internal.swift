@@ -169,6 +169,12 @@ extension ITCB_SDK_Central: CBCentralManagerDelegate {
  This protocol outlines the rules for talking back to the Central Manager that "owns" a Peripheral.
  */
 internal protocol ITCB_SDK_Device_PeripheralDelegate {
+    /* ################################################################## */
+    /**
+     This sends a "Peripheral Services Changed" message to the SDK.
+     
+     - parameter inPeripheral: The Peripheral instance that has a modified Service.
+     */
     func peripheralServicesUpdated(_ inPeripheral: ITCB_SDK_Device_Peripheral)
 }
 
