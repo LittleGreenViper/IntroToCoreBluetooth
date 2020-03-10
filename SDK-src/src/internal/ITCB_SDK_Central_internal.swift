@@ -138,10 +138,11 @@ extension ITCB_SDK_Central: CBCentralManagerDelegate {
      */
     public func centralManager(_ inCentralManager: CBCentralManager, didDiscover inPeripheral: CBPeripheral, advertisementData inAdvertisementData: [String : Any], rssi inRSSI: NSNumber) {
         assert(inCentralManager === managerInstance)    // Make sure that we are who we say we are...
-        if  !devices.contains(inPeripheral),  // Make sure that we don't already have this peripheral.
+        if  !devices.contains(inPeripheral),            // Make sure that we don't already have this peripheral.
             let peripheralName = inPeripheral.name,     // And that it is a legit Peripheral (has a name).
-            !peripheralName.isEmpty {
-            devices.append(ITCB_SDK_Device_Peripheral(inPeripheral, owner: self))
+            !peripheralName.isEmpty,
+            (_static_ITCB_SDK_RSSI_Min..._static_ITCB_SDK_RSSI_Max).contains(inRSSI.intValue) { // and that we have a signal within the acceptable range.
+            devices.append(ITCB_SDK_Device_Peripheral(inPeripheral, owner: self))   // By creating this, we develop a strong reference, which will keep the CBPeripheral around.
             inCentralManager.connect(inPeripheral, options: nil)    // We initiate a connection, which starts the voyage of discovery.
         }
     }

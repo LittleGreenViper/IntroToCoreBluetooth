@@ -31,6 +31,10 @@ internal let _static_ITCB_SDK_8BallService_Question_UUID = CBUUID(string: "BDD37
 internal let _static_ITCB_SDK_8BallService_Answer_UUID = CBUUID(string: "349A0D7B-6215-4E2C-A095-AF078D737445")
 /// This is the UUID for the "Condition" Int Characteristic
 internal let _static_ITCB_SDK_8BallService_Condition_UUID = CBUUID(string: "945BE4FC-B649-4512-A7BF-FBD066E1FED9")
+/// This is the minimum signal strength for Peripheral discovery.
+internal let _static_ITCB_SDK_RSSI_Min = -60
+/// This is the maximum signal strength for Peripheral discovery.
+internal let _static_ITCB_SDK_RSSI_Max = -20
 
 /* ###################################################################################################################################### */
 // MARK: - Enums For the Condition Characteristic -
