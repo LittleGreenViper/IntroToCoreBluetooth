@@ -192,13 +192,13 @@ extension ITCB_SDK {
 extension Array where Element == ITCB_Device_Peripheral_Protocol {
     /* ################################################################## */
     /**
-     This is a "faux Contains" method. It searches the Array for instances of a given device, comparing UUIDs
+     This searches the Array for instances of a given device, comparing UUIDs
      
      - parameter inCBPeripheral: The device that we are comparing, but as a CBPeripheral.
      
      - returns: True, if the Array contains the device.
      */
-    func containsThisDevice(_ inCBPeripheral: CBPeripheral) -> Bool {
+    func contains(_ inCBPeripheral: CBPeripheral) -> Bool {
         let peripheralStringID = inCBPeripheral.identifier.uuidString
         guard let myself = self as? [ITCB_SDK_Device_Peripheral], !peripheralStringID.isEmpty else { return false }
         var ret = false

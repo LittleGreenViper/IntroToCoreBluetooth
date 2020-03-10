@@ -138,7 +138,7 @@ extension ITCB_SDK_Central: CBCentralManagerDelegate {
      */
     public func centralManager(_ inCentralManager: CBCentralManager, didDiscover inPeripheral: CBPeripheral, advertisementData inAdvertisementData: [String : Any], rssi inRSSI: NSNumber) {
         assert(inCentralManager === managerInstance)    // Make sure that we are who we say we are...
-        if  !devices.containsThisDevice(inPeripheral),  // Make sure that we don't already have this peripheral.
+        if  !devices.contains(inPeripheral),  // Make sure that we don't already have this peripheral.
             let peripheralName = inPeripheral.name,     // And that it is a legit Peripheral (has a name).
             !peripheralName.isEmpty {
             devices.append(ITCB_SDK_Device_Peripheral(inPeripheral, owner: self))
