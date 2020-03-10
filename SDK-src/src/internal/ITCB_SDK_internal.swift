@@ -205,13 +205,9 @@ extension Array where Element == ITCB_Device_Peripheral_Protocol {
     func contains(_ inCBPeripheral: CBPeripheral) -> Bool {
         let peripheralStringID = inCBPeripheral.identifier.uuidString
         guard let myself = self as? [ITCB_SDK_Device_Peripheral], !peripheralStringID.isEmpty else { return false }
-        var ret = false
-        
-        myself.forEach {
-            ret = ret || $0.uuid == peripheralStringID
+        return myself.reduce(false) { (current, nextItem) in
+            return current || nextItem.uuid == peripheralStringID
         }
-        
-        return ret
     }
 }
 
