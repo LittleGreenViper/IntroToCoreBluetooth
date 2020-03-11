@@ -244,6 +244,8 @@ internal class ITCB_SDK_Device_Peripheral: ITCB_SDK_Device, ITCB_Device_Peripher
 
     /* ################################################################## */
     /**
+     This sends a question to the Peripheral device, using Core Bluetooth.
+     
      - parameter inQuestion: The question to be asked.
      */
     public func sendQuestion(_ inQuestion: String) {
