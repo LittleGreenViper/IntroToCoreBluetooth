@@ -71,8 +71,8 @@ extension ITCB_SDK_Peripheral {
      - parameter inMutableServiceInstance: The Service that we are adding the Characteristics to.
      */
     func _setCharacteristicsForThisService(_ inMutableServiceInstance: CBMutableService) {
-        let properties: CBCharacteristicProperties = [CBCharacteristicProperties.read, CBCharacteristicProperties.write]
-        let permissions: CBAttributePermissions = [CBAttributePermissions.readable, CBAttributePermissions.writeable]
+        let properties: CBCharacteristicProperties = [.read, .writeWithoutResponse]
+        let permissions: CBAttributePermissions = [.readable, .writeable]
 
         let questionCharacteristic = CBMutableCharacteristic(type: _static_ITCB_SDK_8BallService_Question_UUID, properties: properties, value: nil, permissions: permissions)
         let answerCharacteristic = CBMutableCharacteristic(type: _static_ITCB_SDK_8BallService_Answer_UUID, properties: properties, value: nil, permissions: permissions)
@@ -150,10 +150,21 @@ extension ITCB_SDK_Peripheral: CBPeripheralManagerDelegate {
      This method is called when the Central changes the value of one of the Characteristics in our Service.
      
      - parameter inPeripheralManager: The Peripheral Manager that experienced the change.
-     - parameter didReceiveRead: The Read request object.
+     - parameter didReceiveWrite: The Write request objects, in an Array.
      */
-    public func peripheralManager(_ inPeripheralManager: CBPeripheralManager, didReceiveRead inReadRequest: CBATTRequest) {
-        print("Read Request Received: \(inReadRequest)")
+    public func peripheralManager(_ inPeripheralManager: CBPeripheralManager, didReceiveWrite inWriteRequests: [CBATTRequest]) {
+        guard   1 == inWriteRequests.count,
+                let mutableChar = inWriteRequests[0].characteristic as? CBMutableCharacteristic,
+                let data = inWriteRequests[0].value,
+                let stringVal = String(data: data, encoding: .utf8) else {
+            return
+        }
+
+        mutableChar.value = data
+        
+        central = ITCB_SDK_Device_Central(inWriteRequests[0].central)
+        
+        _sendQuestionAskedToAllObservers(device: central, question: stringVal)
     }
 }
 
@@ -170,6 +181,17 @@ internal class ITCB_SDK_Device_Central: ITCB_SDK_Device, ITCB_Device_Central_Pro
     /// This is the Central Core Bluetooth device associated with this instance.
     internal var peripheralDeviceInstance: CBCentral! {
         _peerInstance as? CBCentral
+    }
+    
+    /* ################################################################## */
+    /**
+     Initializer with CBCentral
+     
+     - parameter inCentral: The CBCentral peer instance for this instance.
+     */
+    init(_ inCentral: CBCentral) {
+        super.init()
+        _peerInstance = inCentral
     }
     
     /* ################################################################## */
