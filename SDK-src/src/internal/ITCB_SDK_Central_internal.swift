@@ -244,12 +244,18 @@ internal class ITCB_SDK_Device_Peripheral: ITCB_SDK_Device, ITCB_Device_Peripher
 
     /* ################################################################## */
     /**
-     This should be called AFTER successfully sending the message.
-
      - parameter inQuestion: The question to be asked.
      */
     public func sendQuestion(_ inQuestion: String) {
-        self.question = inQuestion
+        if  let data = inQuestion.data(using: .utf8),
+            let peripheral = _peerInstance as? CBPeripheral,
+            let service = peripheral.services?[_static_ITCB_SDK_8BallServiceUUID.uuidString],
+            let charcteristic = service.characteristics?[_static_ITCB_SDK_8BallService_Question_UUID.uuidString] {
+            peripheral.writeValue(data, for: charcteristic, type: .withoutResponse)
+            question = inQuestion
+        } else {
+            question = nil
+        }
     }
     
     /* ################################################################## */

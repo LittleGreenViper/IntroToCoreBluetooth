@@ -212,6 +212,48 @@ extension Array where Element == ITCB_Device_Peripheral_Protocol {
 }
 
 /* ###################################################################################################################################### */
+// MARK: - Special Comparator for the Services Array -
+/* ###################################################################################################################################### */
+/**
+ This allows us to fetch Services by their UUID.
+ */
+extension Array where Element == CBService {
+    /* ################################################################## */
+    /**
+     Special String subscript that allows us to retrieve a Service, by its CBUUID
+     
+     - parameter inUUIDString: The String for the UUID we're looking to match.
+     - returns: The found Service, or nil, if not found.
+     */
+    public subscript(_ inUUIDString: String) -> Element! {
+        return reduce(nil) { (current, nextItem) in
+            return nil == current ? (nextItem.uuid.uuidString == inUUIDString ? nextItem : nil) : current
+        }
+    }
+}
+
+/* ###################################################################################################################################### */
+// MARK: - Special Comparator for the Characteristics Array -
+/* ###################################################################################################################################### */
+/**
+ This allows us to fetch Characteristics by their UUID.
+ */
+extension Array where Element == CBCharacteristic {
+    /* ################################################################## */
+    /**
+     Special String subscript that allows us to retrieve a Characteristic, by its CBUUID
+     
+     - parameter inUUIDString: The String for the UUID we're looking to match.
+     - returns: The found Characteristic, or nil, if not found.
+     */
+    public subscript(_ inUUIDString: String) -> Element! {
+        return reduce(nil) { (current, nextItem) in
+            return nil == current ? (nextItem.uuid.uuidString == inUUIDString ? nextItem : nil) : current
+        }
+    }
+}
+
+/* ###################################################################################################################################### */
 // MARK: - General Device Base Class -
 /* ###################################################################################################################################### */
 /**
