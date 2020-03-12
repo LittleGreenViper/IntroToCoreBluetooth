@@ -17,6 +17,8 @@
 		D40FF5C42406A5DF00349E77 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D452A2EE23F0DB8500016D71 /* InfoPlist.strings */; };
 		D40FF5DA2406A69800349E77 /* ITCB_SDK_TVOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D40FF5D92406A69800349E77 /* ITCB_SDK_TVOS.framework */; };
 		D40FF5DB2406A69800349E77 /* ITCB_SDK_TVOS.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D40FF5D92406A69800349E77 /* ITCB_SDK_TVOS.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		D417F2162419C1EE006969DA /* ITCB_Peripheral_ViewController_Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D417F2152419C1EE006969DA /* ITCB_Peripheral_ViewController_Extension.swift */; };
+		D417F2172419C1EE006969DA /* ITCB_Peripheral_ViewController_Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D417F2152419C1EE006969DA /* ITCB_Peripheral_ViewController_Extension.swift */; };
 		D4195FA223F454200031A99E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D4195F9D23F454200031A99E /* LaunchScreen.storyboard */; };
 		D4195FA323F454200031A99E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D4195F9F23F454200031A99E /* Main.storyboard */; };
 		D4195FA423F454200031A99E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D4195FA123F454200031A99E /* Assets.xcassets */; };
@@ -56,7 +58,7 @@
 		D4BC05B523F347FB008266BC /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = D4BC05B223F347FB008266BC /* Localizable.strings */; };
 		D4BEA54823FF0F5800664AF9 /* ITCB_Central_Peripheral_Device_ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4BEA54623FF0F5800664AF9 /* ITCB_Central_Peripheral_Device_ViewController.swift */; };
 		D4CFE80823FEB505003D2BFA /* ITCB_CENTRAL_Initial_ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4CFE80723FEB505003D2BFA /* ITCB_CENTRAL_Initial_ViewController.swift */; };
-		D4CFE80A23FEB75C003D2BFA /* ITCB_PERIPHERAL_Initial_ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4CFE80923FEB75C003D2BFA /* ITCB_PERIPHERAL_Initial_ViewController.swift */; };
+		D4CFE80A23FEB75C003D2BFA /* ITCB_Peripheral_ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4CFE80923FEB75C003D2BFA /* ITCB_Peripheral_ViewController.swift */; };
 		D4CFE80C23FEBB79003D2BFA /* ITCB_Base_ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4CFE80B23FEBB78003D2BFA /* ITCB_Base_ViewController.swift */; };
 		D4CFE80E23FEBD7C003D2BFA /* ITCB_Base_WindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4CFE80D23FEBD7C003D2BFA /* ITCB_Base_WindowController.swift */; };
 		D4DBD5C923F41F7B001C9DE5 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D452A2EE23F0DB8500016D71 /* InfoPlist.strings */; };
@@ -202,6 +204,7 @@
 		D40B437723F3838700CFE862 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = App/Meta/Info.plist; sourceTree = "<group>"; };
 		D40B438323F3845F00CFE862 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = Extension/Meta/Info.plist; sourceTree = "<group>"; };
 		D40FF5BE2406A1C200349E77 /* ITCB_AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ITCB_AppDelegate.swift; path = Source/Application/ITCB_AppDelegate.swift; sourceTree = "<group>"; };
+		D417F2152419C1EE006969DA /* ITCB_Peripheral_ViewController_Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ITCB_Peripheral_ViewController_Extension.swift; sourceTree = "<group>"; };
 		D4195F8723F4533E0031A99E /* ITCB-TV.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ITCB-TV.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D4195F9A23F453EE0031A99E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = Meta/Info.plist; sourceTree = "<group>"; };
 		D4195F9E23F454200031A99E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Resources/Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -234,7 +237,7 @@
 		D4BC05B323F347FB008266BC /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		D4BEA54623FF0F5800664AF9 /* ITCB_Central_Peripheral_Device_ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ITCB_Central_Peripheral_Device_ViewController.swift; sourceTree = "<group>"; };
 		D4CFE80723FEB505003D2BFA /* ITCB_CENTRAL_Initial_ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ITCB_CENTRAL_Initial_ViewController.swift; sourceTree = "<group>"; };
-		D4CFE80923FEB75C003D2BFA /* ITCB_PERIPHERAL_Initial_ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ITCB_PERIPHERAL_Initial_ViewController.swift; sourceTree = "<group>"; };
+		D4CFE80923FEB75C003D2BFA /* ITCB_Peripheral_ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ITCB_Peripheral_ViewController.swift; sourceTree = "<group>"; };
 		D4CFE80B23FEBB78003D2BFA /* ITCB_Base_ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ITCB_Base_ViewController.swift; sourceTree = "<group>"; };
 		D4CFE80D23FEBD7C003D2BFA /* ITCB_Base_WindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ITCB_Base_WindowController.swift; sourceTree = "<group>"; };
 		D4D5F5C923EEF33400E4F52B /* ITCB-Mac.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ITCB-Mac.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -489,7 +492,7 @@
 		D490947523FF2AC900996B97 /* Peripheral Handlers */ = {
 			isa = PBXGroup;
 			children = (
-				D4CFE80923FEB75C003D2BFA /* ITCB_PERIPHERAL_Initial_ViewController.swift */,
+				D4CFE80923FEB75C003D2BFA /* ITCB_Peripheral_ViewController.swift */,
 			);
 			path = "Peripheral Handlers";
 			sourceTree = "<group>";
@@ -588,6 +591,7 @@
 		D4BC05B023F347B6008266BC /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				D417F2152419C1EE006969DA /* ITCB_Peripheral_ViewController_Extension.swift */,
 				D48CEDD723F2CB180083F1A4 /* ITCB_Utilities.swift */,
 			);
 			path = Source;
@@ -1103,6 +1107,7 @@
 				D4AED472240419CC00FE4542 /* ITCB_Central_Device_ViewController.swift in Sources */,
 				D4950ABB2402E35500D9789B /* ITCB_Mode_Selection_ViewController.swift in Sources */,
 				D4950ABA2402E35500D9789B /* ITCB_Base_ViewController.swift in Sources */,
+				D417F2172419C1EE006969DA /* ITCB_Peripheral_ViewController_Extension.swift in Sources */,
 				D4FFD7582405B106003D418B /* ITCB_iOS_About_ViewController.swift in Sources */,
 				D4950AB72402E34700D9789B /* ITCB_AppDelegate.swift in Sources */,
 				D4BC059823F345ED008266BC /* ITCB_Utilities.swift in Sources */,
@@ -1115,9 +1120,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				D4BA633523FDE12F0086EF9F /* ITCB_About_ViewController.swift in Sources */,
-				D4CFE80A23FEB75C003D2BFA /* ITCB_PERIPHERAL_Initial_ViewController.swift in Sources */,
+				D4CFE80A23FEB75C003D2BFA /* ITCB_Peripheral_ViewController.swift in Sources */,
 				D48CEDD823F2CB180083F1A4 /* ITCB_Utilities.swift in Sources */,
 				D4CFE80823FEB505003D2BFA /* ITCB_CENTRAL_Initial_ViewController.swift in Sources */,
+				D417F2162419C1EE006969DA /* ITCB_Peripheral_ViewController_Extension.swift in Sources */,
 				D4CFE80E23FEBD7C003D2BFA /* ITCB_Base_WindowController.swift in Sources */,
 				D4BEA54823FF0F5800664AF9 /* ITCB_Central_Peripheral_Device_ViewController.swift in Sources */,
 				D4E6777D23EEF4C40066B0C0 /* ITCB_Mode_Selection_ViewController.swift in Sources */,

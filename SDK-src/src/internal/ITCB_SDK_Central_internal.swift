@@ -252,8 +252,10 @@ internal class ITCB_SDK_Device_Peripheral: ITCB_SDK_Device, ITCB_Device_Peripher
         if  let data = inQuestion.data(using: .utf8),
             let peripheral = _peerInstance as? CBPeripheral,
             let service = peripheral.services?[_static_ITCB_SDK_8BallServiceUUID.uuidString],
-            let charcteristic = service.characteristics?[_static_ITCB_SDK_8BallService_Question_UUID.uuidString] {
-            peripheral.writeValue(data, for: charcteristic, type: .withoutResponse)
+            let questionCharacteristic = service.characteristics?[_static_ITCB_SDK_8BallService_Question_UUID.uuidString],
+            let answerCharacteristic = service.characteristics?[_static_ITCB_SDK_8BallService_Answer_UUID.uuidString] {
+            peripheral.writeValue(data, for: questionCharacteristic, type: .withoutResponse)
+            peripheral.setNotifyValue(true, for: answerCharacteristic)
             question = inQuestion
         } else {
             question = nil
@@ -308,6 +310,25 @@ extension ITCB_SDK_Device_Peripheral: CBPeripheralDelegate {
         if _characteristicInstances.isEmpty {   // Make sure that we didn't already pick up the Characteristics (This can be called multiple times).
             _characteristicInstances = inService.characteristics ?? []
             owner.peripheralServicesUpdated(self)
+        }
+    }
+    
+    /* ################################################################## */
+    /**
+     Called when the Peripheral updates a Characteristic (the Answer).
+     
+     - parameter inPeripheral: The Peripheral object that discovered (and now contains) the Services.
+     - parameter didUpdateValueFor: The Characteristic that was updated.
+     - parameter error: Any errors that may have occurred. It may be nil.
+     */
+    public func peripheral(_ inPeripheral: CBPeripheral, didUpdateValueFor inCharacteristic: CBCharacteristic, error inError: Error?) {
+        if  let service = inPeripheral.services?[_static_ITCB_SDK_8BallServiceUUID.uuidString],
+            let answerCharacteristic = service.characteristics?[_static_ITCB_SDK_8BallService_Answer_UUID.uuidString],
+            let answerData = answerCharacteristic.value,
+            let answerString = String(data: answerData, encoding: .utf8),
+            !answerString.isEmpty {
+            inPeripheral.setNotifyValue(false, for: answerCharacteristic)
+            answer = answerString
         }
     }
     

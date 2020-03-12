@@ -29,7 +29,7 @@ import ITCB_SDK_Mac
 /**
  This view controller is loaded over the mode selection, as we have decided to be a Peripheral.
  */
-class ITCB_PERIPHERAL_Initial_ViewController: ITCB_Base_ViewController {
+class ITCB_Peripheral_ViewController: ITCB_Base_ViewController {
     /// The stroryboard ID, for instantiating the class.
     static let storyboardID = "peripheral-initial-view-controller"
     
@@ -47,12 +47,6 @@ class ITCB_PERIPHERAL_Initial_ViewController: ITCB_Base_ViewController {
     
     /* ################################################################## */
     /**
-     This is the Central Device name label
-     */
-    @IBOutlet weak var deviceNameLabel: NSTextField!
-    
-    /* ################################################################## */
-    /**
      This displays the question from the Central.
      */
     @IBOutlet weak var questionAskedLabel: NSTextField!
@@ -65,15 +59,39 @@ class ITCB_PERIPHERAL_Initial_ViewController: ITCB_Base_ViewController {
     
     /* ################################################################## */
     /**
+     This is the container scroll view for the table.
+     */
+    @IBOutlet weak var containerScrollView: NSScrollView!
+
+    /* ################################################################## */
+    /**
      The question picker table view.
      */
     @IBOutlet var tableView: NSTableView!
+    
+    /* ################################################################## */
+    /**
+     This displays a "waiting for question" screen.
+     */
+    @IBOutlet weak var busyView: NSView!
+    
+    /* ################################################################## */
+    /**
+     This is the "waiting" label.
+     */
+    @IBOutlet weak var waitingLabel: NSTextField!
+    
+    /* ################################################################## */
+    /**
+     This is an activity spinner.
+     */
+    @IBOutlet weak var waitingActivityIndicator: NSProgressIndicator!
 }
 
 /* ###################################################################################################################################### */
 // MARK: - IBAction Methods -
 /* ###################################################################################################################################### */
-extension ITCB_PERIPHERAL_Initial_ViewController {
+extension ITCB_Peripheral_ViewController {
     /* ################################################################## */
     /**
      Called when the user clicks the "Send Random" button.
@@ -83,13 +101,43 @@ extension ITCB_PERIPHERAL_Initial_ViewController {
     @IBAction func sendRandomButtonHit(_ inButton: NSButton) {
         let answer = String(format: "SLUG-ANSWER-%02d", Int.random(in: 0..<20)).localizedVariant
         getDeviceSDKInstanceAsPeripheral?.central.sendAnswer(answer, toQuestion: questionAskedLabel?.stringValue ?? "ERROR")
+        setUI(showItems: false)
+    }
+}
+
+/* ###################################################################################################################################### */
+// MARK: - Instance Methods -
+/* ###################################################################################################################################### */
+extension ITCB_Peripheral_ViewController {
+    /* ################################################################## */
+    /**
+     Called to display the question.
+     
+     - parameter inQuestionString: The question.
+     */
+    func displayQuestion(_ inQuestion: String) {
+        self.questionAskedLabel?.stringValue = inQuestion.localizedVariant
+        setUI(showItems: true)
+    }
+    
+    /* ################################################################## */
+    /**
+     This either shows or hides the "waiting" screen, or the answer handlers.
+     
+     - parameter inShowItems: True, if we want to show the items. False, if we want to show the "waiting" screen.
+     */
+    func setUI(showItems inShowItems: Bool) {
+        busyView?.isHidden = inShowItems
+        questionAskedLabel?.isHidden = !inShowItems
+        sendRandomButton?.isHidden = !inShowItems
+        containerScrollView?.isHidden = !inShowItems
     }
 }
 
 /* ###################################################################################################################################### */
 // MARK: - Base Class Override Methods -
 /* ###################################################################################################################################### */
-extension ITCB_PERIPHERAL_Initial_ViewController {
+extension ITCB_Peripheral_ViewController {
     /* ################################################################## */
     /**
      Called when the view has completed loading.
@@ -98,7 +146,9 @@ extension ITCB_PERIPHERAL_Initial_ViewController {
         super.viewDidLoad()
         deviceSDKInstance = ITCB_SDK.createInstance(isCentral: false)
         sendRandomButton?.title = sendRandomButton?.title.localizedVariant ?? "ERROR"
-        deviceNameLabel?.stringValue = getDeviceSDKInstanceAsPeripheral?.central?.name ?? "ERROR"
+        waitingLabel?.stringValue = waitingLabel.stringValue.localizedVariant
+        waitingActivityIndicator?.startAnimation(nil)
+        setUI(showItems: false)
     }
     
     /* ################################################################## */
@@ -123,7 +173,7 @@ extension ITCB_PERIPHERAL_Initial_ViewController {
 /* ################################################################################################################################## */
 // MARK: - NSTableViewDelegate/DataSource Methods
 /* ################################################################################################################################## */
-extension ITCB_PERIPHERAL_Initial_ViewController: NSTableViewDelegate, NSTableViewDataSource {
+extension ITCB_Peripheral_ViewController: NSTableViewDelegate, NSTableViewDataSource {
     /* ################################################################## */
     /**
      Called to supply the number of rows in the table.
@@ -166,65 +216,8 @@ extension ITCB_PERIPHERAL_Initial_ViewController: NSTableViewDelegate, NSTableVi
             (0..<tableView.numberOfRows).contains(selectedRow) {
             let answer = String(format: "SLUG-ANSWER-%02d", selectedRow).localizedVariant
             getDeviceSDKInstanceAsPeripheral?.central.sendAnswer(answer, toQuestion: questionAskedLabel?.stringValue ?? "ERROR")
+            setUI(showItems: false)
             tableView.deselectRow(selectedRow)  // Make sure that we clean up after ourselves.
         }
-    }
-}
-
-/* ################################################################################################################################## */
-// MARK: - Observer protocol Methods
-/* ################################################################################################################################## */
-extension ITCB_PERIPHERAL_Initial_ViewController: ITCB_Observer_Peripheral_Protocol {
-    /* ################################################################## */
-    /**
-     This is called when a Central asks a Peripheral a question.
-     
-     This may not be called in the main thread.
-
-     - parameter inDevice: The Central device that provided the question.
-     - parameter question: The question that was asked by the Central.
-     */
-    func questionAskedByDevice(_ inDevice: ITCB_Device_Central_Protocol, question inQuestion: String) {
-        if  !workingWithQuestion,
-            let sdk = getDeviceSDKInstanceAsPeripheral,
-            sdk.central.amIThisDevice(inDevice) {
-            workingWithQuestion = true
-            DispatchQueue.main.async {
-                self.questionAskedLabel?.stringValue = inQuestion.localizedVariant
-            }
-        } else if workingWithQuestion { // If we are busy with a previous question, we reject the connection.
-            inDevice.rejectConnectionBecause(.deviceBusy)
-        }
-    }
-    
-    /* ################################################################## */
-    /**
-     This is called when a Peripheral successfully answers a Central's question.
-     
-     This may not be called in the main thread.
-     
-     - parameter inDevice: The Central device that provided the question.
-     - parameter answer: The answer that was sent to the Central.
-     - parameter toQuestion: The question that was asked by the Central.
-     */
-    func answerSentToDevice(_ inDevice: ITCB_Device_Central_Protocol, answer inAnswer: String, toQuestion inToQuestion: String) {
-        if  let sdk = getDeviceSDKInstanceAsPeripheral,
-            sdk.central.amIThisDevice(inDevice) {
-            workingWithQuestion = false
-            // TODO: Remove this code, after we get the Bluetooth working.
-            displayAlert(header: inToQuestion, message: inAnswer)
-            // END TODO
-        }
-    }
-
-    /* ################################################################## */
-    /**
-     Called when an error condition is encountered by the SDK.
-     
-     - parameter inError: The error code that occurred.
-     - parameter sdk: The SDK instance that experienced the error.
-     */
-    func errorOccurred(_ inError: ITCB_Errors, sdk inSDKInstance: ITCB_SDK_Protocol) {
-        displayAlert(header: "SLUG-ERROR", message: inError.localizedDescription)
     }
 }

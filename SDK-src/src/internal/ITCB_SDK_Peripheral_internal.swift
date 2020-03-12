@@ -71,12 +71,15 @@ extension ITCB_SDK_Peripheral {
      - parameter inMutableServiceInstance: The Service that we are adding the Characteristics to.
      */
     func _setCharacteristicsForThisService(_ inMutableServiceInstance: CBMutableService) {
-        let properties: CBCharacteristicProperties = [.read, .writeWithoutResponse]
+        let questionProperties: CBCharacteristicProperties = [.writeWithoutResponse]
+        let answerProperties: CBCharacteristicProperties = [.read, .notify]
+        let conditionProperties: CBCharacteristicProperties = [.read, .writeWithoutResponse, .notify]
         let permissions: CBAttributePermissions = [.readable, .writeable]
 
-        let questionCharacteristic = CBMutableCharacteristic(type: _static_ITCB_SDK_8BallService_Question_UUID, properties: properties, value: nil, permissions: permissions)
-        let answerCharacteristic = CBMutableCharacteristic(type: _static_ITCB_SDK_8BallService_Answer_UUID, properties: properties, value: nil, permissions: permissions)
-        let conditionCharacteristic = CBMutableCharacteristic(type: _static_ITCB_SDK_8BallService_Condition_UUID, properties: properties, value: nil, permissions: permissions)
+        let questionCharacteristic = CBMutableCharacteristic(type: _static_ITCB_SDK_8BallService_Question_UUID, properties: questionProperties, value: nil, permissions: permissions)
+        let answerCharacteristic = CBMutableCharacteristic(type: _static_ITCB_SDK_8BallService_Answer_UUID, properties: answerProperties, value: nil, permissions: permissions)
+        let conditionCharacteristic = CBMutableCharacteristic(type: _static_ITCB_SDK_8BallService_Condition_UUID, properties: conditionProperties, value: nil, permissions: permissions)
+        
         inMutableServiceInstance.characteristics = [questionCharacteristic, answerCharacteristic, conditionCharacteristic]
     }
     
@@ -162,9 +165,27 @@ extension ITCB_SDK_Peripheral: CBPeripheralManagerDelegate {
 
         mutableChar.value = data
         
-        central = ITCB_SDK_Device_Central(inWriteRequests[0].central)
+        // We do this, because, on the Mac, you can get a subscription before the write.
+        if nil == central {
+            central = ITCB_SDK_Device_Central(inWriteRequests[0].central, owner: self)
+        }
         
         _sendQuestionAskedToAllObservers(device: central, question: stringVal)
+    }
+    
+    /* ################################################################## */
+    /**
+     - parameter inPeripheralManager: The Peripheral Manager that experienced the change.
+     */
+    public func peripheralManager(_ inPeripheralManager: CBPeripheralManager, central inCentral: CBCentral, didSubscribeTo inCharacteristic: CBCharacteristic) {
+        // We do this, because, on the Mac, you can get a subscription before the write.
+        if nil == central {
+            central = ITCB_SDK_Device_Central(inCentral, owner: self)
+        }
+        
+        if  let central = central as? ITCB_SDK_Device_Central {
+            central.subscribedChar = inCharacteristic
+        }
     }
 }
 
@@ -178,8 +199,11 @@ internal class ITCB_SDK_Device_Central: ITCB_SDK_Device, ITCB_Device_Central_Pro
     /// This is the Peripheral SDK that "owns" this device.
     internal var owner: ITCB_SDK_Peripheral!
     
+    /// This will be used to hold a subscribed Characteristic.
+    internal var subscribedChar: CBCharacteristic!
+
     /// This is the Central Core Bluetooth device associated with this instance.
-    internal var peripheralDeviceInstance: CBCentral! {
+    internal var centralDeviceInstance: CBCentral! {
         _peerInstance as? CBCentral
     }
     
@@ -188,10 +212,13 @@ internal class ITCB_SDK_Device_Central: ITCB_SDK_Device, ITCB_Device_Central_Pro
      Initializer with CBCentral
      
      - parameter inCentral: The CBCentral peer instance for this instance.
+     - parameter owner: The Peripheral SDK instance that "owns" this device.
      */
-    init(_ inCentral: CBCentral) {
+    init(_ inCentral: CBCentral, owner inOwner: ITCB_SDK_Peripheral) {
         super.init()
+        owner = inOwner
         _peerInstance = inCentral
+        subscribedChar = nil
     }
     
     /* ################################################################## */
@@ -204,5 +231,13 @@ internal class ITCB_SDK_Device_Central: ITCB_SDK_Device, ITCB_Device_Central_Pro
      - parameter toQuestion: The question that was be asked.
      */
     public func sendAnswer(_ inAnswer: String, toQuestion inToQuestion: String) {
+        if  let peripheralManager = owner.peripheralManagerInstance,
+            let central = owner.central as? ITCB_SDK_Device_Central,
+            let centralDevice = central.centralDeviceInstance,
+            let answerCharacteristic = central.subscribedChar as? CBMutableCharacteristic,
+            let data = inAnswer.data(using: .utf8) {
+            peripheralManager.updateValue(data, for: answerCharacteristic, onSubscribedCentrals: [centralDevice])
+            owner._sendSuccessInSendingAnswerToAllObservers(device: self, answer: inAnswer, toQuestion: inToQuestion)
+        }
     }
 }

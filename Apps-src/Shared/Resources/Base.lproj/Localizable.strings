@@ -76,6 +76,7 @@ Little Green Viper Software Development LLC: https://littlegreenviper.com
 "ITCB-SDK-ERROR-SEND-FAILURE"       =   "Failed to Send";
 
 // Various strings for use throughout the apps.
+"SLUG-WAIT"                         =   "WAITING FOR QUESTION";
 "SLUG-ERROR"                        =   "ERROR!";
 "SLUG-ABOUT"                        =   "ABOUT THIS APP";
 "SLUG-SELECT-MODE"                  =   "SELECT THE MODE";

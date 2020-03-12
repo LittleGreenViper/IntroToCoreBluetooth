@@ -180,7 +180,7 @@ public class ITCB_SDK_Central: ITCB_SDK, ITCB_SDK_Central_Protocol {
          This is a reference to the Central device that the instance is being "managed" by.
          */
         public var central: ITCB_Device_Central_Protocol!
-        
+
         /* ################################################################## */
         /**
          Default initializer

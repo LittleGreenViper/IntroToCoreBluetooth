@@ -88,7 +88,7 @@ extension ITCB_Central_Peripheral_Device_ViewController {
      
      - parameter: Ignored
      */
-    @IBAction func sendQuestion(_ sender: Any) {
+    @IBAction func sendQuestion(_: Any) {
         if  let question = enterQuestionText?.stringValue,
             !question.isEmpty {
             sendButton.isEnabled = false  // Disable until we receive an ack.

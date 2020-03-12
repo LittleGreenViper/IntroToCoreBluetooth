@@ -88,7 +88,7 @@ extension ITCB_Mode_Selection_ViewController {
      - parameter: Ignored
      */
     @IBAction func selectPeripheralMode(_ : Any) {
-        if let newPeripheralViewController = self.storyboard?.instantiateController(withIdentifier: ITCB_PERIPHERAL_Initial_ViewController.storyboardID) as? ITCB_PERIPHERAL_Initial_ViewController {
+        if let newPeripheralViewController = self.storyboard?.instantiateController(withIdentifier: ITCB_Peripheral_ViewController.storyboardID) as? ITCB_Peripheral_ViewController {
             view.window?.contentViewController = newPeripheralViewController
             setWindowTitle()
         }

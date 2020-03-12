@@ -50,12 +50,6 @@ class ITCB_Peripheral_ViewController: ITCB_Base_ViewController {
     
     /* ################################################################## */
     /**
-     This is the label that displays the Central device name.
-     */
-    @IBOutlet weak var deviceNameLabel: UILabel!
-    
-    /* ################################################################## */
-    /**
      This label displays the question sent from the Central device.
      */
     @IBOutlet weak var questionAskedLabel: UILabel!
@@ -65,6 +59,24 @@ class ITCB_Peripheral_ViewController: ITCB_Base_ViewController {
      This button allows a randomly-selected answer to be returned.
      */
     @IBOutlet weak var sendRandomAnswerButton: UIButton!
+    
+    /* ################################################################## */
+    /**
+     This is the table that displays the possible answers.
+     */
+    @IBOutlet weak var tableView: UITableView!
+    
+    /* ################################################################## */
+    /**
+     The label for the "waiting" screen.
+     */
+    @IBOutlet weak var waitingLabel: UILabel!
+    
+    /* ################################################################## */
+    /**
+     This view shows a "waiting" screen.
+     */
+    @IBOutlet weak var busyView: UIStackView!
     
     /* ################################################################## */
     /**
@@ -91,6 +103,8 @@ extension ITCB_Peripheral_ViewController {
             !question.isEmpty {
             sdk.central.sendAnswer(inAnswer, toQuestion: question)
         }
+        
+        setUI(showItems: false)
     }
 }
 
@@ -110,6 +124,35 @@ extension ITCB_Peripheral_ViewController {
 }
 
 /* ###################################################################################################################################### */
+// MARK: - Instance Methods -
+/* ###################################################################################################################################### */
+extension ITCB_Peripheral_ViewController {
+    /* ################################################################## */
+    /**
+     Called to display the question.
+     
+     - parameter inQuestionString: The question.
+     */
+    func displayQuestion(_ inQuestion: String) {
+        self.questionAskedLabel?.text = inQuestion.localizedVariant
+        setUI(showItems: true)
+    }
+    
+    /* ################################################################## */
+    /**
+     This either shows or hides the "waiting" screen, or the answer handlers.
+     
+     - parameter inShowItems: True, if we want to show the items. False, if we want to show the "waiting" screen.
+     */
+    func setUI(showItems inShowItems: Bool) {
+        busyView?.isHidden = inShowItems
+        questionAskedLabel?.isHidden = !inShowItems
+        sendRandomAnswerButton?.isHidden = !inShowItems
+        tableView?.isHidden = !inShowItems
+    }
+}
+
+/* ###################################################################################################################################### */
 // MARK: - Base Class Override Methods -
 /* ###################################################################################################################################### */
 extension ITCB_Peripheral_ViewController {
@@ -121,10 +164,9 @@ extension ITCB_Peripheral_ViewController {
         super.viewDidLoad()
         deviceSDKInstance = ITCB_SDK.createInstance(isCentral: false)
         if let sdk = getDeviceSDKInstanceAsPeripheral {
-            deviceNameLabel?.text = sdk.central?.name
             uuid = sdk.addObserver(self)
         }
-        
+        waitingLabel?.text = waitingLabel.text?.localizedVariant
         sendRandomAnswerButton?.setTitle(sendRandomAnswerButton?.title(for: .normal)?.localizedVariant, for: .normal)
     }
 }
@@ -178,63 +220,5 @@ extension ITCB_Peripheral_ViewController: UITableViewDelegate, UITableViewDataSo
             sendAnswer(answer)
         }
         return nil
-    }
-}
-
-/* ################################################################################################################################## */
-// MARK: - Observer protocol Methods -
-/* ################################################################################################################################## */
-extension ITCB_Peripheral_ViewController: ITCB_Observer_Peripheral_Protocol {
-    /* ################################################################## */
-    /**
-     This is called when a Central asks a Peripheral a question.
-     
-     This may not be called in the main thread.
-
-     - parameter inDevice: The Central device that provided the question.
-     - parameter question: The question that was asked by the Central.
-     */
-    func questionAskedByDevice(_ inDevice: ITCB_Device_Central_Protocol, question inQuestion: String) {
-        if  !workingWithQuestion,
-            let sdk = getDeviceSDKInstanceAsPeripheral,
-            sdk.central.amIThisDevice(inDevice) {
-            workingWithQuestion = true
-            DispatchQueue.main.async {
-                self.questionAskedLabel?.text = inQuestion.localizedVariant
-            }
-        } else if workingWithQuestion { // If we are busy with a previous question, we reject the connection.
-            inDevice.rejectConnectionBecause(.deviceBusy)
-        }
-    }
-    
-    /* ################################################################## */
-    /**
-     This is called when a Peripheral successfully answers a Central's question.
-     
-     This may not be called in the main thread.
-     
-     - parameter inDevice: The Central device that provided the question.
-     - parameter answer: The answer that was sent to the Central.
-     - parameter toQuestion: The question that was asked by the Central.
-     */
-    func answerSentToDevice(_ inDevice: ITCB_Device_Central_Protocol, answer inAnswer: String, toQuestion inToQuestion: String) {
-        if let sdk = getDeviceSDKInstanceAsPeripheral,
-        sdk.central.amIThisDevice(inDevice) {
-            workingWithQuestion = false
-            // TODO: Remove this code, after we get the Bluetooth working.
-            displayAlert(header: inToQuestion, message: inAnswer)
-            // END TODO
-        }
-    }
-
-    /* ################################################################## */
-    /**
-     Called when an error condition is encountered by the SDK.
-     
-     - parameter inError: The error code that occurred.
-     - parameter sdk: The SDK instance that experienced the error.
-     */
-    func errorOccurred(_ inError: ITCB_Errors, sdk inSDKInstance: ITCB_SDK_Protocol) {
-        displayAlert(header: "SLUG-ERROR", message: inError.localizedDescription)
     }
 }
